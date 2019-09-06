@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--author:Tang-->
+<!--Last date:2019.9.2-->
+<!--verison:1.0-->
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>搜索界面</title>
+    <link href="./bs/css/bootstrap.css" rel="stylesheet">
+      <script src="./bs/js/bootstrap.js"></script>
+      <script src="./bs/js/jquery.min.js"></script>
+    <script src="./bs/js/holder.js"></script>
+  </head>
+  <style>
+    .container{
+      height: 0px;
+
+    }
+    .row{
+      margin-bottom: 15px;
+    }
+      .center {
+  position: fixed;
+  top: 50%;
+  left: 57%;
+  background-color: #65;
+  width:50%;
+  height: 50%;
+-webkit-transform: translateX(-50%) translateY(-50%);
+}
+    .navbar{
+        background-color: #fff;
+    }
+
+    .btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 16px;
+  line-height: 1.428571429;
+  border-radius: 18px;
+}
+    .btn-circle-lg {
+  width: 50px;
+  height: 50px;
+  padding: 14px 5px;
+  font-size: 15px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+    .btn-circle-xl {
+  width: 70px;
+  height: 70px;
+  padding: 20px 15px;
+  font-size: 20px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+  </style>
+  <body>
+  <script src="./bs/js/bootstrap.js"></script>
+      <script src="./bs/js/jquery.min.js"></script>
+      <script src="./bs/js/holder.js"></script>
+      <div class="navbar navbar-fixed-top" style="padding-right:8px">
+
+         <div class="pull-right" style="padding-top:7px">
+             <a href="./Login.html" type="button" class="btn btn-default btn-circle-lg"style="collapse:display:block;   ">登录</a>
+<!--              未解决:用户框及注册框问题,表单问题.   -->
+<!--                 <ul class="dropdown-menu">-->
+<!--                 <input type="text" >用户名</input>-->
+<!--                 <li>opop</li>-->
+<!--                 <li>opop</li>-->
+<!--                 <li>opop</li>-->
+<!--             </ul>-->
+         </div>
+     </div>
+<!--      未解决:图片插入问题,美化问题,表单问题-->
+<div class="center" style="padding-top:px;">
+    <img src="picture" class="center-block img-responsive" style="padding-right: 320px;padding-top: 20px">
+    <form action="./seek.php" method="post">
+    <div class="col-lg-9">
+    <div class="input-group input-group-lg">
+<!--        <label for="ser" class="sr-only">search</label>-->
+      <input type="text" class="form-control" placeholder="Search for..." id="ser" name="ser">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" style="font-size: 20px"></span></button>
+      </span>
+    </div>
+        </div>
+  </form>
+  </div>
+  </body>
+</html>
