@@ -13,17 +13,13 @@
     <script src="./bs/js/holder.js"></script>
   </head>
   <style>
-    .container{
-      height: 0px;
-
-    }
     .row{
       margin-bottom: 15px;
     }
       .center {
   position: fixed;
   top: 50%;
-  left: 57%;
+  left: 50%;
   background-color: #65;
   width:50%;
   height: 50%;
@@ -58,6 +54,19 @@
   line-height: 1.33;
   border-radius: 35px;
 }
+.img-responsive {
+  display: block;
+  height: 40%;
+  max-width: 40%;
+}
+/* 列水平居中 */
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}   
+
   </style>
   <body>
   <script src="./bs/js/bootstrap.js"></script>
@@ -66,14 +75,12 @@
       <div class="navbar navbar-fixed-top" style="padding-right:8px">
          <div class="pull-right" style="padding-top:7px">
              <a href="./Login.html" type="button" class="btn btn-default btn-circle-lg"style="collapse:display:block">登录</a>
-
          </div>
      </div>
-
-<div class="center" style="padding-top:px;">
-    <img src="picture" class="center-block img-responsive" style="">
-    <form action="./phy/seek.php" method="post">
-    <div class="col-lg-9">
+<div class="center">
+  <img src="picture" class="img-responsive center-block"> 
+    <form action="./lib/seek.php" method="post">
+    <div class="col-lg-9 col-center-block">
     <div class="input-group input-group-lg">
       <input type="text" class="form-control" placeholder="Search for..." id="ser" name="ser">
       <span class="input-group-btn">
