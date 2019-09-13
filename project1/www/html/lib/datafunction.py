@@ -1,11 +1,7 @@
 '''#########################################################################
-# File Name: seek.py
+# File Name: datafunction.py
 # Author: Tang
 # mail: tanzhengtang@163.com
-# Created Time: 2019年09月10日 星期二 16时30分15秒
-#搜索功能
+# Created Time: 2019年09月13日 星期五 14时39分50秒
 #########################################################################'''
 
-import os,sys
-print(1)
-print(sys.argv[1])
