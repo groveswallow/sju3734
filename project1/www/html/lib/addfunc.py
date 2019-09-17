@@ -5,10 +5,23 @@
 # Created Time: 2019年09月13日 星期五 14时39分50秒
 # Last write Time:2019年9月16日 星期一 20点56分
 # New Problem 无法做到对每个Excel进行读入，同时只支持Excel格式，函数式编程,数据库中有重复表存在时会报错。
+# 待解决：解决数据表主键冲突问题 ，目前暂时设置为无主键 
+# 待解决：别名表、PMID表、数据表
 #########################################################################'''
 import openpyxl,sys,os,re
 import MySQLdb as db
 #报错机制未解决 
+'''删除表格中pmid，title ,orig_text的空值，注意替换表格值'''
+def delnon():
+    wb=openpyxl.load_workbook('/home/tan/sju3734/project1/www/html/lib/brca.xlsx')
+    ws=wb.get_sheet_by_name('brca_v1')
+    print(ws.max_row)
+    for i in range(1,ws.max_row):
+        if ws["G%d"%i].value==None and ws["H%d"%i].value==None:
+            ws["G%d"%i].value=ws["G%d"%(i-1)].value
+            ws["H%d"%i].value=ws["H%d"%(i-1)].value
+            print("G%d.value loaded\n"%i)
+    wb.save('/home/tan/sju3734/project1/www/html/lib/brca.xlsx')
 #创建函数
 def cretab(tab_row):
     f=0
@@ -24,7 +37,7 @@ def cretab(tab_row):
             cresql="""alter table %s add %s text"""%(tabname,key_val)
         else :      
             cresql="""CREATE TABLE %s(
-            %s CHAR(10) PRIMARY KEY)"""%(tabname,key_val)
+            %s CHAR(10))"""%(tabname,key_val)  #改写：去掉主键约束，时间2019.9.17 14点32分
             f=f+1
             print("create the cols...") 
         # print("%s\n"%cresql)    
@@ -39,38 +52,40 @@ def cretab(tab_row):
     
 #增加函数
 def intab(tab_row):
-    cur.execute("show COLUMNS from %s"%tabname)
-    print("\n")
-    cols= ",".join(str(i[0]).replace(" ","")for i in cur.fetchall())
-    print("cols=%s"%cols)
-    print("\n")
-    row_value=""
-    # row_value=",".join(str(i.value).replace(" ","")for i in tab_row)  #考虑到表格有Null值，无法用较为效率的循环式，改写
+    row_value=[]
     for i in tab_row:  
-        if i.value==None:
-            row_value=row_value+", "
+        if i.value==None:   #如果cell值为None，将存入Null字符，注意以后进行查询时，空格字符的匹配
+            row_value.append("'Null'")
         else :
-            row_value=row_value+"'%s'"%str(i.value)+","
-    row_value=row_value.rstrip(",")    #去掉末尾多余的逗号
-    print("row_value=%s"%row_value)
-    print("\n")
-    insql= """INSERT INTO %s(%s)
-         VALUES (%s)"""%(tabname,cols,row_value)
-    # print("%s\n"%insql)
-    try:     
-        cur.execute(insql)
-        con.commit()
-        return 1
-    except:
-        print("wrong!plesea check the code\n")
-        return 0
+            row_value.append("'%s'"%str(i.value).replace("'","\\'"))#替换字符中的单引号
+    row_value=",".join(row_value)   
+    insql= """INSERT INTO Brca.%s
+         VALUES (%s);"""%(tabname,row_value)
+    print("%s\n"%insql)     
+    cur.execute(insql)
+    return 1
+
+'''def intab_alias(tab_rwo): #插入基因别名的函数，还未修改s
+    row_value=[]
+    for i in tab_row:  
+        if i.value==None:   
+            row_value.append("'Null'")
+        else :
+            row_value.append("'%s'"%str(i.value).replace("'","\\'"))#替换字符中的单引号
+    row_value=",".join(row_value)   
+    insql= """INSERT INTO Brca.%s
+         VALUES (%s);"""%(tabname,row_value)
+    print("%s\n"%insql)     
+    cur.execute(insql)
+    return 1 '''
+    
 
 #host,usr,password,database 为以后改写提供参数接口       
 host="localhost"
 usr="root"
 password="006659"
 database="Brca"
-con=db.connect(host,usr,password,database)
+con=db.connect(host,usr,password,database,use_unicode=True, charset="utf8")#切记检查编码以及添加编码。
 cur=con.cursor()
 wb=openpyxl.load_workbook('/home/tan/sju3734/project1/www/html/lib/brca.xlsx')#以后考虑改写时自行查找当前路径的Excel表。
 tabname=""  #该变量为全局变量，在cretab函数以及intab函数中均有用到，请注意在函数内部中不要出现修改该变量的执行程式
@@ -95,7 +110,8 @@ for sheet in wb :
     #       cretab(next(tab_row))
 
     # #该版本为重写后，效率相对高
-    next(tab_row)
-    next(tab_row)
-    map(intab,tab_row)
-con.close()
+    cretab(next(tab_row))
+    [intab(row) for row in tab_row]
+
+con.commit()
+con.close() 
