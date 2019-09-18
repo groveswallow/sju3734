@@ -19,10 +19,13 @@
           echo "<H1>you don't input anything</H1>";}
         else
         {
-        echo gettype($_POST["ser"]);
-        // exec("python3 /home/tan/sju3734/project1/www/html/lib/seek.py $s",$out,$status);
-        // echo $out[0].$out[1];  
-        // echo $status;
+        // echo gettype($_POST["ser"]);
+        exec("python3 /home/tan/sju3734/project1/www/html/lib/seek.py $s",$out,$status);
+        echo '<h3>搜索结果如下：</h3>';
+        echo '<h2>'.$out[0].'</h2>';
+        echo '<h2>'.$out[1].'</h2>'; 
+        echo '<h2>'.$out[2].'</h2>'; 
+        //echo $status;
         }
         ?>
     </body>

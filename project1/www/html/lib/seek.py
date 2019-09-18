@@ -8,34 +8,61 @@
 
 import os,sys,MySQLdb,re
 #查询函数
-def sel(ser):
-    #该用户为游客权限，只拥有对Brca查询权限
+def checkpmid(ser):
     host="localhost"
     usr="defusr"
     password="123456"
     database="Brca"
     con=MySQLdb.connect(host,usr,password,database,use_unicode=True, charset="utf8")
     cur=con.cursor()
-    #测试是否连接成功
-    # cur.execute("SELECT VERSION()")
-    # data = cur.fetchone()
-    # print ("Database version : %s " % data)
+    cur.execute("select COLUMN_NAME from information_schema.COLUMNS where table_name = 'brca_v1' and table_schema = 'Brca'")
+    cols=cur.fetchall()
     try:
         int(ser)
-        # sql="SELECT * FROM brca_v1 where pmid REGEXP '%s'"%str(ser)
-        sql="SELECT * FROM brca_v1 where pmid='110'"
-        print(sql)
-        cur.execute(sql)
-        print(len(cur.fetchall()))
+        sql="SELECT * FROM brca_v1 where pmid REGEXP '^%s'"%str(ser) #假如是pmid的查询方式
+        # print(sql)
+        cur.execute(sql)  
+        for i in cur.fetchall():
+            s=",".join(i)
+            p=0  #cur.execute(sql)未查询到，cur.fetchall()的元组数将会是0
+            for x in cols:
+                if p<6 and p>0:
+                    s=s.replace("," , "    %s="%x[0],1)
+                    p=p+1
+                elif p>=6:
+                    s=s.replace(",","\n%s="%x[0],1)
+                else:
+                    s="pmid="+s
+                    p=p+1
+            print(s)                
     except:
         print("error")
-    # cur.execute()
-    # cur.fetchall()
     con.close()
 
-# ser=sys.argv[1] #默认参数为PHP传递的字符串 
-# if re.search(r'[^a-zA-Z0-9]',ser):
+
+def checkgene(ser):
+    host="localhost"
+    usr="defusr"
+    password="123456"
+    database="Brca"
+    con=MySQLdb.connect(host,usr,password,database,use_unicode=True, charset="utf8")
+    cur=con.cursor() 
+    if re.search(r'[^a-zA-Z0-9]',ser):
+        print('error,your input including invalidd symbol!Please input again!')
+    else:
+        sql="SELECT * FROM brca_v1 where tf LIKE '%s%%' or gene LIKE '%s%%'"%(str(ser),str(ser))
+        cur.execute(sql)
+        for i in cur.fetchall():
+            print(",".join(i))
+    con.close()
+
+# checkpmid(sys.argv[1])
+checkpmid(sys.argv[1])
+# checkgene("p53")
+# checkgene(sys.argv[1])
+
+
+
 #     print("You have input some invalid symbol,please input letters or numbers\n")
 # else :
     
-sel("1")
