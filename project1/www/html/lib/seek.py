@@ -7,62 +7,53 @@
 #########################################################################'''
 
 import os,sys,MySQLdb,re
+#-*- coding: utf-8 -*-
 #查询函数
-def checkpmid(ser):
+def checkgene(ser):
+    sql="SELECT * FROM brca_v1 where tf LIKE '%s%%' or gene LIKE '%s%%'"%(str(ser),str(ser))
+    try :
+        int(ser)
+        sql="SELECT * FROM brca_v1 where pmid REGEXP '^%s'"%str(ser)
+    except:
+        pass
     host="localhost"
     usr="defusr"
     password="123456"
     database="Brca"
     con=MySQLdb.connect(host,usr,password,database,use_unicode=True, charset="utf8")
     cur=con.cursor()
-    cur.execute("select COLUMN_NAME from information_schema.COLUMNS where table_name = 'brca_v1' and table_schema = 'Brca'")
-    cols=cur.fetchall()
-    try:
-        int(ser)
-        sql="SELECT * FROM brca_v1 where pmid REGEXP '^%s'"%str(ser) #假如是pmid的查询方式
-        # print(sql)
-        cur.execute(sql)  
-        for i in cur.fetchall():
-            s=",".join(i)
-            p=0  #cur.execute(sql)未查询到，cur.fetchall()的元组数将会是0
-            for x in cols:
-                if p<6 and p>0:
-                    s=s.replace("," , "    %s="%x[0],1)
-                    p=p+1
-                elif p>=6:
-                    s=s.replace(",","\n%s="%x[0],1)
-                else:
-                    s="pmid="+s
-                    p=p+1
-            print(s)                
-    except:
-        print("error")
-    con.close()
-
-
-def checkgene(ser):
-    host="localhost"
-    usr="defusr"
-    password="123456"
-    database="Brca"
-    con=MySQLdb.connect(host,usr,password,database,use_unicode=True, charset="utf8")
-    cur=con.cursor() 
-    if re.search(r'[^a-zA-Z0-9]',ser):
-        print('error,your input including invalidd symbol!Please input again!')
+    # cur.execute("select COLUMN_NAME from information_schema.COLUMNS where table_name = 'brca_v1' and table_schema = 'Brca'")
+    # cols=cur.fetchall()
+    cur.execute(sql)
+    res=cur.fetchall()
+    if len(res)==0:
+        print('0')
+        return 0
     else:
-        sql="SELECT * FROM brca_v1 where tf LIKE '%s%%' or gene LIKE '%s%%'"%(str(ser),str(ser))
-        cur.execute(sql)
-        for i in cur.fetchall():
-            print(",".join(i))
+        for i in res:
+            for s in i :
+                s=s.replace("α","Alpha")
+                s=s.replace("β","Beta")
+                s=s.replace("γ","Gamma")
+                s=s.replace("δ","Delta")
+                s=s.replace("ε","Epsilon")
+                s=s.replace("ζ","Zeta")
+                print("%s"%s)   
+        # s=",".join(i)
+        # p=0  #cur.execute(sql)未查询到，cur.fetchall()的元组数将会是0
+        # for x in cols:
+        #     if p<6 and p>0:
+        #         s=s.replace("," , "    %s="%x[0],1)
+        #         p=p+1
+        #     elif p>=6:
+        #         s=s.replace(",","\n%s="%x[0],1)
+        #     else:
+        #         s="pmid="+s
+        #         p=p+1
     con.close()
 
 # checkpmid(sys.argv[1])
-checkpmid(sys.argv[1])
-# checkgene("p53")
+# checkpmid(sys.argv[1])s
 # checkgene(sys.argv[1])
 
-
-
-#     print("You have input some invalid symbol,please input letters or numbers\n")
-# else :
-    
+checkgene("183")

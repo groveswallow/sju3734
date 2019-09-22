@@ -7,10 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
   <title>Bootstrap 101 Template</title>
-
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  <script src="./bs/js/jquery.min.js"></script>
+  <script src="./bs/js/bootstrap.js"></script>
+  <script src="./bs/js/holder.js"></script>
+  <script src="./bs/js/bootstrap-table.min.js"></script>
+  <script src="./bs/js/bootstrap-table-zh-CN.min.js"></script>
+  <link href="./bs/css/bootstrap.css" rel="stylesheet">
+  <script src="./bs/css/bootstrap-table.min.csss"></script>
   <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
   <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
   <!--[if lt IE 9]>
@@ -20,70 +23,186 @@
 </head>
 <style>
   .center {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  background-color: #65;
-  width: 90%;
-  height: 80%;
--webkit-transform: translateX(-50%) translateY(-50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: #65;
+    width: 90%;
+    height: 80%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
   }
+  .table-1{
+width:auto;
+table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+}
+.td{
+  width: 300px;
+overflow: hidden;
+
+white-space: nowrap;
+
+text-overflow: ellipsis;* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
+}
 </style>
 <body>
-  <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-  <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-  <div class="center">
-    <div class="table-responsive">
-      <table class="table table-hover table-bordered">
-          <thead>
-              <tr>
-                <th>PMID</th>
-                <th>TF</th>
-                <th>characteristics</th>
-                <th>gene</th>
-                <th>regulation_type</th>
-                <th>cancer_hallmark</th>
-                <th>original_text</th>
-                <th>title</th>
+  <script src="./bs/js/jquery.min.js"></script>
+  <script src="./bs/js/bootstrap.js"></script>
+  <script src="./bs/js/holder.js"></script>
+  <ul class="pagination">
+      <li><a href="#">&laquo;</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&raquo;</a></li>
+  </ul><br>
+  <div class="content">
+  <div class="center" style="overflow: scroll">
+    <div class="table">
+      <table class="table table-hover table-bordered" style="overflow: scroll">
+        <thead>
+          <tr>
+            <th>PMID</th>
+            <th>TF</th>
+            <th>characteristics</th>
+            <th>gene</th>
+            <th>regulation_type</th>
+            <th>cancer_hallmark</th>
+            <th>original_text</th>
+            <th>title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="">
+            <td class>sad</td>
+            <td>Bangalore</td>
+            <td>Bangalore</td>
+            <td>Bangalore</td>
+            <td>Bangalore</td>
+            <td>Bangalore</td>
+            <td style="">
+              Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+            </td>
+            <td>             
+              Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modaldemo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+            <tr class="">
+              <td class>sad</td>
+              <td>Bangalore</td>
+              <td>Bangalore</td>
+              <td>Bangalore</td>
+              <td>Bangalore</td>
+              <td>Bangalore</td>
+              <td style="">
+                Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+              </td>
+              <td>             
+                Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modaldemo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+              </td>
+            </tr>
+          </tbody>
+          <tbody>
+              <tr class="">
+                <td class>sad</td>
+                <td>Bangalore</td>
+                <td>Bangalore</td>
+                <td>Bangalore</td>
+                <td>Bangalore</td>
+                <td>Bangalore</td>
+                <td style="">
+                  Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+                </td>
+                <td>             
+                  Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modaldemo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+                </td>
               </tr>
-            </thead>
+            </tbody>
             <tbody>
-                <tr>
-                  <td>sad</td>
+                <tr class="">
+                  <td class>sad</td>
                   <td>Bangalore</td>
                   <td>Bangalore</td>
                   <td>Bangalore</td>
                   <td>Bangalore</td>
                   <td>Bangalore</td>
-                  <td>Bangalore</td>
-                  <td><div class="dropdown">
-                    <button class="btn" data-toggle="dropdown">origin_text<span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                    <li><a href="">opopopopopopopoppppppppppppppppppppppppppppppppppppppppppppppp</a></li></div>
+                  <td style="">
+                    Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+                  </td>
+                  <td>             
+                    Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modaldemo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
                   </td>
                 </tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
               </tbody>
-        </table>
+              <tbody>
+                  <tr class="">
+                    <td class>sad</td>
+                    <td>Bangalore</td>
+                    <td>Bangalore</td>
+                    <td>Bangalore</td>
+                    <td>Bangalore</td>
+                    <td>Bangalore</td>
+                    <td style="">
+                      Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+                    </td>
+                    <td>             
+                      Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modaldemo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody>
+                    <tr class="">
+                      <td class>sad</td>
+                      <td>Bangalore</td>
+                      <td>Bangalore</td>
+                      <td>Bangalore</td>
+                      <td>Bangalore</td>
+                      <td>Bangalore</td>
+                      <td style="">
+                        Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+                      </td>
+                      <td>             
+                        Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch Launch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modaldemo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modalLaunch demo modal
+                      </td>
+                    </tr>
+                  </tbody>
+      </table>
+    </div>
     </div>
 
-    <div class="dropdown">
-      <button class="btn" data-toggle="dropdown">origin_text<span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><a href="">opopopopopopopoppppppppppppppppppppppppppppppppppppppppppppppp</a></li>
-      </ul>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body" style="word-break:break-all">
+            <!-- <div class="row" style="height: 0px;padding-bottom:20%">s
+                <a>asdsadsadasdsadassssssssssssssssssssssssssssssssssssssssssssasdasdsadasdasdsadasdsadsadsadss</a>
+              </div> -->
+              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasadsadasdasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
+  </div>
+  </div>
+  
+
+
+
+
 </body>
 
 </html>

@@ -3,92 +3,101 @@
 <!--Last date:2019.9.2-->
 <!--verison:1.0-->
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>搜索界面</title>
-    <link href="./bs/css/bootstrap.css" rel="stylesheet">
-      <script src="./bs/js/bootstrap.js"></script>
-      <script src="./bs/js/jquery.min.js"></script>
-    <script src="./bs/js/holder.js"></script>
-  </head>
-  <style>
-    .row{
-      margin-bottom: 15px;
-    }
-      .center {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  background-color: #65;
-  width: 50%;
-  height: 50%;
--webkit-transform: translateX(-50%) translateY(-50%);
-}
-    .navbar{
-        background-color: #fff;
-    }
 
-    .btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 16px;
-  line-height: 1.428571429;
-  border-radius: 18px;
-}
-    .btn-circle-lg {
-  width: 50px;
-  height: 50px;
-  padding: 14px 5px;
-  font-size: 15px;
-  line-height: 1.33;
-  border-radius: 25px;
-}
-    .btn-circle-xl {
-  width: 70px;
-  height: 70px;
-  padding: 20px 15px;
-  font-size: 20px;
-  line-height: 1.33;
-  border-radius: 35px;
-}
-.img-responsive {
-  display: block;
-  height: 40%;
-  max-width: 40%;
-}
-/* 列水平居中 */
-.col-center-block {
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>搜索界面</title>
+  <link href="./bs/css/bootstrap.css" rel="stylesheet">
+  <script src="./bs/js/jquery.min.js"></script>
+  <script src="./bs/js/bootstrap.js"></script>
+  <script src="./bs/js/holder.js"></script>
+</head>
+<style>
+  .row {
+    margin-bottom: 15px;
+  }
+
+  .center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: #65;
+    width: 50%;
+    height: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+  }
+
+  .navbar {
+    background-color: #fff;
+  }
+
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 16px;
+    line-height: 1.428571429;
+    border-radius: 18px;
+  }
+
+  .btn-circle-lg {
+    width: 50px;
+    height: 50px;
+    padding: 14px 5px;
+    font-size: 15px;
+    line-height: 1.33;
+    border-radius: 25px;
+  }
+
+  .btn-circle-xl {
+    width: 70px;
+    height: 70px;
+    padding: 20px 15px;
+    font-size: 20px;
+    line-height: 1.33;
+    border-radius: 35px;
+  }
+
+  .img-responsive {
+    display: block;
+    height: 40%;
+    max-width: 40%;
+  }
+
+  /* 列水平居中 */
+  .col-center-block {
     float: none;
     display: block;
     margin-left: auto;
     margin-right: auto;
-}   
+  }
+</style>
 
-  </style>
-  <body>
+<body>
+  <script src="./bs/js/jquery.min.js"></script>
   <script src="./bs/js/bootstrap.js"></script>
-      <script src="./bs/js/jquery.min.js"></script>
-      <script src="./bs/js/holder.js"></script>
-      <div class="navbar navbar-fixed-top" style="padding-right:8px">
-         <div class="pull-right" style="padding-top:7px">
-             <a href="./Login.html" type="button" class="btn btn-default btn-circle-lg"style="collapse:display:block">登录</a>
-         </div>
-     </div>
-<div class="center">
-  <img src="picture" class="img-responsive center-block"> 
-    <form action="./lib/seek.php" method="post">
-    <div class="col-lg-9 col-center-block">
-    <div class="input-group input-group-lg">
-      <input type="text" class="form-control" placeholder="Search for..." id="ser" name="ser">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" style="font-size: 20px"></span></button>
-      </span>
+  <script src="./bs/js/holder.js"></script>
+  <div class="navbar navbar-fixed-top" style="padding-right:8px">
+    <div class="pull-right" style="padding-top:7px">
+      <a href="./Login.html" type="button" class="btn btn-default btn-circle-lg" style="collapse:display:block">登录</a>
     </div>
-        </div>
-  </form>
   </div>
-  </body>
+  <div class="center">
+    <img src="picture" class="img-responsive center-block">
+    <form action="./lib/seek.php" method="post">
+      <div class="col-lg-9 col-center-block">
+        <div class="input-group input-group-lg">
+          <input type="text" class="form-control" placeholder="Search for..." id="ser" name="ser">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"
+                style="font-size: 20px"></span></button>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
 </html>
