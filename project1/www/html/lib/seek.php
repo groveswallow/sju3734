@@ -55,9 +55,10 @@
         }
         else 
           { exec("python3 /home/tan/sju3734/project1/www/html/lib/seek.py $s",$out,$return);};
-        if ($out[0]=='0')
+        if ($out[0]=='0' or $out==null)
         {  
-          echo '<h1>we don\'t find the data</h1>';       
+          echo '<h1>we don\'t find the data</h1>'; 
+          echo $out;      
           }
         else{?>
         <div class="center"style="overflow: scroll" >

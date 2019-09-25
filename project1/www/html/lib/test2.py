@@ -1,2 +1,0 @@
-print (u'asdasdasdas')
-print(u'We found that FOXO3a interacted with ER-alpha and ER-beta proteins and inhibited 17beta-estradiol (E2)-dependent, ER-regulated transcriptional activities.The results indicated the downregulation of expression of certain ER-regulated genes, including those for PgR, cathepsin D, and complement C3, in the MCF7-FO cells,whereas the expression levels of ER-α and ER-β')
