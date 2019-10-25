@@ -53,7 +53,7 @@ def checkgene(ser):
     con.close()
 
 # checkpmid(sys.argv[1])
-# checkpmid(sys.argv[1])s
+# checkpmid(sys.argv[1])
 # checkgene(sys.argv[1])
 
-checkgene("183")
+checkgene(sys.argv[1])

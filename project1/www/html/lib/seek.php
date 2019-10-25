@@ -44,24 +44,54 @@
 <script src="../bs/js/jquery.min.js"></script>
 <script src="../bs/js/bootstrap.js"></script>
 <script src="../bs/js/holder.js"></script>
+<?php
+  $host="localhost";
+  $usr="lcbb3734";
+  $password=3734;
+  $db="lcbb3734";
+  $con=mysqli_connect($servername, $username, $password, $db);
+  if (!$con){
+    echo '<h1>数据库连接失败，请联系管理员：XXXXXXXXXX</h1>';
+  }
+  //以下为查询函数
+  function seek($s,$con){
+    $sql = "SELECT * FROM brca_v1 where pmid REGEXP '^$s'" ;
+    if(preg_match('/[^1-9]/',$s)){
+      $sql = "SELECT * FROM brca_v1 where tf LIKE ".$s."'%%'"." or gene LIKE ".$s."'%s%%'";
+    }
+    $result = mysqli_query($con,$sql); 
+    if (mysqli_num_rows($result) > 0) {
+      // 输出数据
+      return $result;   
+      } 
+    else {
+      return 0;
+  }
+  };
+    
+?>
+
+
+
 <?php   header("Content-type: text/html; charset=utf-8");
         // phpinfo();
         $s=$_POST["ser"];
         print($s);
+        // 以下检查语法部分将放在前端，使用Jquery进行检查，注意改写。2019.10.14 21:26
         if (empty($s)){
           echo "<H1>you don't input anything</H1>";}
         elseif (preg_match('.[^a-zA-Z0-9].',$s)==1) {
           print("<H1>error,your input including invalidd symbol!Please input again!</H1>");
         }
         else 
-          { exec("python3 /home/tan/sju3734/project1/www/html/lib/seek.py $s",$out,$return);};
+          { exec("python3 /home/tan/sju3734/project1/www/html/lib/seek.py $s",$out,$return);};//待解决：改写成PHP函数 2019.10.14 22:00
         if ($out[0]=='0' or $out==null)
         {  
           echo '<h1>we don\'t find the data</h1>'; 
           echo $out;      
           }
         else{?>
-        <div class="center"style="overflow: scroll" >
+        <div class="center" style="overflow: scroll" >
                 <div class="table">
                   <table class="table table-hover table-bordered">
                     <thead>
