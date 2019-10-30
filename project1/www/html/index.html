@@ -2,8 +2,8 @@
  * @Author: Tang
  * @Date: 2019-10-16 10:13:01
  * @LastEditors: Tang
- * @LastEditTime: 2019-10-21 20:43:47
- * @Description: practice
+ * @LastEditTime: 2019-10-30 22:18:42
+ * @Description: new test page 
  -->
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -18,116 +18,64 @@
     <title>XXXdatabase</title>
 </head>
 
-<body>
-    <header class="navbar navbar-static-top bs-docs-nav data-target" id="top" style="height: 40px;margin-top: 10px;">
-        <div class="container">
-            <ul class="nav navbar-nav navbar-right"><img src="./picture"
-                    style="height: 90px; margin-top: -20px;margin-right: 0px;"></ul>
-            <div class="navbar-header">
-                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar"
-                    aria-controls="bs-navbar" aria-expanded="false">
-                </button>
-                <a class="navbar-brand" style="font-size: 40px;">Database</a>
-            </div>
-    </header>
-    <div style="background-color:beige">
-        <div calss="navbar-toggle navbar navbar-header" style="border-right: black;margin-left: 120px;">
-            <nav id="bs-navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a type="button" href="" onclick="" style="color:cornflowerblue;font-size: 30px;">Home</a>
-                    </li>
-                    <!-- <li calss="dropdown">
-                        <a type="button" calss="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" href="" onclick="" style="">Browse<span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li calss=""><a href="#">Action Gene</a></li>
-                            <li><a href="#">Another TF</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="" onclick="" style="">Statistics</a>
-                    </li> -->
-                    <li>
-                        <a href="" onclick="" style="">Download</a>
-                    </li>
-                    <li>
-                        <a href="" onclick="" style="">Help</a>
-                    </li>
-                </ul>
-            </nav>
+<body background="./greek-vase.png" class="float">
+    <div class="nav" style="background-color: #000 ;height: 80px;">
+        <div style="padding-right:5%;float: right;">
+            <img src="./zi.png" style="height:80px;">
+        </div>
+        <ul class="nav navbar-nav navbar-left" style="margin-top:15px;">
+            <li style="margin-left: 30px;"><a href="./index.html" style="color:slategray">HOME</a></li>
+            <li style="margin-left: 30px;"><a href="" style="color:slategray">ABOUT</a></li>
+            <li style="margin-left: 30px;"><a href="" style="color:slategray">SEARCH</a></li>
+            <li style="margin-left: 30px;"><a href="" style="color:slategray">DOWNLOAD</a></li>
+        </ul>
+    </div>
+    </div>
+    <div id="serf">
+        <script>
+            $("#serf").hide();
+        </script>
+    </div>
+    <div style="width: 100%; height:370px;">
+        <div class="slider-wrapper theme-default"
+            style="width: 60%; height:200px; margin-left:20%; padding-top: 50px; text-align: center">
+            <h1>xxxxxx &amp; xxxxxx</h1>
+        </div>
+        <div class="slider-wrapper theme-default"
+            style="width: 60%; height:130px; margin-left:20%; padding-top: 20px; text-align: center" id="ch">
+            <a id="serb" type="button" class="btn btn-default btn-lg" target="_blank"
+                style="font-size: 20px;color: #000;">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>SEARCH</a>
+            <script>
+                $(function () {
+                    $("#serb").on("click", (function () {
+                        $("div").eq(0).siblings().stop().fadeOut();
+                        $("#serf").load('./ser.html');
+                        $("#serf").fadeIn(3000);
+                    }))
+                })
+            </script>
         </div>
     </div>
-    <hr class="my-8">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#enhancer-1">Enhancer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tf-1">TFBS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#mirna-1">microRNA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active show" data-toggle="tab" href="#gene-1">Gene</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#snp-1">SNP</a>
-                    </li>
-                </ul>
-            </div>
+    <div style="height: 250px; padding-top: 30px; background: rgba(2, 3, 1, 0.6); color: beige">
+        <div style="height:100%; width:20%; margin-left: 10%; float: left; text-align: center">
+            <h1>33</h1>
+            <h3>Cancer Category</h3>
+        </div>
+        <div style="height:100%; width: 20%; float: left; text-align: center">
+            <h1>35,032</h1>
+            <h3>XXXX</h3>
+        </div>
+        <div style="height:100%; width: 20%; float: left; text-align: center">
+            <h1>5,863</h1>
+            <h3>Transcription Factor</h3>
+        </div>
+        <div style="height:100%; width: 20%; float: left; text-align: center">
+            <h1>446,552</h1>
+            <h3>XXXXX</h3>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="tab-content" id="tabs">
-                    <div id="enhancer-1" class="tab-pane fade in active" onclick="">
-                        <div class="form-group">
-                            <br>
-                            <p class="form-text text-muted">Search by genomic locus enhancer ID.</p>
-                            <form role="form" action="./test.php">
-                                <div class="col-lg-12 row">
-                                    <div class="col-lg-8">
-                                        <input class="form-control" id="input_enh" name="location"
-                                            placeholder="e.g. enh76500 or chr2:1900093000-190004000" type="text"
-                                            value="">
-                                    </div>
-                                    <button type="submit" class="btn btn-outline-primary">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div id="tf-1" class="tab-pane fade" onclick="">
-                            <div class="form-group">
-                                <br>
-                                <p class="form-text text-muted">Search by genomic locus TFBS ID.</p>
-                                <form role="form" action="./test1.php">
-                                    <div class="col-lg-12 row">
-                                        <div class="col-lg-8">
-                                            <input class="form-control" id="input_enh" name="location"
-                                                placeholder="e.g. enh76500 or chr2:1900093000-190004000" type="text"
-                                                value="">
-                                        </div>
-                                        <button type="submit" class="btn btn-outline-primary">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <hr class="my-8">
-    <script> //轮播，待解决：1.鼠标击中时停止轮播。2.修改轮播内容。
+    <script> //轮播
         $(function () {
             var index = 0;
             $("#Exa").children().eq(index).show().siblings().hide();
@@ -147,19 +95,20 @@
     </script>
     <div id="Exa" class="">
         <div class="">
-            <img class="container center-block" src="./workflow.png" alt="First slide">
+            <img class="container center-block" style="height: 400px;" src="./workflow.png" alt="First slide">
             <div class="text-center">
                 <h5>Main workflow of EnhancerDB</h5>
             </div>
         </div>
         <div class="">
-            <img class="container center-block" src="./tu.png" alt="Third slide">
+            <img class="container center-block" style="height: 400px;" src="./tu.png" alt="Third slide">
             <div class="text-center">
                 <h5>Enhancers</h5>
                 <p>In genetics, an enhancer is a short (50-1500 bp) region of DNA that can be
                     bound by proteins (activators) to increase the likelihood that transcription
                     of a particular gene will occur. <br>
-                    These proteins are usually referred to as transcription factors. Enhancers are cis-acting. <br>
+                    These proteins are usually referred to as transcription factors. Enhancers are cis-acting.
+                    <br>
                     They can be located up to 1 Mbp (1,000,000 bp) away from the gene,
                     upstream or downstream from the start site. <br>
                     There are hundreds of thousands of enhancers in the human genome. <br>
@@ -168,13 +117,18 @@
             </div>
         </div>
     </div>
-    <hr class="my-8">
     <footer style="background-color:whitesmoke;">
         <div class="container">
-            Southwest Jiaotong University <br>
-            School of Life Sciences and Bioengineering <br>
+            <h3>CONTACT US</h3>
+            <br>
+            <b>Mailing Address:</b><br>
+            Southwest Jiaotong University
+            School of Life Sciences and Bioengineering
             Chengdu, Sichuan, China<br>
-            <strong>Email:</strong> zhiyunguo@swjtu.edu.cn<br>
+            <br>
+            <b>Email:</b><br>
+            zhiyunguo@swjtu.edu.cn
+        </div>
     </footer>
 </body>
 
