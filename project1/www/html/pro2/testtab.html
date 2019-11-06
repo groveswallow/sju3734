@@ -1,0 +1,122 @@
+<!--
+ * @Author: Tang
+ * @Date: 2019-11-06 20:57:32
+ * @LastEditors: Tang
+ * @LastEditTime: 2019-11-06 21:25:55
+ * @Description: 
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./bs/css/bootstrap.css" rel="stylesheet">
+    <script src="./bs/js/jquery.min.js"></script>
+    <script src="./bs/js/bootstrap.js"></script>
+    <script src="./bs/js/holder.js"></script>
+    <title>XXXdatabase</title>
+</head>
+
+<body>
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#tf" data-toggle="tab">
+                TF
+            </a>
+        </li>
+        <li><a href="#gene" data-toggle="tab">Gene</a></li>
+        <li>
+            <a href="#pmid" data-toggle="tab">
+                PMID
+            </a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="tf">
+            <form action="" method="post" onsubmit="return PostTF();">
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" placeholder="Search for TF" id="serTF" name="serTF">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" id="sub"><span class="glyphicon glyphicon-search"
+                                style="font-size: 20px"></span></button></span>
+                    <script>
+                        function PostTF() {
+                            var intext = $('#serTF').val();
+                            var patt = /[^0-9A-Za-z]/;
+                            if (intext == '') {
+                                alert('you don not input anything!');
+                                return false;
+                            }
+                            else if (patt.test(intext)) {
+                                alert('you input wrong words,plesea input again!');
+                                return false;
+                            }
+                            else {
+                                $('#serv').load('./ser.php', { "TF": intext });
+                                return false;
+                            }
+                        }
+                    </script>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="gene">
+            <form action="" method="post" onsubmit="return PostGen();">
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" placeholder="Search for Gene" id="serGen" name="serGen">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" id="sub"><span class="glyphicon glyphicon-search"
+                                style="font-size: 20px"></span></button></span>
+                    <script>
+                        function PostGen() {
+                            var intext = $('#serGen').val();
+                            var patt = /[^0-9A-Za-z]/;
+                            if (intext == '') {
+                                alert('you don not input anything!');
+                                return false;
+                            }
+                            else if (patt.test(intext)) {
+                                alert('you input wrong words,plesea input again!');
+                                return false;
+                            }
+                            else {
+                                $('#serv').load('./ser.php', { "Gen": intext });
+                                return false;
+                            }
+                        }
+                    </script>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="pmid">
+            <form action="" method="post" onsubmit="return PostPMID();">
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" placeholder="Search for PMID" id="serPMID" name="serPMID">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" id="sub"><span class="glyphicon glyphicon-search"
+                                style="font-size: 20px"></span></button></span>
+                    <script>
+                        function PostPMID() {
+                            var intext = $('#serPMID').val();
+                            var patt = /[^0-9A-Za-z]/;
+                            if (intext == '') {
+                                alert('you don not input anything!');
+                                return false;
+                            }
+                            else if (patt.test(intext)) {
+                                alert('you input wrong words,plesea input again!');
+                                return false;
+                            }
+                            else {
+                                $('#serv').load('./ser.php', { "PMID": intext });
+                                return false;
+                            }
+                        }
+                    </script>
+                </div>
+            </form>
+        </div>
+</body>
+
+</html>

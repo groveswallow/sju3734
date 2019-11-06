@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-10-16 10:13:01
  * @LastEditors: Tang
- * @LastEditTime: 2019-10-30 22:22:35
+ * @LastEditTime: 2019-11-06 21:27:40
  * @Description: new test page 
  -->
 <!-- <!DOCTYPE html>
@@ -20,7 +20,7 @@
 </head>
 
 <body background="./greek-vase.png" class="float"> -->
-    <!-- <div class="nav" style="background-color: #000 ;height: 80px;">
+<!-- <div class="nav" style="background-color: #000 ;height: 80px;">
         <div style="padding-right:5%;float: right;">
             <img src="./zi.png" style="height:80px;">
         </div>
@@ -32,49 +32,122 @@
         </ul>
     </div>
     </div> -->
-    <div id="serv" style="width: 100%;height: 100%;">
-        <div style="width: 50%; height:200px; margin-left:25%; padding-top: 15%; text-align: center">
-            <form action="" method="post" onsubmit="return Postdata();">
-                <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" placeholder="Search for..." id="serIn" name="serIn">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit" id="sub"><span class="glyphicon glyphicon-search"
-                                style="font-size: 20px"></span></button></span>
+<div id="serv" style="width: 100%;height: 100%;">
+    <div style="width: 50%; height:200px; margin-left:25%; padding-top: 15%; text-align: center">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active">
+                <a href="#tf" data-toggle="tab">
+                    TF
+                </a>
+            </li>
+            <li><a href="#gene" data-toggle="tab">Gene</a></li>
+            <li>
+                <a href="#pmid" data-toggle="tab">
+                    PMID
+                </a>
+            </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="tf">
+                <form action="" method="post" onsubmit="return PostTF();">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="Search for TF" id="serTF" name="serTF">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit" id="sub"><span
+                                    class="glyphicon glyphicon-search" style="font-size: 20px"></span></button></span>
                         <script>
-                                function Postdata(){
-                                    var intext = $('#serIn').val();
-                                        var patt = /[^0-9A-Za-z]/;
-                                        if (intext == '') {
-                                            alert('you don not input anything!');
-                                            return false;
-                                        }
-                                        else if (patt.test(intext)) {
-                                            alert('you input wrong words,plesea input again!');
-                                            return false;
-                                        }
-                                        else {
-                                            $('#serv').load('./ser.php',{"name":intext});
-                                            return false;
-                                        }
+                            function PostTF() {
+                                var intext = $('#serTF').val();
+                                var patt = /[^0-9A-Za-z]/;
+                                if (intext == '') {
+                                    alert('you don not input anything!');
+                                    return false;
                                 }
+                                else if (patt.test(intext)) {
+                                    alert('you input wrong words,plesea input again!');
+                                    return false;
+                                }
+                                else {
+                                    $('#serv').load('./ser.php', { "TF": intext });
+                                    return false;
+                                }
+                            }
                         </script>
-                </div>
-            </form>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="gene">
+                <form action="" method="post" onsubmit="return PostGen();">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="Search for Gene" id="serGen" name="serGen">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit" id="sub"><span
+                                    class="glyphicon glyphicon-search" style="font-size: 20px"></span></button></span>
+                        <script>
+                            function PostGen() {
+                                var intext = $('#serGen').val();
+                                var patt = /[^0-9A-Za-z]/;
+                                if (intext == '') {
+                                    alert('you don not input anything!');
+                                    return false;
+                                }
+                                else if (patt.test(intext)) {
+                                    alert('you input wrong words,plesea input again!');
+                                    return false;
+                                }
+                                else {
+                                    $('#serv').load('./ser.php', { "Gen": intext });
+                                    return false;
+                                }
+                            }
+                        </script>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="pmid">
+                <form action="" method="post" onsubmit="return PostPMID();">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="Search for PMID" id="serPMID"
+                            name="serPMID">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit" id="sub"><span
+                                    class="glyphicon glyphicon-search" style="font-size: 20px"></span></button></span>
+                        <script>
+                            function PostPMID() {
+                                var intext = $('#serPMID').val();
+                                var patt = /[^0-9A-Za-z]/;
+                                if (intext == '') {
+                                    alert('you don not input anything!');
+                                    return false;
+                                }
+                                else if (patt.test(intext)) {
+                                    alert('you input wrong words,plesea input again!');
+                                    return false;
+                                }
+                                else {
+                                    $('#serv').load('./ser.php', { "PMID": intext });
+                                    return false;
+                                }
+                            }
+                        </script>
+                    </div>
+                </form>
+            </div>
         </div>
-        <footer style="background-color:whitesmoke;margin-top:400px;">
-                <div class="container">
-                    <h3>CONTACT US</h3>
-                    <br>
-                    <b>Mailing Address:</b><br>
-                    Southwest Jiaotong University
-                    School of Life Sciences and Bioengineering
-                    Chengdu, Sichuan, China<br>
-                    <br>
-                    <b>Email:</b><br>
-                    zhiyunguo@swjtu.edu.cn
-                </div>
-            </footer>
     </div>
-<!-- </body>
+    <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
+        <div class="container">
+            <h3>CONTACT US</h3>
+            <br>
+            <b>Mailing Address:</b><br>
+            Southwest Jiaotong University
+            School of Life Sciences and Bioengineering
+            Chengdu, Sichuan, China<br>
+            <br>
+            <b>Email:</b><br>
+            zhiyunguo@swjtu.edu.cn
+        </div>
+    </footer>
+    <!-- </body>
 
 </html> -->

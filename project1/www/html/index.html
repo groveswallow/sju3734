@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-10-16 10:13:01
  * @LastEditors: Tang
- * @LastEditTime: 2019-10-30 22:18:42
+ * @LastEditTime: 2019-11-06 14:53:28
  * @Description: new test page 
  -->
 <!DOCTYPE html>
@@ -49,6 +49,9 @@
             <script>
                 $(function () {
                     $("#serb").on("click", (function () {
+                        $.ajaxSetup({
+                            cache:false
+                        });
                         $("div").eq(0).siblings().stop().fadeOut();
                         $("#serf").load('./ser.html');
                         $("#serf").fadeIn(3000);
