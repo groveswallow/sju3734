@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-10-16 10:13:01
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-08 15:15:01
+ * @LastEditTime: 2019-11-21 00:13:11
  * @Description: new test page 
  -->
 <!-- <!DOCTYPE html>
@@ -41,11 +41,6 @@
                 </a>
             </li>
             <li><a href="#gene" data-toggle="tab" style="color: black;">Gene</a></li>
-            <li>
-                <a href="#cancer" data-toggle="tab" style="color: black;">
-                    Cancer
-                </a>
-            </li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="tf">
@@ -55,25 +50,96 @@
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit" id="sub"><span
                                     class="glyphicon glyphicon-search" style="font-size: 20px"></span></button></span>
-                        <script>
-                            function PostTF() {
-                                var intext = $('#serTF').val();
-                                var patt = /[^0-9A-Za-z]/;
-                                if (intext == '') {
-                                    alert('you don not input anything!');
-                                    return false;
-                                }
-                                else if (patt.test(intext)) {
-                                    alert('you input wrong words,plesea input again!');
-                                    return false;
-                                }
-                                else {
-                                    $('#serv').load('./ser.php', { "TF": intext });
-                                    return false;
-                                }
-                            }
-                        </script>
                     </div>
+                    <div class="col-lg-5">
+                        <label>Select Cancer Category</label>
+                        <select multiple class="selectpicker form-control" id="cancer" data-container="body"
+                            data-live-search="true" title="Select Cancers" data-hide-disabled="true"
+                            data-actions-box="true" data-virtual-scroll="false">
+                        </select>
+                    </div>
+                    <script>
+                        $(function () {
+                            $(function () {
+                                $("#number").load('./selecttest.php');
+                            })
+                        })
+                        function PostTF() {
+                            $tf = $('#serTF').val();
+                            var patt = /[^0-9A-Za-z]/;
+                            if (tf == '') {
+                                alert('you don not input anything!');
+                                return false;
+                            }
+                            else if (patt.test(tf)) {
+                                alert('you input wrong words,plesea input again!');
+                                return false;
+                            }
+                            else {
+                                var query = new Array();
+                                var cancer = $('#cancer').val();
+                                query['tf'] = $('#serTF').val();
+                                $.ajax({
+                                    url: 'test1.php',
+                                    method: 'post',
+                                    dataType: 'json',
+                                    async: true,
+                                    data: {
+                                        'cancer': cancer,
+                                        'tf': tf,
+                                    },
+                                    success: function (result) {
+                                        $('form').hide();
+                                        $('#table').bootstrapTable({
+                                            data: result,        // 表格数据来源
+                                            search: true,
+                                            striped: true,
+                                            showToggle: true,
+                                            strictSearch: true,
+                                            showColumns: true,                  //是否显示所有的列
+                                            showRefresh: true,
+                                            cache: false,
+                                            sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+                                            pagination: true,                   //是否显示分页（*）
+                                            pageNumber: 1,                       //初始化加载第一页，默认第一页
+                                            pageSize: 10,                       //每页的记录行数（*）
+                                            pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                                            columns: [{
+                                                field: 'cancer',
+                                                title: 'Cancer Category'
+                                            }, {
+                                                field: 'tf',
+                                                title: 'TF'
+                                            }, {
+                                                field: 'gene',
+                                                title: 'Gene'
+                                            }, {
+                                                field: 'characteristics',
+                                                title: 'Characteristics'
+                                            },
+                                            {
+                                                field: 'regulation_type',
+                                                title: 'Regulation_type'
+                                            },
+                                            {
+                                                field: 'cancer_hallmark',
+                                                title: 'Cancer_hallmark'
+                                            },
+                                            {
+                                                field: 'details',
+                                                title: 'Details'
+                                            }]
+                                        });
+                                    },
+                                    error: function () {
+                                        alert('something is wrong,please connect author!');
+                                    }
+                                });
+                                return false;
+                            }
+
+                        }
+                    </script>
                 </form>
             </div>
             <div class="tab-pane fade" id="gene">
@@ -97,35 +163,6 @@
                                 }
                                 else {
                                     $('#serv').load('./ser.php', { "Gen": intext });
-                                    return false;
-                                }
-                            }
-                        </script>
-                    </div>
-                </form>
-            </div>
-            <div class="tab-pane fade" id="cancer">
-                <form action="" method="post" onsubmit="return PostCancer();">
-                    <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="Search for Cancer" id="serCancer"
-                            name="serCancer">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit" id="sub"><span
-                                    class="glyphicon glyphicon-search" style="font-size: 20px"></span></button></span>
-                        <script>
-                            function PostPMID() {
-                                var intext = $('#serPMID').val();
-                                var patt = /[^0-9A-Za-z]/;
-                                if (intext == '') {
-                                    alert('you don not input anything!');
-                                    return false;
-                                }
-                                else if (patt.test(intext)) {
-                                    alert('you input wrong words,plesea input again!');
-                                    return false;
-                                }
-                                else {
-                                    $('#serv').load('./ser.php', { "Cancer": intext });
                                     return false;
                                 }
                             }

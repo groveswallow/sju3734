@@ -14,5 +14,4 @@
 // echo json_encode($res);
 // echo json_encode($row);
 echo "<option value='cancer'>Cancer</option>" ;
-echo "<option value='tf'>tf</option>" ;
 ?>

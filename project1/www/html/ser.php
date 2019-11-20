@@ -1,17 +1,6 @@
 <?php
-  $host = "localhost";
-  $usr = "lcbb3734";
-  $password = 734;
-  $db = "lcbb3734";
-  $con = mysqli_connect($servername, $username, $password,$db);
-  $TF = $_REQUEST['TF'];
-  $Gen = $_REQUEST['Gen'];
-  $Cancer = $_REQUEST['Cancer'];
-  $flag = 0;
-
   function sertf($TF,$con){
-    $index = 0;
-    $sql = "select * from brca_v1 where tf like $TF";
+    $sql = "select * from brca_v1 where tf like '%$TF%'";
     $result = mysqli_query($con, $sql);
     $r_number = mysqli_num_rows($result);
     echo "<h1><span class='glyphicon glyphicon-search' aria-hidden='true' style='font-size：30px;'></span>The Result of Search</h1>";
@@ -26,7 +15,7 @@
         <thead>
           <tr>
             <th>TF</th>
-            <th>gene</th>
+            <th>Gene</th>
             <th>Characteristics</th>
             <th>Regulation_type</th>
             <th>Cancer_hallmark</th>
@@ -35,7 +24,6 @@
         </thead>";
     while($row = mysqli_fetch_assoc($result))
      {
-      $index = $index + 1;
       echo "<tbody>";
       echo "<td><b>".$row['tf']."</b></td>";
       echo "<td>".$row['gene']."</td>";
@@ -126,6 +114,15 @@
     echo "</tbody></table></div>";
     }
   }
+  $host = "localhost";
+  $usr = "lcbb3734";
+  $password = 3734;
+  $db = "lcbb3734";
+  $con = mysqli_connect($host, $usr, $password,$db);
+  $TF = $_REQUEST['TF'];
+  $Gen = $_REQUEST['Gen'];
+  $Cancer = $_REQUEST['Cancer'];
+  $flag = 0;
   if (!$con){
     echo "<h1>数据库连接失败，请联系管理员：XXXXXXXXXX</h1>";
     $flag = 1;
