@@ -2,8 +2,9 @@
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-22 23:27:34
- * @Description: 
+ * @LastEditTime: 2019-11-25 15:35:07
+ * @Description: 待解决：1.搜索框上方的描述套话。2.autocom.php未写好(考虑cancer单独一个PHP数据文件)，只有测试代码;ser.php未写好，只有测试代码。3.改写auotcom的script函数，方便直接用，避免重复代码。
+ * 问题3已经解决一部分，需要进行测试，看是否能成功运行。
  -->
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -13,16 +14,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="./bs/css/bootstrap.min.css" rel="stylesheet">
     <link href="./bs/css/bootstrap-select.css" rel="stylesheet">
-    <link href="./bs/css/booststrap-table.min.css" rel="stylesheet">
+    <link href="./bs/css/bootstrap-table.min.css" rel="stylesheet">
     <script src="./bs/js/jquery.min.js"></script>
     <script src="./bs/js/bootstrap.min.js"></script>
     <script src="./bs/js/bootstrap-select.js"></script>
     <script src="./bs/js/bootstrap-table.min.js"></script>
-    <script src="./bs/js/bootstrap-table-zh-CN.js"></script>
+    <script src="./bs/js/bootstrap-table-zh-CN.min.js"></script>
     <title>XXXdatabase</title>
 </head>
 
 <body>
+    <script>
+        function autocom(flag) {
+            $('#'+flag).typeahead({
+                source: function (query, process) {
+                    $.ajax({
+                        url: "./autocom.php",//未解决，只写了测试代码。
+                        cache: false,
+                        type: 'post',
+                        dataType: 'json',
+                        async: true,
+                        data: {
+                            flag: query,
+                        },
+                        success: function (data) {
+                            return process(data);
+                        }
+                    })
+                }
+            })
+        }
+        function Post(flag) {
+            $va = $('#'+flag).val();
+            var patt = /[^0-9A-Za-z]/;
+            if (va == '') {
+                alert('you don not input anything!');
+                return false;
+            }
+            else if (patt.test(va)) {
+                alert('you input wrong words,plesea input again!');
+                return false;
+            }
+            else {
+                var query = new Array();
+                var cancer = $('#cancer').val();
+                $.ajax({
+                    url: './ser.php',
+                    method: 'post',
+                    dataType: 'json',
+                    async: true,
+                    data: {
+                        'cancer': cancer,
+                        flag: va,
+                    },
+                    success: function (result) {
+                        $('form').hide();
+                        $('#table').bootstrapTable({
+                            data: result,        // 表格数据来源
+                            search: true,
+                            striped: true,
+                            showToggle: true,
+                            strictSearch: true,
+                            showColumns: true,                  //是否显示所有的列
+                            showRefresh: true,
+                            cache: false,
+                            sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+                            pagination: true,                   //是否显示分页（*）
+                            pageNumber: 1,                       //初始化加载第一页，默认第一页
+                            pageSize: 10,                       //每页的记录行数（*）
+                            pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                            columns: [{
+                                field: 'cancer',
+                                title: 'Cancer Category'
+                            }, {
+                                field: 'tf',
+                                title: 'TF'
+                            }, {
+                                field: 'gene',
+                                title: 'Gene'
+                            }, {
+                                field: 'characteristics',
+                                title: 'Characteristics'
+                            },
+                            {
+                                field: 'regulation_type',
+                                title: 'Regulation_type'
+                            },
+                            {
+                                field: 'cancer_hallmark',
+                                title: 'Cancer_hallmark'
+                            },
+                            {
+                                field: 'details',
+                                title: 'Details'
+                            }]
+                        });
+                    },
+                    error: function () {
+                        alert('something is wrong,please connect author!');
+                    }
+                });
+                return false;
+            }
+
+        }
+    </script>
     <div class="nav" style="background-color: #000 ;height: 80px;">
         <div style="padding-right:5%;float: right;">
             <img src="./zi.png" style="height:80px;">
@@ -46,147 +142,71 @@
     </div>
     </div>
     <div id="serv" style="width: 100%;height: 100%;">
-        <div style="width: 50%; height:200px; margin-left:25%; padding-top: 2%; text-align: center">
-                <h1><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span> The
-                    Interface of Search</h1>
-                    <hr class="simple" color="black">	
-                <p>................................</p> 
-                <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-                <div style="width: 75%; height:200px; margin-left:10%; padding-top: 3%; text-align: center">
-            <ul id="myTab" class="nav nav-tabs">
-                <li class="active">
-                    <a href="#tf" data-toggle="tab" style="color: black;">
-                        TF
-                    </a>
-                </li>
-                <li><a href="#gene" data-toggle="tab" style="color: black;">Gene</a></li>
-            </ul>
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade in active" id="tf">
-                    <form action="" method="post" onsubmit="return PostTF();">
-                            <input type="text" class="form-control" placeholder="Search for TF" id="serTF" name="serTF">
-                        <hr>
-                            <p>Select Cancer Category</p>
-                            <select multiple class="selectpicker form-control" id="cancer" data-container="body"
-                                data-live-search="true" title="Select Cancers" data-hide-disabled="true"
-                                data-actions-box="true" data-virtual-scroll="false">
-                            </select>
-                        <script>
-                            $(function () {
-                                $(function () {
-                                    $("#number").load('./selecttest.php');
-                                })
-                            })
-                            function PostTF() {
-                                $tf = $('#serTF').val();
-                                var patt = /[^0-9A-Za-z]/;
-                                if (tf == '') {
-                                    alert('you don not input anything!');
-                                    return false;
-                                }
-                                else if (patt.test(tf)) {
-                                    alert('you input wrong words,plesea input again!');
-                                    return false;
-                                }
-                                else {
-                                    var query = new Array();
-                                    var cancer = $('#cancer').val();
-                                    query['tf'] = $('#serTF').val();
-                                    $.ajax({
-                                        url: 'test1.php',
-                                        method: 'post',
-                                        dataType: 'json',
-                                        async: true,
-                                        data: {
-                                            'cancer': cancer,
-                                            'tf': tf,
-                                        },
-                                        success: function (result) {
-                                            $('form').hide();
-                                            $('#table').bootstrapTable({
-                                                data: result,        // 表格数据来源
-                                                search: true,
-                                                striped: true,
-                                                showToggle: true,
-                                                strictSearch: true,
-                                                showColumns: true,                  //是否显示所有的列
-                                                showRefresh: true,
-                                                cache: false,
-                                                sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
-                                                pagination: true,                   //是否显示分页（*）
-                                                pageNumber: 1,                       //初始化加载第一页，默认第一页
-                                                pageSize: 10,                       //每页的记录行数（*）
-                                                pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-                                                columns: [{
-                                                    field: 'cancer',
-                                                    title: 'Cancer Category'
-                                                }, {
-                                                    field: 'tf',
-                                                    title: 'TF'
-                                                }, {
-                                                    field: 'gene',
-                                                    title: 'Gene'
-                                                }, {
-                                                    field: 'characteristics',
-                                                    title: 'Characteristics'
-                                                },
-                                                {
-                                                    field: 'regulation_type',
-                                                    title: 'Regulation_type'
-                                                },
-                                                {
-                                                    field: 'cancer_hallmark',
-                                                    title: 'Cancer_hallmark'
-                                                },
-                                                {
-                                                    field: 'details',
-                                                    title: 'Details'
-                                                }]
-                                            });
-                                        },
-                                        error: function () {
-                                            alert('something is wrong,please connect author!');
-                                        }
-                                    });
-                                    return false;
-                                }
+        <div style="width: 50%; height:200px; margin-left:25%; margin-top: 8%; text-align: center">
+            <h1><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span> The
+                Interface of Search</h1>
+            <hr class="simple" color="black">
+            <p>Lnc2Cancer 2.0 provides users with a simple and fast method to search and explore all of our data in
+                several ways. Lnc2Cancer 2.0 enables users to search by lncRNA name, cancer name or both. Lnc2Cancer
+                also offers fuzzy keyword searching capabilities, which enables easy searching by returning the closest
+                possible matching records. ADVANCED SEARCH provides more detailed and systemic search. View our Help
+                page for further help.
 
-                            }
-                        </script>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="gene">
-                    <form action="" method="post" onsubmit="return PostGen();">
-                        <div class="input-group input-group-lg">
-                            <input type="text" class="form-control" placeholder="Search for Gene" id="serGen"
-                                name="serGen">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit" id="sub"><span
-                                        class="glyphicon glyphicon-search"
-                                        style="font-size: 20px"></span></button></span>
+            </p>
+            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+            <div style="width: 75%; height:200px; margin-left:10%; padding-top: 3%; text-align: center">
+                <label>General search offers fuzzy keyword searching capabilities:
+
+                    For 'LncRNA', you can use Gene Symbol (e.g. 'MALAT1'), Entrez Gene ID (e.g. '378938'), Ensembl ID
+                    (e.g. 'ENSG00000251562') and other names.
+
+                </label>
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#sertf" data-toggle="tab" style="color: black;">
+                            TF
+                        </a>
+                    </li>
+                    <li><a href="#sergene" data-toggle="tab" style="color: black;">Gene</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="sertf">
+                        <form action="" method="post" onsubmit="return Post('tf');">
+                            <input type="text" class="form-control" placeholder="Search for TF" id="tf">
+                            <hr>
+                            <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
+                                'C50').</label>
+                            <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer">
                             <script>
-                                function PostGen() {
-                                    var intext = $('#serGen').val();
-                                    var patt = /[^0-9A-Za-z]/;
-                                    if (intext == '') {
-                                        alert('you don not input anything!');
-                                        return false;
-                                    }
-                                    else if (patt.test(intext)) {
-                                        alert('you input wrong words,plesea input again!');
-                                        return false;
-                                    }
-                                    else {
-                                        $('#serv').load('./ser.php', { "Gen": intext });
-                                        return false;
-                                    }
-                                }
+                            $(function(){
+                                autocom('tf');
+                                autocom('cancer');
+                            })
                             </script>
-                        </div>
-                    </form>
+                            <button class="btn btn-default" type="submit" id="sub"
+                                style="margin-top: 5%;">submit</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="sergene">
+                        <form action="" method="post" onsubmit="return Post('gene');">
+                            <input type="text" class="form-control" placeholder="Search for Gene" id="gene"
+                                name="serGen">
+                            <hr>
+                            <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code
+                                (e.g.'C50').</label>
+                            <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer">
+                            <script>
+                                $(function () {
+                                    autocom('gene');
+                                    autocom('cancer');
+                                })
+                            </script>
+                            <button class="btn btn-default" type="submit" id="sub"
+                                style="margin-top: 5%;">submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-                </div>
         </div>
         <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
             <div class="container">

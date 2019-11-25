@@ -9,31 +9,31 @@
 // $result = mysqli_query($con, $sql);
 // $row = mysqli_fetch_assoc($result);
 // $row = mysqli_fetch_row($result);
-$T = $_POST['number'];
+// $T = $_POST['number'];
 // $P = $_REQUEST['p'];
 // $S = $_REQUEST['s'];
-// $T = 3;
+$T = 3;
 $P = [2,3];
 $S = 1;
 $res = array(
     'id' => 1,
-    'name' => 'Tan',
+     name => 'Tan',
     'price' => 32,
 );
 $res1 = array(
     'id' => 12,
-    'name' => 'Tang',
+     name => 'Tang',
     'price' => 33,
 );
 $r[] = $res;
 $res2 = array(
     'id' => $T,
-    'name' => $P,
+     name => $P,
     'price' => $S,
 );
 $r[] = $res2;
 $i = 0;
 $r[] = $res1;
 $t= array();
-echo json_encode($t);
+echo json_encode($r);
 ?>
