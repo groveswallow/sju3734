@@ -2,11 +2,12 @@
  * @Author: Tang
  * @Date: 2019-11-25 10:17:16
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-25 14:15:54
+ * @LastEditTime: 2019-11-27 15:10:23
  * @Description: 
  -->
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,32 +28,38 @@
         <script>
         </script>
         <form action="" method="post" onsubmit="return PostTF();">
-            <input type="text" class="form-control" placeholder="Search for TF" id="serTF" data-provide="typeahead" autocomplete="off">
+            <input type="text" class="form-control" placeholder="Search for TF" id="cancer_type"
+                data-provide="typeahead" autocomplete="off">
             <button class="btn btn-default" type="submit" id="sub">submit</button>
             <script>
-                $(function(){
-                    $('serTF').typeahead({
-                        source: function(query,process){
+                $(function () {
+                    var flag = 'cancer_type';
+                    $('#' + flag).typeahead({
+                        minLength: 1,
+                        items: 10,
+                        hint: true,
+                        highlight: true,
+                        source: function (query, process) {
                             $.ajax({
-                                url: "./autocomtest.php",
+                                url: "./autocom.php",
                                 cache: false,
                                 type: 'post',
                                 dataType: 'json',
                                 async: true,
                                 dat: {
-                                    name: query,
+                                    flag: query,
                                 },
-                                success: function(data){
+                                success: function (data) {
                                     return process(data);
                                 }
                             })
                         }
                     })
                 })
-                    function PostTF() {
-                        console.log($('#sertf').val());
-                        return false;
-                    }
+                function PostTF() {
+                    console.log($('#sertf').val());
+                    return false;
+                }
             </script>
         </form>
     </div>

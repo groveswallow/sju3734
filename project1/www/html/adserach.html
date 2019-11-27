@@ -1,12 +1,10 @@
 <!--
  * @Author: Tang
- * @Date: 2019-11-22 22:30:55
+ * @Date: 2019-11-27 15:24:45
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-27 15:51:16
- * @Description: 待解决：1.搜索框上方的描述套话。2.autocom.php未写好(考虑cancer单独一个PHP数据文件)，只有测试代码;ser.php未写好，只有测试代码。3.改写auotcom的script函数，方便直接用，避免重复代码。
- * 问题3已经解决一部分，需要进行测试，看是否能成功运行。
+ * @LastEditTime: 2019-11-27 15:56:52
+ * @Description: 
  -->
-<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -149,7 +147,7 @@
     <div id="serv" style="width: 100%;height: 100%;">
         <div style="width: 50%; height:200px; margin-left:25%; margin-top: 8%; text-align: center">
             <h1><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span> The
-                Interface of General Search</h1>
+                Interface of Advanced Search</h1>
             <hr class="simple" color="black">
             <p>Lnc2Cancer 2.0 provides users with a simple and fast method to search and explore all of our data in
                 several ways. Lnc2Cancer 2.0 enables users to search by lncRNA name, cancer name or both. Lnc2Cancer
@@ -166,58 +164,43 @@
                     (e.g. 'ENSG00000251562') and other names.
 
                 </label>
-                <ul id="myTab" class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#sertf" data-toggle="tab" style="color: black;">
-                            TF
-                        </a>
-                    </li>
-                    <li><a href="#sergene" data-toggle="tab" style="color: black;">Gene</a></li>
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="sertf">
-                        <form action="" method="post" onsubmit="return Post('tf');">
-                            <input type="text" class="form-control" placeholder="Search for TF" id="tf">
-                            <hr>
-                            <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
-                                'C50').</label>
-                            <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
-                            <script>
-                                $(function () {
-                                    autocom('tf');
-                                    autocom('cancer_type');
-                                })
-                            </script>
-                            <button class="btn btn-default" type="submit" id="sub"
-                                style="margin-top: 5%;">submit</button>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="sergene">
-                        <form action="" method="post" onsubmit="return Post('gene');">
-                            <input type="text" class="form-control" placeholder="Search for Gene" id="gene"
-                                name="serGen">
-                            <hr>
-                            <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code
-                                (e.g.'C50').</label>
-                            <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
-                            <script>
-                                $(function () {
-                                    autocom('gene');
-                                    autocom('cancer_type');
-                                })
-                            </script>
-                            <button class="btn btn-default" type="submit" id="sub"
-                                style="margin-top: 5%;">submit</button>
-                        </form>
-                    </div>
+                <div id="myTabContent">
+                    <form action="" method="post" onsubmit="return Post('tf');">
+                        <label>For 'TF', you can use TF name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
+                            'C50').</label>
+                        <input type="text" class="form-control" placeholder="Search for TF" id="tf">
+                        <hr>
+                        <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
+                            'C50').</label>
+                        <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
+                        <hr>
+                        <label>For 'Gene', you can use Gene name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
+                            'C50').</label>
+                        <input type="text" class="form-control" placeholder="Search for Gene" id="gene">
+                        <hr>
+                        <label>For 'Hallmark of Cancer', you can use Hallmark name (e.g. 'breast cancer'), or ICD-0-3
+                            code (e.g.
+                            'C50').</label>
+                        <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer" id="gene">
+                        <button class="btn btn-default" type="submit" id="sub" style="margin-top: 5%;">submit</button>
+                        <script>
+                            $(function () {
+                                autocom('tf');
+                                autocom('cancer_type');
+                                autocom('gene');
+                                autocom('hallmark_cancer');
+                            })
+                        </script>
+                    </form>
                 </div>
             </div>
         </div>
-        <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
-            <div class="container">
-                <h3>CONTACT US</h3>
-            </div>
-        </footer>
+    </div>
+    <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
+        <div class="container">
+            <h3>CONTACT US</h3>
+        </div>
+    </footer>
 </body>
 
 </html>
