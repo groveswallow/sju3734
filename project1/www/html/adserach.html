@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-27 15:24:45
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-27 15:56:52
+ * @LastEditTime: 2019-11-27 16:43:09
  * @Description: 
  -->
 <html lang="zh-CN">
@@ -166,23 +166,21 @@
                 </label>
                 <div id="myTabContent">
                     <form action="" method="post" onsubmit="return Post('tf');">
-                        <label>For 'TF', you can use TF name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
-                            'C50').</label>
-                        <input type="text" class="form-control" placeholder="Search for TF" id="tf">
+                        <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
+                            <input type="text" class="form-control" placeholder="Search for TF" id="tf"></div>
                         <hr>
-                        <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
-                            'C50').</label>
-                        <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
+                        <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Cancer</span>
+                            <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
+                        </div>
                         <hr>
-                        <label>For 'Gene', you can use Gene name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
-                            'C50').</label>
-                        <input type="text" class="form-control" placeholder="Search for Gene" id="gene">
+                        <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Gene</span>
+                            <input type="text" class="form-control" placeholder="Search for Gene" id="gene"></div>
                         <hr>
-                        <label>For 'Hallmark of Cancer', you can use Hallmark name (e.g. 'breast cancer'), or ICD-0-3
-                            code (e.g.
-                            'C50').</label>
-                        <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer" id="gene">
-                        <button class="btn btn-default" type="submit" id="sub" style="margin-top: 5%;">submit</button>
+                        <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Hallmark</span>
+                            <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer"
+                                id="gene"></div>
+                        <button class="btn btn-default" type="submit" id="sub"
+                            style="margin-top: 5%;"><b>submit</b></button>
                         <script>
                             $(function () {
                                 autocom('tf');
