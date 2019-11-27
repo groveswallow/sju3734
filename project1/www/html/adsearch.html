@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-27 15:24:45
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-27 17:35:25
+ * @LastEditTime: 2019-11-27 21:43:44
  * @Description: 待解决：1.重新美化两个选择框，尽量将其与tf输入框联系起来，2019.11.27。
  -->
 <html lang="zh-CN">
@@ -24,13 +24,8 @@
 
 <body background="./greek-vase.png" class="float">
     <script>
-        function autoselect(flag){
-            if (flag == 'regulation_type'){
-                $('#'+flag).load('./selectregulation_type.php');
-            }
-            else{
-                $('#'+flag).load('./selectcharacteristics.php');
-            }
+        function autoselect(flag) {
+                $('#' + flag).load('./select'+flag+'.php');
         }
         function autocom(flag) {
             $('#' + flag).typeahead({
@@ -153,7 +148,7 @@
     </div>
     </div>
     <div id="serv" style="width: 100%;height: 100%;">
-        <div style="width: 50%; height:200px; margin-left:25%; margin-top: 8%; text-align: center">
+        <div style="width: 50%; height:200px; margin-left:25%; margin-top: 4%; text-align: center">
             <h1><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span> The
                 Interface of Advanced Search</h1>
             <hr class="simple" color="black">
@@ -165,17 +160,37 @@
 
             </p>
             <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-            <div style="width: 75%; height:200px; margin-left:10%; padding-top: 3%; text-align: center">
+            <div style="width: 75%; height:200px; margin-left:10%; padding-top: 2%; text-align: center">
                 <label>General search offers fuzzy keyword searching capabilities:
-
                     For 'LncRNA', you can use Gene Symbol (e.g. 'MALAT1'), Entrez Gene ID (e.g. '378938'), Ensembl ID
                     (e.g. 'ENSG00000251562') and other names.
-
                 </label>
+                <hr>
                 <div id="myTabContent">
                     <form action="" method="post" onsubmit="return Post('tf');">
-                        <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
-                            <input type="text" class="form-control" placeholder="Search for TF" id="tf"></div>
+                        <div style="width: 100%;height: 55%;">
+                            <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
+                                <input type="text" class="form-control" placeholder="Search for TF" id="tf"></div>
+                            <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
+                                <label>Select Regulation Type</label>
+                                <select multiple class="selectpicker form-control" id="regulation_type"
+                                    data-container="body" data-live-search="true" title="Select Regulation Type"
+                                    data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false">
+                                    <script>
+                                        autoselect('regulation_type');
+                                        autoselect('characteristics');
+                                    </script>
+                                </select>
+                            </div>
+                            <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
+                                <label>Select TCharacteristics</label>
+                                <select multiple class="selectpicker form-control" id="characteristics"
+                                    data-container="body" data-live-search="true" title="Select Characteristics"
+                                    data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false">
+                                </select>
+                            </div>
+                        </div>
+                        <br>
                         <hr>
                         <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Cancer</span>
                             <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
@@ -187,23 +202,9 @@
                         <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Hallmark</span>
                             <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer"
                                 id="gene"></div>
-                        <div class="col-lg-5" style="margin-top: 5%;margin-left: 5%;">
-                            <label>Select Regulation Type</label>
-                            <select multiple class="selectpicker form-control" id="regulation_type" data-container="body"
-                                data-live-search="true" title="Select Regulation Type" data-hide-disabled="true"
-                                data-actions-box="true" data-virtual-scroll="false">
-                            </select>
-                        </div>
-                        <div class="col-lg-5" style="margin-top: 5%;margin-left: 5%;">
-                            <label>Select TFCharacteristics</label>
-                            <select multiple class="selectpicker form-control" id="TFcharacteristics" data-container="body"
-                                data-live-search="true" title="Select Characteristics" data-hide-disabled="true"
-                                data-actions-box="true" data-virtual-scroll="false">
-                            </select>
-                        </div>
                         <!-- //未解决页面缩小后按钮被页脚遮挡的BUG -->
                         <button class="btn btn-default" type="submit" id="sub"
-                            style="margin-top: 5%;"><b>submit</b></button> 
+                            style="margin-top: 5%;"><b>submit</b></button>
                         <script>
                             $(function () {
                                 autocom('tf');
