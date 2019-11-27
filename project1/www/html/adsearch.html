@@ -2,8 +2,8 @@
  * @Author: Tang
  * @Date: 2019-11-27 15:24:45
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-27 16:43:09
- * @Description: 
+ * @LastEditTime: 2019-11-27 17:35:25
+ * @Description: 待解决：1.重新美化两个选择框，尽量将其与tf输入框联系起来，2019.11.27。
  -->
 <html lang="zh-CN">
 
@@ -24,6 +24,14 @@
 
 <body background="./greek-vase.png" class="float">
     <script>
+        function autoselect(flag){
+            if (flag == 'regulation_type'){
+                $('#'+flag).load('./selectregulation_type.php');
+            }
+            else{
+                $('#'+flag).load('./selectcharacteristics.php');
+            }
+        }
         function autocom(flag) {
             $('#' + flag).typeahead({
                 minLength: 1,
@@ -179,8 +187,23 @@
                         <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Hallmark</span>
                             <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer"
                                 id="gene"></div>
+                        <div class="col-lg-5" style="margin-top: 5%;margin-left: 5%;">
+                            <label>Select Regulation Type</label>
+                            <select multiple class="selectpicker form-control" id="regulation_type" data-container="body"
+                                data-live-search="true" title="Select Regulation Type" data-hide-disabled="true"
+                                data-actions-box="true" data-virtual-scroll="false">
+                            </select>
+                        </div>
+                        <div class="col-lg-5" style="margin-top: 5%;margin-left: 5%;">
+                            <label>Select TFCharacteristics</label>
+                            <select multiple class="selectpicker form-control" id="TFcharacteristics" data-container="body"
+                                data-live-search="true" title="Select Characteristics" data-hide-disabled="true"
+                                data-actions-box="true" data-virtual-scroll="false">
+                            </select>
+                        </div>
+                        <!-- //未解决页面缩小后按钮被页脚遮挡的BUG -->
                         <button class="btn btn-default" type="submit" id="sub"
-                            style="margin-top: 5%;"><b>submit</b></button>
+                            style="margin-top: 5%;"><b>submit</b></button> 
                         <script>
                             $(function () {
                                 autocom('tf');

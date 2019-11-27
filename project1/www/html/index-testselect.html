@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-15 14:48:03
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-21 00:04:10
+ * @LastEditTime: 2019-11-27 17:07:32
  * @Description: 
  -->
 <!DOCTYPE html>
@@ -45,7 +45,7 @@
     </form>
     <script>
       $(function () {
-        $("#number").load('./test.php');
+        $("#number").load('./selecttest.php');
       })
       function PostTF() {
         var intext = $('#number').val();
@@ -97,7 +97,7 @@
       }
     </script>
     <table id='table'></table>
-    <!-- <script>
+    <script>
       $('#table').bootstrapTable({
         data: data1,        // 表格数据来源
         search: true,
@@ -123,7 +123,7 @@
           title: 'Characteristics'
         }]
       });
-    </script> -->
+    </script>
 </body>
 <!-- columns: [{
   field: 'cancer',
