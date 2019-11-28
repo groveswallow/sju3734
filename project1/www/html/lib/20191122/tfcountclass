@@ -1,0 +1,462 @@
+AFF3	1	
+AFF4	4	
+AHR	4	Basic_helix-loop-helix_factors_(bHLH)
+AIRE	1	SAND_domain_factors
+AKT1S1	1	
+ALX4	1	Homeo_domain_factors
+AML1.ETO.fusion.protein	1	
+AP.1.Fra.1.c.Jun	1	
+AP4M1	1	
+AR	3	Nuclear_receptors_with_C4_zinc_fingers
+ARID3B	1	ARID_domain_factors
+ARNT	2	Basic_helix-loop-helix_factors_(bHLH)
+ARNTL	2	Basic_helix-loop-helix_factors_(bHLH)
+ARNTL2	1	Basic_helix-loop-helix_factors_(bHLH)
+ASCL1	1	Basic_helix-loop-helix_factors_(bHLH)
+ATF1	1	Basic_leucine_zipper_factors_(bZIP)
+ATF2	1	Basic_leucine_zipper_factors_(bZIP)
+ATF3	3	Basic_leucine_zipper_factors_(bZIP)
+ATF4	4	Basic_leucine_zipper_factors_(bZIP)
+ATF5	3	Basic_leucine_zipper_factors_(bZIP)
+ATF6	1	Basic_leucine_zipper_factors_(bZIP)
+BACH1	1	Basic_leucine_zipper_factors_(bZIP)
+BARX1	1	Homeo_domain_factors
+BARX2	1	Homeo_domain_factors
+BATF	1	Basic_leucine_zipper_factors_(bZIP)
+BCL11B	1	C2H2_zinc_finger_factors
+BCL6	3	C2H2_zinc_finger_factors
+BCLAF1	1	
+BHLHE41	1	Basic_helix-loop-helix_factors_(bHLH)
+BMP7	1	
+BNC1	1	C2H2_zinc_finger_factors
+BNC2	1	C2H2_zinc_finger_factors
+BRCA1	2	
+BRF1	1	
+BTF3	1	
+BTK	1	
+CAV3	1	
+CBFB	1	
+CD44	1	
+CDCX2	1	
+CDX1	2	Homeo_domain_factors
+CDX2	7	Homeo_domain_factors
+CDX4	1	Homeo_domain_factors
+CEBPA	4	Basic_leucine_zipper_factors_(bZIP)
+CEBPB	5	Basic_leucine_zipper_factors_(bZIP)
+CHOP.GADD153	1	
+CHRNE	1	
+CLOCK	1	Basic_helix-loop-helix_factors_(bHLH)
+CORO7	1	
+CREB1	4	Basic_leucine_zipper_factors_(bZIP)
+CREB3	1	Basic_leucine_zipper_factors_(bZIP)
+CREB3L2	1	Basic_leucine_zipper_factors_(bZIP)
+CREB3L2.PPARgamma.fusion.protein	1	
+CREB3L3	1	Basic_leucine_zipper_factors_(bZIP)
+CREBBP	7	
+CREM	2	Basic_leucine_zipper_factors_(bZIP)
+CTCF	1	C2H2_zinc_finger_factors
+CTNNB1	2	
+DBP	1	Basic_leucine_zipper_factors_(bZIP)
+DDB2	2	
+DDX5	1	
+DLX5	1	Homeo_domain_factors
+DLX6	1	Homeo_domain_factors
+DNMT1	4	CXXC_zinc_finger_factors
+DNMT3A	1	Other_C4_zinc_finger-type_factors
+E2F1	11	Fork_head_/_winged_helix_factors
+E2F2	3	Fork_head_/_winged_helix_factors
+E2F3	3	Fork_head_/_winged_helix_factors
+E2F4	1	Fork_head_/_winged_helix_factors
+E2F5	1	Fork_head_/_winged_helix_factors
+E2F7	1	Fork_head_/_winged_helix_factors
+E2F8	1	Fork_head_/_winged_helix_factors
+E4F1	1	C2H2_zinc_finger_factors
+EBF1	1	Rel_homology_region_(RHR)_factors
+EGFR.AP1	1	
+EGR1	6	C2H2_zinc_finger_factors
+EGR3	1	C2H2_zinc_finger_factors
+EHF	3	Tryptophan_cluster_factors
+EIF4EBP1	2	
+ELF3	4	Tryptophan_cluster_factors
+ELF5	1	Tryptophan_cluster_factors
+ELK1	4	Tryptophan_cluster_factors
+ELK3	1	Tryptophan_cluster_factors
+EMX2	1	Homeo_domain_factors
+EN1	1	Homeo_domain_factors
+ENO1	1	
+EOMES	1	T-Box_factors
+EPAS.1.HIF.2alpha	1	
+ERCC2	1	
+ERG	2	Tryptophan_cluster_factors
+ESR1	2	Nuclear_receptors_with_C4_zinc_fingers
+ESR2	2	Nuclear_receptors_with_C4_zinc_fingers
+ESRRA	2	Nuclear_receptors_with_C4_zinc_fingers
+ETS1	7	Tryptophan_cluster_factors
+ETS2	3	Tryptophan_cluster_factors
+ETV1	3	Tryptophan_cluster_factors
+ETV3	1	Tryptophan_cluster_factors
+ETV4	4	Tryptophan_cluster_factors
+ETV5	1	Tryptophan_cluster_factors
+ETV6	1	Tryptophan_cluster_factors
+EWS.ATF1	1	
+EWS.FLI1	1	
+EWSR1.ETS	1	
+EZH2	3	
+FBP1.2	1	
+FLI1	2	Tryptophan_cluster_factors
+FOS	7	Basic_leucine_zipper_factors_(bZIP)
+FOSB	2	Basic_leucine_zipper_factors_(bZIP)
+FOSL1	5	Basic_leucine_zipper_factors_(bZIP)
+FOSL2	1	Basic_leucine_zipper_factors_(bZIP)
+FOXA1	4	Fork_head_/_winged_helix_factors
+FOXA2	6	Fork_head_/_winged_helix_factors
+FOXC1	2	Fork_head_/_winged_helix_factors
+FOXC2	1	Fork_head_/_winged_helix_factors
+FOXD3	2	Fork_head_/_winged_helix_factors
+FOXE1	2	Fork_head_/_winged_helix_factors
+FOXF1	2	Fork_head_/_winged_helix_factors
+FOXF2	1	Fork_head_/_winged_helix_factors
+FOXG1	2	Fork_head_/_winged_helix_factors
+FOXJ1	1	Fork_head_/_winged_helix_factors
+FOXK1	1	Fork_head_/_winged_helix_factors
+FOXK2	2	Fork_head_/_winged_helix_factors
+FOXM1	10	Fork_head_/_winged_helix_factors
+FOXN1	1	Fork_head_/_winged_helix_factors
+FOXN3	1	Fork_head_/_winged_helix_factors
+FOXO1	7	Fork_head_/_winged_helix_factors
+FOXO3	7	Fork_head_/_winged_helix_factors
+FOXO4	1	Fork_head_/_winged_helix_factors
+FOXP1	1	Fork_head_/_winged_helix_factors
+FOXP2	2	Fork_head_/_winged_helix_factors
+FOXP3	5	Fork_head_/_winged_helix_factors
+FOXQ1	2	Fork_head_/_winged_helix_factors
+FOXR2	1	Fork_head_/_winged_helix_factors
+GABPA	1	Tryptophan_cluster_factors
+GATA1	2	Other_C4_zinc_finger-type_factors
+GATA2	2	Other_C4_zinc_finger-type_factors
+GATA3	4	Other_C4_zinc_finger-type_factors
+GATA4	2	Other_C4_zinc_finger-type_factors
+GATA5	2	Other_C4_zinc_finger-type_factors
+GATA6	2	Other_C4_zinc_finger-type_factors
+GEMIN2	1	
+GFI1	1	C2H2_zinc_finger_factors
+GFI1B	1	C2H2_zinc_finger_factors
+GLI1	10	C2H2_zinc_finger_factors
+GLI1.tGLI1	1	
+GLI2	6	C2H2_zinc_finger_factors
+GLIS2	1	C2H2_zinc_finger_factors
+GRHL2	1	Grainyhead_domain_factors
+GSK3B	1	
+HAND1	1	Basic_helix-loop-helix_factors_(bHLH)
+HES1	1	Basic_helix-loop-helix_factors_(bHLH)
+HES6	1	Basic_helix-loop-helix_factors_(bHLH)
+HEY1	2	Basic_helix-loop-helix_factors_(bHLH)
+HHEX	2	Homeo_domain_factors
+HIF1A	11	Basic_helix-loop-helix_factors_(bHLH)
+HIF.1A.FOXO3	1	
+HLTF	1	
+HLX	1	Homeo_domain_factors
+HMGA1	3	A.T_hook_factors
+HMGA2	2	A.T_hook_factors
+HNF1A	2	Homeo_domain_factors
+HNF1B	1	Homeo_domain_factors
+HNF4A	3	Nuclear_receptors_with_C4_zinc_fingers
+HOXA10	3	Homeo_domain_factors
+HOXA13	2	Homeo_domain_factors
+HOXA4	1	Homeo_domain_factors
+HOXA5	1	Homeo_domain_factors
+HOXA7	1	Homeo_domain_factors
+HOXB13	2	Homeo_domain_factors
+HOXB5	1	Homeo_domain_factors
+HOXB6	1	Homeo_domain_factors
+HOXB7	2	Homeo_domain_factors
+HOXB9	3	Homeo_domain_factors
+HOXC10	1	Homeo_domain_factors
+HOXC11	1	Homeo_domain_factors
+HOXC12	1	Homeo_domain_factors
+HOXC6	1	Homeo_domain_factors
+HOXD10	1	Homeo_domain_factors
+HOXD3	1	Homeo_domain_factors
+HSF1	2	Heat_shock_factors
+ID1	4	Basic_helix-loop-helix_factors_(bHLH)
+ID2	3	Basic_helix-loop-helix_factors_(bHLH)
+ID3	3	Basic_helix-loop-helix_factors_(bHLH)
+ID4	2	Basic_helix-loop-helix_factors_(bHLH)
+IGF2	1	
+IKZF1	1	C2H2_zinc_finger_factors
+IL6	1	
+IRF1	5	Tryptophan_cluster_factors
+IRF2	1	Tryptophan_cluster_factors
+IRF3	2	Tryptophan_cluster_factors
+IRF4	3	Tryptophan_cluster_factors
+IRF6	1	Tryptophan_cluster_factors
+IRX2	1	Homeo_domain_factors
+IRX4	1	Homeo_domain_factors
+IRX5	1	Homeo_domain_factors
+ISX	1	Homeo_domain_factors
+JDP2	1	Basic_leucine_zipper_factors_(bZIP)
+JUN	12	Basic_leucine_zipper_factors_(bZIP)
+JUNB	2	Basic_leucine_zipper_factors_(bZIP)
+JUND	1	Basic_leucine_zipper_factors_(bZIP)
+KAT8	1	C2HC_zinc_finger_factors
+KIT	1	
+KLF10	2	C2H2_zinc_finger_factors
+KLF15	1	C2H2_zinc_finger_factors
+KLF4	5	C2H2_zinc_finger_factors
+KLF5	6	C2H2_zinc_finger_factors
+KLF6	3	C2H2_zinc_finger_factors
+KLF8	2	C2H2_zinc_finger_factors
+KLF9	1	C2H2_zinc_finger_factors
+KLLN	1	
+LCOR	1	
+LEF1	2	High-mobility_group_(HMG)_domain_factors
+LOC111162621	1	
+MAF	1	Basic_leucine_zipper_factors_(bZIP)
+MAFB	1	Basic_leucine_zipper_factors_(bZIP)
+MAFG	1	Basic_leucine_zipper_factors_(bZIP)
+MAFK	1	Basic_leucine_zipper_factors_(bZIP)
+MAZ	1	C2H2_zinc_finger_factors
+MBD2	1	
+MBD3	1	
+MECOM	2	C2H2_zinc_finger_factors
+MEF2A	1	MADS_box_factors
+MEF2D	1	MADS_box_factors
+MID1	1	
+MIR34A	1	
+MITF	5	Basic_helix-loop-helix_factors_(bHLH)
+Mitf.M	1	
+MIXL1	1	Homeo_domain_factors
+MMP2	1	
+MSN	1	
+MSX2	1	Homeo_domain_factors
+MTA1	3	Tryptophan_cluster_factors
+MTA3	1	Tryptophan_cluster_factors
+MTF1	1	C2H2_zinc_finger_factors
+MTOR	1	
+MXD3	1	Basic_helix-loop-helix_factors_(bHLH)
+MYB	3	Tryptophan_cluster_factors
+MYBL1	1	Tryptophan_cluster_factors
+MYC	11	Basic_helix-loop-helix_factors_(bHLH)
+MYCN	1	Basic_helix-loop-helix_factors_(bHLH)
+MYOD1	1	Basic_helix-loop-helix_factors_(bHLH)
+MYOG	1	Basic_helix-loop-helix_factors_(bHLH)
+NAFG	1	
+NANOG	5	Homeo_domain_factors
+NCOA1	3	Basic_helix-loop-helix_factors_(bHLH)
+NCOA3	1	Basic_helix-loop-helix_factors_(bHLH)
+NCOA6	1	
+NFAT5	2	Rel_homology_region_(RHR)_factors
+NFATC1	1	Rel_homology_region_(RHR)_factors
+NFATC2	2	Rel_homology_region_(RHR)_factors
+NFATC4	1	Rel_homology_region_(RHR)_factors
+NFE2L2	11	Basic_leucine_zipper_factors_(bZIP)
+NFIB	2	SMAD/NF-1_DNA-binding_domain_factors
+NFIC	3	SMAD/NF-1_DNA-binding_domain_factors
+NFKB1	15	Rel_homology_region_(RHR)_factors
+NFKB2	1	Rel_homology_region_(RHR)_factors
+NFKBIA	2	Rel_homology_region_(RHR)_factors
+NFYA	1	Heteromeric_CCAAT-binding_factors
+NKX2.1	6	
+NKX2.8	1	
+NKX3.1	1	
+NR0B1	1	Nuclear_receptors_with_C4_zinc_fingers
+NR1D1	1	Nuclear_receptors_with_C4_zinc_fingers
+NR1H2	2	Nuclear_receptors_with_C4_zinc_fingers
+NR1H3	1	Nuclear_receptors_with_C4_zinc_fingers
+NR1H4	1	Nuclear_receptors_with_C4_zinc_fingers
+NR1I2	1	Nuclear_receptors_with_C4_zinc_fingers
+NR2E3	1	Nuclear_receptors_with_C4_zinc_fingers
+NR2F1	2	Nuclear_receptors_with_C4_zinc_fingers
+NR3C1	2	Nuclear_receptors_with_C4_zinc_fingers
+NR3C2	1	Nuclear_receptors_with_C4_zinc_fingers
+NR4A1	2	Nuclear_receptors_with_C4_zinc_fingers
+NR4A3	1	Nuclear_receptors_with_C4_zinc_fingers
+NR5A1	1	Nuclear_receptors_with_C4_zinc_fingers
+NR5A2	1	Nuclear_receptors_with_C4_zinc_fingers
+NRF1	2	Uncharacterized
+Oct4.Nanog	1	
+OLIG2	1	Basic_helix-loop-helix_factors_(bHLH)
+ONECUT1	1	Homeo_domain_factors
+ONECUT2	1	Homeo_domain_factors
+OVOL2	1	C2H2_zinc_finger_factors
+p21..CIP1.WAF1.	1	
+PARP1	1	
+PAX1	2	Paired_box_factors
+PAX2	3	Paired_box_factors
+PAX3	1	Paired_box_factors
+PAX5	5	Paired_box_factors
+PAX6	2	Paired_box_factors
+PAX7	2	Paired_box_factors
+PAX8	3	Paired_box_factors
+PAX9	1	Paired_box_factors
+PDX1	2	Homeo_domain_factors
+PGR	1	Nuclear_receptors_with_C4_zinc_fingers
+PHB	1	
+PITX1	1	Homeo_domain_factors
+PITX2	2	Homeo_domain_factors
+PKM	1	
+PKNOX1	1	Homeo_domain_factors
+PLAG1	1	C2H2_zinc_finger_factors
+PLAGL1	1	C2H2_zinc_finger_factors
+POU1F1	2	Homeo_domain_factors
+POU2F1	2	Homeo_domain_factors
+POU2F2	1	Homeo_domain_factors
+POU3F3	1	Homeo_domain_factors
+POU4F2	1	Homeo_domain_factors
+POU5F1	8	Homeo_domain_factors
+PPARA	3	Nuclear_receptors_with_C4_zinc_fingers
+PPARD	1	Nuclear_receptors_with_C4_zinc_fingers
+PPARG	8	Nuclear_receptors_with_C4_zinc_fingers
+PRDM1	1	C2H2_zinc_finger_factors
+PRDM16	1	C2H2_zinc_finger_factors
+PRL	1	
+PROX1	2	Homeo_domain_factors
+PTF1A	1	Basic_helix-loop-helix_factors_(bHLH)
+PTPN6	1	
+PTX3	1	
+RARB	1	Nuclear_receptors_with_C4_zinc_fingers
+RCOR1	1	Tryptophan_cluster_factors
+REL	1	Rel_homology_region_(RHR)_factors
+RELA	6	Rel_homology_region_(RHR)_factors
+RELB	1	Rel_homology_region_(RHR)_factors
+REST	3	C2H2_zinc_finger_factors
+ROR1	1	
+RORC	1	Nuclear_receptors_with_C4_zinc_fingers
+RREB1	1	C2H2_zinc_finger_factors
+RRM2B	1	
+RUNX1	4	Runt_domain_factors
+RUNX2	6	Runt_domain_factors
+RUNX3	4	Runt_domain_factors
+RXRG	1	Nuclear_receptors_with_C4_zinc_fingers
+SALL1	2	C2H2_zinc_finger_factors
+SALL4	4	C2H2_zinc_finger_factors
+SF1	1	
+SHOX2	1	Homeo_domain_factors
+SIX1	2	Homeo_domain_factors
+SIX2	1	Homeo_domain_factors
+SIX3	2	Homeo_domain_factors
+SLC22A2	1	
+SMAD2	1	SMAD/NF-1_DNA-binding_domain_factors
+Smad2.3	1	
+SMAD3	1	SMAD/NF-1_DNA-binding_domain_factors
+SMAD4	4	SMAD/NF-1_DNA-binding_domain_factors
+SMAD7	1	SMAD/NF-1_DNA-binding_domain_factors
+SMARCA2	1	
+SMARCA4	1	
+SMARCC1	1	Tryptophan_cluster_factors
+SMYD1	1	
+SNAI1	10	C2H2_zinc_finger_factors
+SNAI2	8	C2H2_zinc_finger_factors
+SNX2112	1	
+SNX5422	1	
+SOHLH2	1	Basic_helix-loop-helix_factors_(bHLH)
+SOX1	1	High-mobility_group_(HMG)_domain_factors
+SOX10	1	High-mobility_group_(HMG)_domain_factors
+SOX11	4	High-mobility_group_(HMG)_domain_factors
+SOX17	3	High-mobility_group_(HMG)_domain_factors
+SOX2	15	High-mobility_group_(HMG)_domain_factors
+SOX21	1	High-mobility_group_(HMG)_domain_factors
+SOX4	5	High-mobility_group_(HMG)_domain_factors
+SOX7	2	High-mobility_group_(HMG)_domain_factors
+SOX9	4	High-mobility_group_(HMG)_domain_factors
+SP1	10	C2H2_zinc_finger_factors
+Sp1.Sp3	1	
+SP3	5	C2H2_zinc_finger_factors
+SP4	2	C2H2_zinc_finger_factors
+SPDEF	2	Tryptophan_cluster_factors
+SPI1	1	Tryptophan_cluster_factors
+SPZ1	2	
+SRC	1	
+SRF	2	MADS_box_factors
+STAT1	2	STAT_domain_factors
+STAT3	9	STAT_domain_factors
+STAT5A	2	STAT_domain_factors
+STAT5B	1	STAT_domain_factors
+STAT6	1	STAT_domain_factors
+SULT1A1	1	
+T1.ST2	1	
+TAL1	1	Basic_helix-loop-helix_factors_(bHLH)
+TBP	1	TATA-binding_proteins
+TBX1	1	T-Box_factors
+TBX15	1	T-Box_factors
+TBX2	2	T-Box_factors
+TBX21	3	T-Box_factors
+TBX3	3	T-Box_factors
+TBX3...2a	1	
+TBX5	1	T-Box_factors
+TBXT	2	
+TCF19	1	
+TCF21	8	Basic_helix-loop-helix_factors_(bHLH)
+TCF3	2	Basic_helix-loop-helix_factors_(bHLH)
+TCF4	2	Basic_helix-loop-helix_factors_(bHLH)
+TCF7L2	2	High-mobility_group_(HMG)_domain_factors
+TEAD4	1	TEA_domain_factors
+TEC	1	
+TERF1	1	
+TERF2	1	
+TERT	1	
+TET1	1	CXXC_zinc_finger_factors
+TF	1	
+TFAM	3	High-mobility_group_(HMG)_domain_factors
+TFAP2A	7	Basic_helix-span-helix_factors_(bHSH)
+TFAP2B	2	Basic_helix-span-helix_factors_(bHSH)
+TFAP2C	3	Basic_helix-span-helix_factors_(bHSH)
+TFCP2	2	Grainyhead_domain_factors
+TFDP1	2	Fork_head_/_winged_helix_factors
+TFDP3	2	
+TFDP3V	1	
+TFE3	3	Basic_helix-loop-helix_factors_(bHLH)
+TGIF2LX	1	Homeo_domain_factors
+THRA	1	Nuclear_receptors_with_C4_zinc_fingers
+THRB	1	Nuclear_receptors_with_C4_zinc_fingers
+TLR4	2	
+TNF	1	
+TOX3	1	High-mobility_group_(HMG)_domain_factors
+TP53	10	p53_domain_factors
+TP53.p63	1	
+TP63	3	p53_domain_factors
+TP73	1	p53_domain_factors
+TRPS1	1	C2H2_zinc_finger_factors
+TSHZ2	1	Homeo_domain_factors
+TTF1	2	
+TULP3	1	
+TWIST1	12	Basic_helix-loop-helix_factors_(bHLH)
+TWIST2	1	Basic_helix-loop-helix_factors_(bHLH)
+USF2	1	Basic_helix-loop-helix_factors_(bHLH)
+UTF1	1	Basic_leucine_zipper_factors_(bZIP)
+VDR	4	Nuclear_receptors_with_C4_zinc_fingers
+VENTX	1	Homeo_domain_factors
+WT1	6	C2H2_zinc_finger_factors
+X1.Dec	2	
+XBP1	3	Basic_leucine_zipper_factors_(bZIP)
+YAP1	1	
+YBX1	2	Cold-shock_domain_factors
+YY1	4	C2H2_zinc_finger_factors
+ZAP70	1	
+ZBTB10	1	
+ZBTB16	1	C2H2_zinc_finger_factors
+ZBTB33	1	C2H2_zinc_finger_factors
+ZBTB4	1	C2H2_zinc_finger_factors
+ZBTB7A	2	C2H2_zinc_finger_factors
+ZEB1	7	Homeo_domain_factors
+ZEB2	3	Homeo_domain_factors
+ZFHX3	1	Homeo_domain_factors
+ZFP42	1	C2H2_zinc_finger_factors
+ZFPM2	1	C2HC_zinc_finger_factors
+ZIC1	2	C2H2_zinc_finger_factors
+ZIC2	2	C2H2_zinc_finger_factors
+ZIC4	1	C2H2_zinc_finger_factors
+ZKSCAN1	1	C2H2_zinc_finger_factors
+ZKSCAN3	1	C2H2_zinc_finger_factors
+ZMAT3	1	
+ZNF143	1	C2H2_zinc_finger_factors
+ZNF148	1	C2H2_zinc_finger_factors
+ZNF217	1	C2H2_zinc_finger_factors
+ZNF267	1	C2H2_zinc_finger_factors
+ZNF281	2	C2H2_zinc_finger_factors
+ZNF32	1	C2H2_zinc_finger_factors
+ZNF350	1	C2H2_zinc_finger_factors
+ZNF398	1	C2H2_zinc_finger_factors
+ZNF423	1	C2H2_zinc_finger_factors
+ZNF689	1	C2H2_zinc_finger_factors
+ZNF746	1	C2H2_zinc_finger_factors
