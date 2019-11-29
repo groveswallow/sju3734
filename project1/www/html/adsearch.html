@@ -2,8 +2,11 @@
  * @Author: Tang
  * @Date: 2019-11-27 15:24:45
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-27 21:43:44
+ * @LastEditTime: 2019-11-28 18:04:13
  * @Description: 待解决：1.重新美化两个选择框，尽量将其与tf输入框联系起来，2019.11.27。
+   待解决：2.表单提交函数Post未进行修改，目前该函数无法完成需求，2019.11.28。
+   待解决：3.autocom.php 该php未解决完成，数据库数据未导入数据，只写了测试代码。2019.11.28
+ * @update：针对问题1，已进行修改。2019.11.28
  -->
 <html lang="zh-CN">
 
@@ -25,7 +28,7 @@
 <body background="./greek-vase.png" class="float">
     <script>
         function autoselect(flag) {
-                $('#' + flag).load('./select'+flag+'.php');
+            $('#' + flag).load('./select' + flag + '.php');
         }
         function autocom(flag) {
             $('#' + flag).typeahead({
@@ -35,7 +38,7 @@
                 highlight: true,
                 source: function (query, process) {
                     $.ajax({
-                        url: "./autocom.php",//未解决，只写了测试代码。
+                        url: "./autocom.php",//该php未解决完成，数据库数据未导入数据，只写了测试代码。
                         cache: false,
                         type: 'post',
                         dataType: 'json',
@@ -172,18 +175,18 @@
                             <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
                                 <input type="text" class="form-control" placeholder="Search for TF" id="tf"></div>
                             <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
-                                <label>Select Regulation Type</label>
+                                <label>Select Mode of Regulation Type</label>
                                 <select multiple class="selectpicker form-control" id="regulation_type"
                                     data-container="body" data-live-search="true" title="Select Regulation Type"
                                     data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false">
-                                    <script>
-                                        autoselect('regulation_type');
-                                        autoselect('characteristics');
-                                    </script>
+                                    <!-- <script>
+                                        // autoselect('regulation_type');
+                                        // autoselect('characteristics');
+                                    </script> -->
                                 </select>
                             </div>
                             <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
-                                <label>Select TCharacteristics</label>
+                                <label>Select TF Characteristics</label>
                                 <select multiple class="selectpicker form-control" id="characteristics"
                                     data-container="body" data-live-search="true" title="Select Characteristics"
                                     data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false">
