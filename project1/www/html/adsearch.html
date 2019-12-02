@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-27 15:24:45
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-28 18:04:13
+ * @LastEditTime: 2019-12-02 21:16:47
  * @Description: 待解决：1.重新美化两个选择框，尽量将其与tf输入框联系起来，2019.11.27。
    待解决：2.表单提交函数Post未进行修改，目前该函数无法完成需求，2019.11.28。
    待解决：3.autocom.php 该php未解决完成，数据库数据未导入数据，只写了测试代码。2019.11.28
@@ -179,10 +179,9 @@
                                 <select multiple class="selectpicker form-control" id="regulation_type"
                                     data-container="body" data-live-search="true" title="Select Regulation Type"
                                     data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false">
-                                    <!-- <script>
-                                        // autoselect('regulation_type');
-                                        // autoselect('characteristics');
-                                    </script> -->
+                                    <script>
+                                        autoselect('characteristics');
+                                    </script>
                                 </select>
                             </div>
                             <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
@@ -204,7 +203,7 @@
                         <hr>
                         <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Hallmark</span>
                             <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer"
-                                id="gene"></div>
+                                id="hallmark"></div>
                         <!-- //未解决页面缩小后按钮被页脚遮挡的BUG -->
                         <button class="btn btn-default" type="submit" id="sub"
                             style="margin-top: 5%;"><b>submit</b></button>
@@ -213,7 +212,7 @@
                                 autocom('tf');
                                 autocom('cancer_type');
                                 autocom('gene');
-                                autocom('hallmark_cancer');
+                                autocom('hallmark');
                             })
                         </script>
                     </form>
