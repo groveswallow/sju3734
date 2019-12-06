@@ -1,22 +1,16 @@
-<?php 
+<?php
+//ｔｆ，ｈａｌｌｍａｒｋ，ｇｅｎｅ　未改写。
     require_once("dbconfig.php");
     $con = mysqli_connect($host, $usr, $password,$db);
-    $cancer_type = $_POST['cancer_type'];
-    $tf = $_POST['tf'];
-    $gene = $_POST['gene'];
-    $hallmarl = $_POST['hallmark'];
-    if ($cancer_type != null){
-        $sql = "select LongCancer from cancer_type where BriCancer like '%$cancer_type%'";
-    }
-    elseif($tf != null){
-        $sql = "select LongCancer from cancer_type where BriCancer like '%$cancer_type%'";
-    }
-    elseif($gene != null){
-        $sql = "select LongCancer from cancer_type where BriCancer like '%$cancer_type%'";
-    }
-    else{
-        $sql = "select hallmark from hallmark where hallmarrk like '%$hallmark%'";
-    }
+    $val = array_keys($_POST)[0];
+    if ($val == 'tf')
+    {$sql = "select LongCancer from cancer_type where BriCancer like '%$_POST[$val]%'";}
+    elseif($val == 'gene')
+    {$sql = "select LongCancer from cancer_type where BriCancer like '%$_POST[$val]%'";}
+    elseif($val == 'hallmark')
+    {$sql = "select LongCancer from cancer_type where BriCancer like '%$_POST[$val]%'";}
+    else
+    {$sql = "select LongCancer from cancer_type where BriCancer like '%$_POST[$val]%'";}
     $result = mysqli_query($con, $sql);
     $res = mysqli_fetch_all($result);
     $i = 0;
@@ -27,4 +21,4 @@
     }
     echo json_encode($final_res);
     mysqli_close($con);
- ?>
+?>

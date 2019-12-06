@@ -2,7 +2,7 @@
 @Author: Tang
 @Date: 2019-12-02 10:01:42
 @LastEditors: Tang
-@LastEditTime: 2019-12-02 10:54:06
+@LastEditTime: 2019-12-04 21:45:21
 @Description: 
 '''
 import openpyxl
@@ -26,7 +26,7 @@ def add(path):
         wb = openpyxl.load_workbook(filepath)
         ws = wb.get_sheet_by_name(wb.sheetnames[0])
         cresql = """CREATE TABLE %s(
-            %s CHAR(10));""" % (i[0:-5],i[0:-5])
+            %s CHAR(100));""" % (i[0:-5],i[0:-5])
         cur.execute(cresql)
         print("create %s success\n"%i[0:-5])
         for x in range(1, ws.max_row+1):

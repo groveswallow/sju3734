@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-27 15:51:16
+ * @LastEditTime: 2019-12-04 21:30:30
  * @Description: 待解决：1.搜索框上方的描述套话。2.autocom.php未写好(考虑cancer单独一个PHP数据文件)，只有测试代码;ser.php未写好，只有测试代码。3.改写auotcom的script函数，方便直接用，避免重复代码。
  * 问题3已经解决一部分，需要进行测试，看是否能成功运行。
  -->
@@ -27,7 +27,7 @@
 <body background="./greek-vase.png" class="float">
     <script>
         function autocom(flag) {
-            $('#' + flag).typeahead({
+            $('#'+flag).typeahead({
                 minLength: 1,
                 items: 10,
                 hint: true,
@@ -199,11 +199,11 @@
                             <hr>
                             <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code
                                 (e.g.'C50').</label>
-                            <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
+                            <input type="text" class="form-control" placeholder="Search for Cancer" id="cAncer_type">
                             <script>
                                 $(function () {
                                     autocom('gene');
-                                    autocom('cancer_type');
+                                    autocom('cAncer_type');
                                 })
                             </script>
                             <button class="btn btn-default" type="submit" id="sub"
