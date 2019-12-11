@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-27 15:24:45
  * @LastEditors: Tang
- * @LastEditTime: 2019-12-06 14:44:09
+ * @LastEditTime: 2019-12-11 21:12:29
  * @Description: 待解决：1.重新美化两个选择框，尽量将其与tf输入框联系起来，2019.11.27。
    待解决：2.表单提交函数Post未进行修改，目前该函数无法完成需求，2019.11.28。
    待解决：3.autocom.php 该php未解决完成，数据库数据未导入数据，只写了测试代码。2019.11.28
@@ -79,80 +79,85 @@
                 }
             })
         }
-        function Post(flag) {
-            $va = $('#' + flag).val();
+        function Post() {
+            var query = {
+                tf: $('#tf').val(),
+                cancer_type: $('#characteristics').val(),
+                gene: $('#gene').val(),
+                hallmark: $('#hallmark').val(),
+                regulation_type: $('#regulation_type').val(),
+                characteristics: $('#characteristics').val(),
+            };
+            // var tf = $('#tf').val();
+            // var regulation_type = $('#regulation_type').val();
+            // var characteristics = $('#characteristics').val();
+            // var cancer_type = $('#cancer_type').val();
+            // var gene = $('#gene').val();
+            // var hallmark = $('#hallmark').val();
+            // var flag = 0;
+            // var va = [$('#tf').val(), $('#cancer_type').val(), $('#gene').val(), $('#hallmark').val()]
             var patt = /[^0-9A-Za-z]/;
-            if (va == '') {
-                alert('you don not input anything!');
-                return false;
+            for (let i in query) {
+                if (query[i] == null) {
+                    query[i] = 'null';
+                }
             }
-            else if (patt.test(va)) {
-                alert('you input wrong words,plesea input again!');
-                return false;
-            }
-            else {
-                var query = new Array();
-                var cancer = $('#cancer').val();
-                $.ajax({
-                    url: './ser.php',
-                    method: 'post',
-                    dataType: 'json',
-                    async: true,
-                    data: {
-                        'cancer': cancer,
-                        flag: va,
-                    },
-                    success: function (result) {
-                        $('form').hide();
-                        $('#table').bootstrapTable({
-                            data: result,        // 表格数据来源
-                            search: true,
-                            striped: true,
-                            showToggle: true,
-                            strictSearch: true,
-                            showColumns: true,                  //是否显示所有的列
-                            showRefresh: true,
-                            cache: false,
-                            sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
-                            pagination: true,                   //是否显示分页（*）
-                            pageNumber: 1,                       //初始化加载第一页，默认第一页
-                            pageSize: 10,                       //每页的记录行数（*）
-                            pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-                            columns: [{
-                                field: 'cancer',
-                                title: 'Cancer Category'
-                            }, {
-                                field: 'tf',
-                                title: 'TF'
-                            }, {
-                                field: 'gene',
-                                title: 'Gene'
-                            }, {
-                                field: 'characteristics',
-                                title: 'Characteristics'
-                            },
-                            {
-                                field: 'regulation_type',
-                                title: 'Regulation_type'
-                            },
-                            {
-                                field: 'cancer_hallmark',
-                                title: 'Cancer_hallmark'
-                            },
-                            {
-                                field: 'details',
-                                title: 'Details'
-                            }]
-                        });
-                    },
-                    error: function () {
-                        alert('something is wrong,please connect author!');
-                    }
-                });
-                return false;
-            }
-
+            $.ajax({
+                url: './ser.php',
+                method: 'post',
+                dataType: 'json',
+                async: true,
+                data: query,
+                success: function (result) {
+                    $('＃serv').hide();
+                    $('#table').bootstrapTable({
+                        data: result,        // 表格数据来源
+                        search: true,
+                        striped: true,
+                        showToggle: true,
+                        strictSearch: true,
+                        showColumns: true,                  //是否显示所有的列
+                        showRefresh: true,
+                        cache: false,
+                        sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+                        pagination: true,                   //是否显示分页（*）
+                        pageNumber: 1,                       //初始化加载第一页，默认第一页
+                        pageSize: 10,                       //每页的记录行数（*）
+                        pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                        columns: [{
+                            field: 'cancer',
+                            title: 'Cancer Category'
+                        }, {
+                            field: 'tf',
+                            title: 'TF'
+                        }, {
+                            field: 'gene',
+                            title: 'Gene'
+                        }, {
+                            field: 'characteristics',
+                            title: 'Characteristics'
+                        },
+                        {
+                            field: 'regulation_type',
+                            title: 'Regulation_type'
+                        },
+                        {
+                            field: 'cancer_hallmark',
+                            title: 'Cancer_hallmark'
+                        },
+                        {
+                            field: 'details',
+                            title: 'Details'
+                        }]
+                    });
+                },
+                error: function () {
+                    alert('something is wrong,please connect author!');
+                }
+            });
+            return false;
         }
+
     </script>
     <div class="nav" style="background-color: #000 ;height: 80px;">
         <div style="padding-right:5%;float: right;">
@@ -195,7 +200,7 @@
                     (e.g. 'ENSG00000251562') and other names.
                 </label>
                 <hr>
-                <form class='form-horizontal' action="" method="post" onsubmit="return Post('tf');">
+                <form class='form-horizontal' action="" method="post" onsubmit="return Post();">
                     <div style="width: 100%;height: 55%;">
                         <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
                             <input type="text" class="form-control" placeholder="Search for TF" id="tf"></div>

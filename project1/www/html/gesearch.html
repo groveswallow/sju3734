@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2019-12-04 21:30:30
+ * @LastEditTime: 2019-12-11 21:21:08
  * @Description: 待解决：1.搜索框上方的描述套话。2.autocom.php未写好(考虑cancer单独一个PHP数据文件)，只有测试代码;ser.php未写好，只有测试代码。3.改写auotcom的script函数，方便直接用，避免重复代码。
  * 问题3已经解决一部分，需要进行测试，看是否能成功运行。
  -->
@@ -27,7 +27,7 @@
 <body background="./greek-vase.png" class="float">
     <script>
         function autocom(flag) {
-            $('#'+flag).typeahead({
+            $('#' + flag).typeahead({
                 minLength: 1,
                 items: 10,
                 hint: true,
@@ -49,79 +49,79 @@
                 }
             })
         }
-        function Post(flag) {
-            $va = $('#' + flag).val();
+        function Post() {
+            var query = {
+                tf: $('#tf').val(),
+                cancer_type: $('#characteristics').val(),
+            };
+            // var tf = $('#tf').val();
+            // var regulation_type = $('#regulation_type').val();
+            // var characteristics = $('#characteristics').val();
+            // var cancer_type = $('#cancer_type').val();
+            // var gene = $('#gene').val();
+            // var hallmark = $('#hallmark').val();
+            // var flag = 0;
+            // var va = [$('#tf').val(), $('#cancer_type').val(), $('#gene').val(), $('#hallmark').val()]
             var patt = /[^0-9A-Za-z]/;
-            if (va == '') {
-                alert('you don not input anything!');
-                return false;
+            for (let i in query) {
+                if (query[i] == null) {
+                    query[i] = 'null';
+                }
             }
-            else if (patt.test(va)) {
-                alert('you input wrong words,plesea input again!');
-                return false;
-            }
-            else {
-                var query = new Array();
-                var cancer = $('#cancer').val();
-                $.ajax({
-                    url: './ser.php',
-                    method: 'post',
-                    dataType: 'json',
-                    async: true,
-                    data: {
-                        'cancer': cancer,
-                        flag: va,
-                    },
-                    success: function (result) {
-                        $('form').hide();
-                        $('#table').bootstrapTable({
-                            data: result,        // 表格数据来源
-                            search: true,
-                            striped: true,
-                            showToggle: true,
-                            strictSearch: true,
-                            showColumns: true,                  //是否显示所有的列
-                            showRefresh: true,
-                            cache: false,
-                            sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
-                            pagination: true,                   //是否显示分页（*）
-                            pageNumber: 1,                       //初始化加载第一页，默认第一页
-                            pageSize: 10,                       //每页的记录行数（*）
-                            pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-                            columns: [{
-                                field: 'cancer',
-                                title: 'Cancer Category'
-                            }, {
-                                field: 'tf',
-                                title: 'TF'
-                            }, {
-                                field: 'gene',
-                                title: 'Gene'
-                            }, {
-                                field: 'characteristics',
-                                title: 'Characteristics'
-                            },
-                            {
-                                field: 'regulation_type',
-                                title: 'Regulation_type'
-                            },
-                            {
-                                field: 'cancer_hallmark',
-                                title: 'Cancer_hallmark'
-                            },
-                            {
-                                field: 'details',
-                                title: 'Details'
-                            }]
-                        });
-                    },
-                    error: function () {
-                        alert('something is wrong,please connect author!');
-                    }
-                });
-                return false;
-            }
-
+            $.ajax({
+                url: './ser.php',
+                method: 'post',
+                dataType: 'json',
+                async: true,
+                data: query,
+                success: function (result) {
+                    $('＃serv').hide();
+                    $('#table').bootstrapTable({
+                        data: result,        // 表格数据来源
+                        search: true,
+                        striped: true,
+                        showToggle: true,
+                        strictSearch: true,
+                        showColumns: true,                  //是否显示所有的列
+                        showRefresh: true,
+                        cache: false,
+                        sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+                        pagination: true,                   //是否显示分页（*）
+                        pageNumber: 1,                       //初始化加载第一页，默认第一页
+                        pageSize: 10,                       //每页的记录行数（*）
+                        pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                        columns: [{
+                            field: 'cancer',
+                            title: 'Cancer Category'
+                        }, {
+                            field: 'tf',
+                            title: 'TF'
+                        }, {
+                            field: 'gene',
+                            title: 'Gene'
+                        }, {
+                            field: 'characteristics',
+                            title: 'Characteristics'
+                        },
+                        {
+                            field: 'regulation_type',
+                            title: 'Regulation_type'
+                        },
+                        {
+                            field: 'cancer_hallmark',
+                            title: 'Cancer_hallmark'
+                        },
+                        {
+                            field: 'details',
+                            title: 'Details'
+                        }]
+                    });
+                },
+                error: function () {
+                    alert('something is wrong,please connect author!');
+                }
+            });
+            return false;
         }
     </script>
     <div class="nav" style="background-color: #000 ;height: 80px;">
@@ -166,58 +166,32 @@
                     (e.g. 'ENSG00000251562') and other names.
 
                 </label>
-                <ul id="myTab" class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#sertf" data-toggle="tab" style="color: black;">
-                            TF
-                        </a>
-                    </li>
-                    <li><a href="#sergene" data-toggle="tab" style="color: black;">Gene</a></li>
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="sertf">
-                        <form action="" method="post" onsubmit="return Post('tf');">
-                            <input type="text" class="form-control" placeholder="Search for TF" id="tf">
-                            <hr>
-                            <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
-                                'C50').</label>
-                            <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
-                            <script>
-                                $(function () {
-                                    autocom('tf');
-                                    autocom('cancer_type');
-                                })
-                            </script>
-                            <button class="btn btn-default" type="submit" id="sub"
-                                style="margin-top: 5%;">submit</button>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="sergene">
-                        <form action="" method="post" onsubmit="return Post('gene');">
-                            <input type="text" class="form-control" placeholder="Search for Gene" id="gene"
-                                name="serGen">
-                            <hr>
-                            <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code
-                                (e.g.'C50').</label>
-                            <input type="text" class="form-control" placeholder="Search for Cancer" id="cAncer_type">
-                            <script>
-                                $(function () {
-                                    autocom('gene');
-                                    autocom('cAncer_type');
-                                })
-                            </script>
-                            <button class="btn btn-default" type="submit" id="sub"
-                                style="margin-top: 5%;">submit</button>
-                        </form>
-                    </div>
+                <div id="sertf">
+                    <form action="" method="post" onsubmit="return Post();">
+                        <input type="text" class="form-control" placeholder="Search for TF" id="tf">
+                        <hr>
+                        <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
+                            'C50').</label>
+                        <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
+                        <script>
+                            $(function () {
+                                autocom('tf');
+                                autocom('cancer_type');
+                            })
+                        </script>
+                        <button class="btn btn-default" type="button" id="reset"
+                            style="margin-top: 5%;"><b>Reset</b></button>
+                        <button class="btn btn-default" type="submit" id="sub" style="margin-top: 5%;"><b>Search</b></button>
+                    </form>
                 </div>
             </div>
         </div>
-        <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
-            <div class="container">
-                <h3>CONTACT US</h3>
-            </div>
-        </footer>
+    </div>
+    <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
+        <div class="container">
+            <h3>CONTACT US</h3>
+        </div>
+    </footer>
 </body>
 
 </html>

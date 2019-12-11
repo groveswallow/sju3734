@@ -1,31 +1,15 @@
 <?php 
 require_once("dbconfig.php");
 $con = mysqli_connect($host, $usr, $password,$db);
-if (!$con){
-    echo "<h1>数据库连接失败，请联系管理员：XXXXXXXXXX</h1>";
-    $flag = 1;
-  }
-  else{  
-    if($TF){
-      sertf($TF,$con);
-  }
-  elseif($Gen){
-    sergen($Gen,$con);
-  }
-  else {
-    serpmid($Cancer,$con);
-  }
-if($flag == 0){
-  echo " <script>
-  $(function () {
-    $('a#det').on('click', (function () {
-      $(this).parent().children('td').eq(0).text();
-    }))
-  })
-</script>";
-}
-}
-  mysqli_close($con);
+$tf = $_POST['tf'];
+$cancer_type = $_POST['cancer_type'];
+$sql = "select LongCancer from cancer_type where BriCancer like '%$_POST[$val]%'";
+$re = mysqli_query($con, $sql);
+$res = mysqli_fetch_all($result);
+
+
+
+mysqli_close($con);
 // $sql = "select * from brca_v1 where tf like '%p53%'";
 // $sql = "show tables";
 // $result = mysqli_query($con, $sql);

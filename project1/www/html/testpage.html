@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-13 15:23:38
  * @LastEditors: Tang
- * @LastEditTime: 2019-11-25 15:12:22
+ * @LastEditTime: 2019-12-11 21:01:32
  * @Description: 
  -->
 <!--author:Tang-->
@@ -22,35 +22,55 @@
 </head>
 
 <body>
-  <div>
-      <a>111</a>
-      <a id='det'>１</a>
-  </div>
-  <div>
-    <a>222</a>
-      <a id='det'>2</a>
-  </div>
-  <div>
-      <a>3333</a>
-      <a id='det'>3</a>
-  </div>
+  <form action="" method="post" onsubmit="return PostTF();">
+    <div class="input-group input-group-lg">
+      <input type="text" class="form-control" placeholder="Search for TF" id="serTF" name="serTF" value="p53">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit" id="sub"><span class="glyphicon glyphicon-search"
+            style="font-size: 20px"></span></button></span>
+    </div>
+    <div class="col-lg-10">
+        <div class="col-lg-5">
+          <label>Select Cancer Category</label>
+          <select multiple class="selectpicker form-control" id="number" data-container="body" data-live-search="true"
+            title="Select Cancers" data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false">
+            <option value=1>1</option>
+            <option value='2'>2</option>
+          </select>
+        </div>
+      </div>
+  </form>
 
 
- 
+
   <script>
-    var patt='2';
-    console.log('2'+patt);
+    function PostTF() {
+      var patt = /[^0-9A-Za-z]/;
+      var patt2 = /[""]/;
+      op1 = $('#number').val();
+      op = $('#serTF').val();
+      var s = [op,op1];
+      if (patt.test(op)) {
+        console.log(patt.test(op));
+        alert('you input wrong words,plesea input again!');
+        return false;
+      }
+      else {
+        console.log(patt.test(op));
+        console.log(patt2.test(op));
+        console.log(s);
+        return false;
+      }
+      console.log(s);
+      console.log(op);
+      return false;
+    }
   </script>
-  <!-- <script>
-    $(function () {
-      $.ajaxSetup({
-        cache: false
-      });
-      $('#d$index').on("click", (function () {
-        $('#t$index ').text();
-      }))
-    })
-  </script> -->
+  <script>
+      var ss1 = {tf:'sd',df:'sd2',fd:null};
+      console.log(ss1['tf']);
+      console.log(ss1['fd']);
+  </script>
 </body>
 
 </html>
