@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-15 14:48:03
  * @LastEditors: Tang
- * @LastEditTime: 2019-12-04 21:47:33
+ * @LastEditTime: 2019-12-16 17:22:37
  * @Description: 
  -->
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
 <body>
   <form action="" method="post" onsubmit="return PostTF();">
     <div class="input-group input-group-lg">
-      <input type="text" class="form-control" placeholder="Search for TF" id="serTF" name="serTF">
+      <input type="text" class="form-control" placeholder="Search for TF" id="serTF" name="serTF" value="p53">
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit" id="sub"><span class="glyphicon glyphicon-search"
             style="font-size: 20px"></span></button></span>
@@ -39,14 +39,14 @@
         <label>Select Cancer Category</label>
         <select multiple class="selectpicker form-control" id="number" data-container="body" data-live-search="true"
           title="Select Cancers" data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false">
+          <option value="3" selected id='selected'>1</option>
+          <option value="2">2</option>
         </select>
       </div>
     </div>
-    </form>
-    <script>
-      $(function () {
-        $('#number').load('./selectregulation_type.php');
-      })
+  </form>
+  <!-- <script>
+      console.log($('#number').val());
       function PostTF() {
         var intext = $('#number').val();
         var query =new Array();
@@ -123,7 +123,20 @@
           title: 'Characteristics'
         }]
       });
-    </script>
+    </script> -->
+  <script>
+    $(function () {
+      if ($('#serTF').val() != "p53") {
+        $('#selected').removeAttr("select");
+        $('#number').val() = 'null';
+      }
+    })
+    function PostTF() {
+      console.log($('#serTF').val());
+      console.log($('#number').val());
+      return false;
+    }
+  </script>
 </body>
 <!-- columns: [{
   field: 'cancer',

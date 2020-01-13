@@ -1,21 +1,28 @@
 <?php 
-require_once("dbconfig.php");
-$con = mysqli_connect($host, $usr, $password,$db);
-$tf = $_POST['tf'];
-$cancer_type = $_POST['cancer_type'];
-$sql = "select LongCancer from cancer_type where BriCancer like '%$_POST[$val]%'";
-$re = mysqli_query($con, $sql);
-$res = mysqli_fetch_all($result);
+/*
+ * @Author: Tang
+ * @Date: 2019-11-25 18:39:06
+ * @LastEditors  : Tang
+ * @LastEditTime : 2020-01-02 18:06:57
+ * @Description: 
+ */
+// require_once("dbconfig.php");
+// $con = mysqli_connect($host, $usr, $password,$db);
+// $tf = $_POST['tf'];
+// $cancer_type = $_POST['cancer_type'];
+// $sql = "select LongCancer from cancer_type where BriCancer like '%$_POST[$val]%'";
+// $re = mysqli_query($con, $sql);
+// $res = mysqli_fetch_all($result);
 
 
 
-mysqli_close($con);
+// mysqli_close($con);
 // $sql = "select * from brca_v1 where tf like '%p53%'";
 // $sql = "show tables";
 // $result = mysqli_query($con, $sql);
 // $row = mysqli_fetch_assoc($result);
 // $row = mysqli_fetch_row($result);
-$T = $_POST['number'];
+// $T = $_POST['number'];
 // $P = $_REQUEST['p'];
 // $S = $_REQUEST['s'];
 // $T = 3;
@@ -32,14 +39,14 @@ $res1 = array(
     'price' => 33,
 );
 $r[] = $res;
-$res2 = array(
+$res = array(
     'id' => $T,
     'name' => $P,
     'price' => $S,
 );
-$r[] = $res2;
+$r[] = $res;
 $i = 0;
 $r[] = $res1;
 $t= array();
-echo json_encode($t);
+echo json_encode($r);
 ?>

@@ -1,10 +1,11 @@
 <!--
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
- * @LastEditors: Tang
- * @LastEditTime: 2019-12-12 10:49:04
- * @Description: 待解决：1.搜索框上方的描述套话。2.autocom.php未写好(考虑cancer单独一个PHP数据文件)，只有测试代码;ser.php未写好，只有测试代码。3.改写auotcom的script函数，方便直接用，避免重复代码。
- * 问题3已经解决一部分，需要进行测试，看是否能成功运行。
+ * @LastEditors  : Tang
+ * @LastEditTime : 2020-01-13 13:51:08
+ * @Description: 待解决：搜索框上方的描述套话。
+ * autocom函数虽然已经完成，但是ＴＦ的ｅｎｓｅｍｂｌｅ数据未拿到，所以要注意修改ＴＦ的后端。2020.1.2
+ * Postdetail函数为跳转detail页面的函数，具体的还未编写。2020.1.13
  -->
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -21,11 +22,14 @@
     <script src="./bs/js/bootstrap-table.min.js"></script>
     <script src="./bs/js/bootstrap3-typeahead.min.js"></script>
     <script src="./bs/js/bootstrap-table-zh-CN.min.js"></script>
+    <script src="./bs/js/tableExport.min.js"></script>
+    <script src="./bs/js/bootstrap-table-export.min.js"></script>
     <title>XXXdatabase</title>
 </head>
 
 <body background="./greek-vase.png" class="float">
     <script>
+        $('＃serv').hide();
         function autocom(flag) {
             $('#' + flag).typeahead({
                 minLength: 1,
@@ -49,48 +53,72 @@
                 }
             })
         }
+        function Postdetail(value){//该函数为跳转detail页面的函数，具体的还未编写。2020.1.13
+            alert(value);
+        }
+        function autovalue(flag) {
+            var vdefault = $('#' + flag).val();
+
+            $('#' + flag).focus(function () {
+                //获得焦点时，如果值为默认值，则设置为空  
+                if ($(this).val() == vdefault) {
+                    $(this).val("");
+                }
+            });
+            $('#' + flag).blur(function () {
+                //失去焦点时，如果值为空，则设置为默认值  
+                if ($(this).val() == "") {
+                    $(this).val(vdefault);;
+                }
+            });
+        }
         function Post() {
             var query = {
                 tf: $('#tf').val(),
                 cancer_type: $('#characteristics').val(),
             };
             // var tf = $('#tf').val();
-            // var regulation_type = $('#regulation_type').val();
+            // var regulation_type = $('#regulation_type').val(); 
             // var characteristics = $('#characteristics').val();
             // var cancer_type = $('#cancer_type').val();
             // var gene = $('#gene').val();
             // var hallmark = $('#hallmark').val();
             // var flag = 0;
             // var va = [$('#tf').val(), $('#cancer_type').val(), $('#gene').val(), $('#hallmark').val()]
-            var patt = /[^0-9A-Za-z]/;
-            for (let i in query) {
-                if (query[i] == null) {
-                    query[i] = 'null';
-                }
-            }
+            // var patt = /[^0-9A-Za-z]/;
             $.ajax({
-                url: './ser.php',
+                url: './testtable.php',
+                cache: false,
                 method: 'post',
                 dataType: 'json',
                 async: true,
                 data: query,
                 success: function (result) {
-                    $('＃serv').hide();
+                    $(function () {
+                        $('#serv').remove();
+                    })
                     $('#table').bootstrapTable({
                         data: result,        // 表格数据来源
+                        showLoading: true,
                         search: true,
                         striped: true,
-                        showToggle: true,
-                        strictSearch: true,
+                        clickToSelect: true, 
+                        showFullscreen: true,
+                        showToggle: false,
+                        Search: true,
                         showColumns: true,                  //是否显示所有的列
                         showRefresh: true,
                         cache: false,
                         sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
                         pagination: true,                   //是否显示分页（*）
+                        showExport: true,
                         pageNumber: 1,                       //初始化加载第一页，默认第一页
                         pageSize: 10,                       //每页的记录行数（*）
                         pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
                         columns: [{
+                            checkbox: true
+                        },
+                            {
                             field: 'cancer',
                             title: 'Cancer Category'
                         }, {
@@ -108,13 +136,18 @@
                             title: 'Regulation_type'
                         },
                         {
-                            field: 'cancer_hallmark',
+                            field: 'hallmark',
                             title: 'Cancer_hallmark'
                         },
                         {
-                            field: 'details',
-                            title: 'Details'
-                        }]
+                            field: 'tf',
+                            title: 'details',
+                            align: 'center',
+                            formatter: function(value,row,index){
+                                return '<a href="#" onclick = "Postdetail(\''+row.tf+'\')">details....</a>'
+                            }
+                        }
+                        ]
                     });
                 },
                 error: function () {
@@ -139,6 +172,7 @@
                 </ul>
             </li>
             </li>
+            <li style="margin-left: 30px;"><a href="" style="color:slategray">BROWSE</a></li>
             <li style="margin-left: 30px;"><a href="" style="color:slategray">DOWNLOAD</a></li>
             <li style="margin-left: 30px;"><a href="" style="color:slategray">SUBMIT</a></li>
             <li style="margin-left: 30px;"><a href="" style="color:slategray">ABOUT</a></li>
@@ -146,44 +180,47 @@
         </ul>
     </div>
     </div>
-    <div id="serv" style="width: 100%;height: 100%;">
-        <div style="width: 50%; height:200px; margin-left:25%; margin-top: 8%; text-align: center">
-            <h1><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span> The
-                Interface of General Search</h1>
-            <hr class="simple" color="black">
-            <p>Lnc2Cancer 2.0 provides users with a simple and fast method to search and explore all of our data in
-                several ways. Lnc2Cancer 2.0 enables users to search by lncRNA name, cancer name or both. Lnc2Cancer
-                also offers fuzzy keyword searching capabilities, which enables easy searching by returning the closest
-                possible matching records. ADVANCED SEARCH provides more detailed and systemic search. View our Help
-                page for further help.
+    <table id='table'></table>
+    <div id='serv' style="width: 50%; height:200px; margin-left:25%; margin-top: 8%; text-align: center">
+        <h1><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span> The
+            Interface of General Search</h1>
+        <hr class="simple" color="black">
+        <p>Lnc2Cancer 2.0 provides users with a simple and fast method to search and explore all of our data in
+            several ways. Lnc2Cancer 2.0 enables users to search by lncRNA name, cancer name or both. Lnc2Cancer
+            also offers fuzzy keyword searching capabilities, which enables easy searching by returning the closest
+            possible matching records. ADVANCED SEARCH provides more detailed and systemic search. View our Help
+            page for further help.
 
-            </p>
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-            <div style="width: 75%; height:200px; margin-left:10%; padding-top: 3%; text-align: center">
-                <label>General search offers fuzzy keyword searching capabilities:
+        </p>
+        <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+        <div style="width: 75%; height:200px; margin-left:10%; padding-top: 3%; text-align: center">
+            <label>General search offers fuzzy keyword searching capabilities:
 
-                    For 'LncRNA', you can use Gene Symbol (e.g. 'MALAT1'), Entrez Gene ID (e.g. '378938'), Ensembl ID
-                    (e.g. 'ENSG00000251562') and other names.
+                For 'LncRNA', you can use Gene Symbol (e.g. 'MALAT1'), Entrez Gene ID (e.g. '378938'), Ensembl ID
+                (e.g. 'ENSG00000251562') and other names.
 
-                </label>
-                <div id="sertf">
-                    <form action="" method="post" onsubmit="return Post();">
-                        <input type="text" class="form-control" placeholder="Search for TF" id="tf">
-                        <hr>
-                        <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
-                            'C50').</label>
-                        <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
-                        <script>
-                            $(function () {
-                                autocom('tf');
-                                autocom('cancer_type');
-                            })
-                        </script>
-                        <button class="btn btn-default" type="reset" id="reset"
-                            style="margin-top: 5%;"><b>Reset</b></button>
-                        <button class="btn btn-default" type="submit" id="sub" style="margin-top: 5%;"><b>Search</b></button>
-                    </form>
-                </div>
+            </label>
+            <div id="sertf">
+                <form action="" method="post" onsubmit="return Post();">
+                    <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="p53">
+                    <hr>
+                    <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
+                        'C50').</label>
+                    <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
+                        value="Breast invasive carcinoma">
+                    <script>
+                        $(function () {
+                            autovalue('tf');
+                            autovalue('cancer_type');
+                            autocom('tf');
+                            autocom('cancer_type');
+                        })
+                    </script>
+                    <button class="btn btn-default" type="reset" id="reset"
+                        style="margin-top: 5%;"><b>Reset</b></button>
+                    <button class="btn btn-default" type="submit" id="sub"
+                        style="margin-top: 5%;"><b>Search</b></button>
+                </form>
             </div>
         </div>
     </div>
