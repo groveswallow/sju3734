@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-10-16 10:13:01
  * @LastEditors  : Tang
- * @LastEditTime : 2020-01-02 19:06:31
+ * @LastEditTime : 2020-02-13 19:10:05
  * @Description: new test page 
  -->
 <!DOCTYPE html>
@@ -24,56 +24,18 @@
 </head>
 
 <body background="./greek-vase.png" class="float">
-    <div class="nav" style="background-color: #000 ;height: 80px;">
-        <div style="padding-right:5%;float: right;">
-            <img src="./zi.png" style="height:80px;">
-        </div>
-        <ul class="nav navbar-nav navbar-left" style="margin-top:15px;">
-            <li style="margin-left: 30px;"><a href="./index.html" style="color:slategray">HOME</a></li>
-            <li style="margin-left: 30px;" class='dropdown' style="color:slategray">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" style="color:slategray">SEARCH<span class="caret"></span></a>
-                <ul class="dropdown-menu navbar-nav nav" style="background-color: #000;">
-                    <li><a href="./gesearch.html" style="color:slategray">General Search</a></li>
-                    <li><a href="./adsearch.html" style="color:slategray">Advanced Search</a></li>
-                  </ul>
-                </li>
-            </li>
-            <li style="margin-left: 30px;"><a href="" style="color:slategray">BROWSE</a></li>
-            <li style="margin-left: 30px;"><a href="" style="color:slategray">DOWNLOAD</a></li>
-            <li style="margin-left: 30px;"><a href="" style="color:slategray">SUBMIT</a></li>
-            <li style="margin-left: 30px;"><a href="" style="color:slategray">ABOUT</a></li>
-            <li style="margin-left: 30px;"><a href="" style="color:slategray">HELP</a></li>
-        </ul>
+    <div id='nav' class="nav" style="background-color: #000 ;height: 80px;">
     </div>
-    </div>
-    <!-- <div id="serf">
-        <script>
-            $("#serf").hide();
-        </script>
-    </div> -->
+    <script>
+        $(function(){
+            $('#nav').load('./nav.html');
+        })
+    </script>
     <div style="width: 100%; height:370px;">
         <div id='s' class="slider-wrapper theme-default"
             style="width: 60%; height:200px; margin-left:20%; padding-top: 50px; text-align: center">
             <h1>xxxxxx &amp; xxxxxx</h1>
         </div>
-        <!-- <div class="slider-wrapper theme-default"
-            style="width: 60%; height:130px; margin-left:20%; padding-top: 20px; text-align: center" id="ch">
-            <a id="serb" type="button" class="btn btn-default btn-lg" target="_blank"
-                style="font-size: 20px;color: #000;">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>SEARCH</a>
-            <script>
-                $(function () {
-                    $("#serb").on("click", (function () {
-                        $.ajaxSetup({
-                            cache: false
-                        });
-                        $("div").eq(0).siblings().stop().fadeOut();
-                        $("#serf").load('./ser.html');
-                        $("#serf").fadeIn(3000);
-                    }))
-                })
-            </script>
-        </div> -->
     </div>
     <div style="height: 250px; padding-top: 30px; background: rgba(2, 3, 1, 0.6); color: beige">
         <div style="height:100%; width:20%; margin-left: 10%; float: left; text-align: center">

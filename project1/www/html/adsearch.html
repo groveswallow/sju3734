@@ -1,12 +1,11 @@
 <!--
  * @Author: Tang
  * @Date: 2019-11-27 15:24:45
- * @LastEditors  : Tang
- * @LastEditTime : 2020-01-02 18:58:51
- * @Description: 待解决：1.重新美化两个选择框，尽量将其与tf输入框联系起来，2019.11.27。
-   待解决：2.表单提交函数Post未进行修改，目前该函数无法完成需求，2019.11.28。
-   待解决：3.autocom.php 该php未解决完成，数据库数据未导入数据，只写了测试代码。2019.11.28
- * @update：针对问题1，已进行修改。2019.11.28
+ * @LastEditors: Tang
+ * @LastEditTime: 2020-02-18 19:33:24
+ * @Description: 
+   待解决：3.autocom.php 该php未解决完成，gene以及tf未有数据。
+ * 注：将charctertics以及regulation选择框设置为不为空，用户必须至少选择一个进行修改。已经将所有默认值进行了设置。
  -->
 <html lang="zh-CN">
 
@@ -27,9 +26,25 @@
 
 <body background="./greek-vase.png" class="float">
     <script>
+        function autovalue(flag) {
+            var vdefault = $('#' + flag).val();
+
+            $('#' + flag).focus(function () {
+                //获得焦点时，如果值为默认值，则设置为空  
+                if ($(this).val() == vdefault) {
+                    $(this).val("");
+                }
+            });
+            $('#' + flag).blur(function () {
+                //失去焦点时，如果值为空，则设置为默认值  
+                if ($(this).val() == "") {
+                    $(this).val(vdefault);;
+                }
+            });
+        }
         function autoselect() {
             $.ajax({
-                url: './selectcharacteristics.php',//该php未解决完成，数据库数据未导入数据，只写了测试代码。
+                url: './autoselect.php',
                 cache: false,
                 type: 'get',
                 dataType: 'json',
@@ -39,20 +54,52 @@
                     var data1 = res[1];
                     var options = [], _options;
                     var options1 = [], _options1;
+                    var d0 = 0;
+                    var d1 = 0;
                     for (var i = 0; i < data.length; i++) {
-                        var option = '<option value="' + data[i] + '">' + data[i] + '</option>';
-                        options.push(option);
+                        if (data[i] == 'regulate' && d0 == 0) {
+                            var option = '<option selected="selected" value="' + data[i] + '">' + data[i] + '</option>';
+                            options.push(option);
+                            d0 = 1;
+                        }
+                        else {
+                            var option = '<option value="' + data[i] + '">' + data[i] + '</option>';
+                            options.push(option);
+                        }
                     }
                     for (var i = 0; i < data1.length; i++) {
-                        var option = '<option value="' + data1[i] + '">' + data1[i] + '</option>';
-                        options1.push(option);
+                        if (data1[i] == 'negative' && d1 == 0) {
+                            var option = '<option selected="selected" value="' + data1[i] + '">' + data1[i] + '</option>';
+                            options1.push(option);
+                            d1 = 1;
+                        }
+                        else {
+                            var option = '<option value="' + data1[i] + '">' + data1[i] + '</option>';
+                            options1.push(option);
+                        }
                     }
                     _options1 = options1.join('');
                     _options = options.join('');
-                    console.log(_options);
-                    console.log(_options1);
+                    // console.log(_options);
+                    // console.log(_options1);
                     $('#regulation_type')[0].innerHTML = _options1;
                     $('#characteristics')[0].innerHTML = _options;
+                }
+            })
+        }
+        function Postdetail(tf, cancer, gene) {
+            $.ajax({
+                url: "./detailtest.php",
+                cache: false,
+                async: true,
+                type: 'get',
+                data: {
+                    'cancer': cancer,
+                    'tf': tf,
+                    'gene': gene,
+                },
+                success: function () {
+                    location.href = './detailtest.php?' + 'tf=' + tf + '&cancer=' + cancer + '&gene=' + gene + '';
                 }
             })
         }
@@ -82,7 +129,7 @@
         function Post() {  //未解决：默认值，以及用户输入后充值默认值的状态。
             var query = {
                 tf: $('#tf').val(),
-                cancer_type: $('#characteristics').val(),
+                cancer_type: $('#cancer_type').val(),
                 gene: $('#gene').val(),
                 hallmark: $('#hallmark').val(),
                 regulation_type: $('#regulation_type').val(),
@@ -97,35 +144,42 @@
             // var hallmark = $('#hallmark').val();
             // var flag = 0;
             // var va = [$('#tf').val(), $('#cancer_type').val(), $('#gene').val(), $('#hallmark').val()]
-            var patt = /[^0-9A-Za-z]/;
-            for (let i in query) {
-                if (query[i] == null) {
-                    query[i] = 'null';
-                }
-            }
+            // var patt = /[^0-9A-Za-z]/;
+            // for (let i in query) {
+            //     if (query[i] == null) {
+            //         query[i] = 'null';
+            //     }
+            // }
             $.ajax({
-                url: './ser.php',
+                url: './adtable.php',
                 method: 'post',
                 dataType: 'json',
                 async: true,
                 data: query,
                 success: function (result) {
-                    $('＃serv').hide();
+                    $(function () {
+                        $('#serv').remove();
+                    })
                     $('#table').bootstrapTable({
-                        data: result,        // 表格数据来源
-                        search: true,
+                        showLoading: true,
                         striped: true,
-                        showToggle: true,
-                        strictSearch: true,
+                        clickToSelect: true,
+                        showFullscreen: true,
+                        showToggle: false,
+                        search: true,
                         showColumns: true,                  //是否显示所有的列
                         showRefresh: true,
                         cache: false,
                         sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
                         pagination: true,                   //是否显示分页（*）
+                        showExport: true,
                         pageNumber: 1,                       //初始化加载第一页，默认第一页
                         pageSize: 10,                       //每页的记录行数（*）
                         pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
                         columns: [{
+                            checkbox: true
+                        },
+                        {
                             field: 'cancer',
                             title: 'Cancer Category'
                         }, {
@@ -143,46 +197,43 @@
                             title: 'Regulation_type'
                         },
                         {
-                            field: 'cancer_hallmark',
+                            field: 'hallmark',
                             title: 'Cancer_hallmark'
                         },
                         {
-                            field: 'details',
-                            title: 'Details'
-                        }]
+                            field: 'tf',
+                            title: 'details',
+                            align: 'center',
+                            formatter: function (value, row, index) {
+                                return '<a href="#" onclick = "Postdetail(\'' + row.tf + '\',\'' + row.cancer + '\',\'' + row.gene + '\')">details....</a>'
+                            }
+                        }
+                        ],
+                        data: result,        // 表格数据来源
+                        formatNoMatches: function () {
+                            return "We did not find the result."
+                        },
+                        formatLoadingMessage: function () {
+                            return "Loading.........";
+                        }
                     });
                 },
                 error: function () {
-                    alert('something is wrong,please connect author!');
+                    alert('We did not find the results!');
                 }
             });
             return false;
         }
 
     </script>
-    <div class="nav" style="background-color: #000 ;height: 80px;">
-        <div style="padding-right:5%;float: right;">
-            <img src="./zi.png" style="height:80px;">
-        </div>
-        <ul class="nav navbar-nav navbar-left" style="margin-top:15px;">
-            <li style="margin-left: 30px;"><a href="./index.html" style="color:slategray">HOME</a></li>
-            <li style="margin-left: 30px;" class='dropdown' style="color:slategray">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" style="color:slategray">SEARCH<span
-                        class="caret"></span></a>
-                <ul class="dropdown-menu navbar-nav nav" style="background-color: #000;">
-                    <li><a href="./gesearch.html" style="color:slategray">General Search</a></li>
-                    <li><a href="./adsearch.html" style="color:slategray">Advanced Search</a></li>
-                </ul>
-            </li>
-            </li>
-            <li style="margin-left: 30px;"><a href="" style="color:slategray">BROWSE</a></li>
-            <li style="margin-left: 30px;"><a href="" style="color:slategray">DOWNLOAD</a></li>
-            <li style="margin-left: 30px;"><a href="" style="color:slategray">SUBMIT</a></li>
-            <li style="margin-left: 30px;"><a href="" style="color:slategray">ABOUT</a></li>
-            <li style="margin-left: 30px;"><a href="" style="color:slategray">HELP</a></li>
-        </ul>
+    <div id='nav' class="nav" style="background-color: #000 ;height: 80px;">
     </div>
-    </div>
+    <script>
+        $(function () {
+            $('#nav').load('./nav.html');
+        })
+    </script>
+    <table id='table'></table>
     <div id="serv" style="width: 100%;height: 100%;">
         <div style="width: 50%; height:200px; margin-left:25%; margin-top: 4%; text-align: center">
             <h1><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span> The
@@ -205,19 +256,22 @@
                 <form class='form-horizontal' action="" method="post" onsubmit="return Post();">
                     <div style="width: 100%;height: 55%;">
                         <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
-                            <input type="text" class="form-control" placeholder="Search for TF" id="tf"></div>
+                            <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="BRCA1">
+                        </div>
                         <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
                             <label>Select Mode of Regulation Type</label>
                             <select multiple class="selectpicker form-control" id="regulation_type"
                                 title="Select Regulation Type" data-container="body" data-live-search="true"
-                                data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false">
+                                data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
+                                value='negative'>
                             </select>
                         </div>
                         <div class="col-lg-5" style="margin-left: 8%;margin-top: 2%;">
                             <label>Select TF Characteristics</label>
                             <select multiple class="selectpicker form-control" id="characteristics"
                                 title="Select Characteristics" ddata-container="body" data-live-search="true"
-                                data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false">
+                                data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
+                                value='regulate'>
                             </select>
                             <script>
                                 autoselect();
@@ -227,15 +281,17 @@
                     <br>
                     <hr>
                     <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Cancer</span>
-                        <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type">
+                        <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
+                            value='Breast invasive carcinoma'>
                     </div>
                     <hr>
                     <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Gene</span>
-                        <input type="text" class="form-control" placeholder="Search for Gene" id="gene"></div>
+                        <input type="text" class="form-control" placeholder="Search for Gene" id="gene" value="GADD45A">
+                    </div>
                     <hr>
                     <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Hallmark</span>
                         <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer"
-                            id="hallmark"></div>
+                            id="hallmark" value="tumorigenesis"></div>
                     <!-- //未解决页面缩小后按钮被页脚遮挡的BUG -->
                     <button class="btn btn-default" type="reset" id="reset"
                         style="margin-top: 5%;"><b>Reset</b></button>
@@ -255,6 +311,10 @@
                             autocom('cancer_type');
                             autocom('gene');
                             autocom('hallmark');
+                            autovalue('tf');
+                            autovalue('cancer_type');
+                            autovalue('gene');
+                            autovalue('hallmark');
                         })
                     </script>
                 </form>
