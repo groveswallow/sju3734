@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-27 15:24:45
  * @LastEditors: Tang
- * @LastEditTime: 2020-02-18 19:33:24
+ * @LastEditTime: 2020-02-19 23:27:26
  * @Description: 
    待解决：3.autocom.php 该php未解决完成，gene以及tf未有数据。
  * 注：将charctertics以及regulation选择框设置为不为空，用户必须至少选择一个进行修改。已经将所有默认值进行了设置。
@@ -89,7 +89,7 @@
         }
         function Postdetail(tf, cancer, gene) {
             $.ajax({
-                url: "./detailtest.php",
+                url: "./detail.php",
                 cache: false,
                 async: true,
                 type: 'get',
@@ -99,7 +99,7 @@
                     'gene': gene,
                 },
                 success: function () {
-                    location.href = './detailtest.php?' + 'tf=' + tf + '&cancer=' + cancer + '&gene=' + gene + '';
+                    location.href = './detail.php?' + 'tf=' + tf + '&cancer=' + cancer + '&gene=' + gene + '';
                 }
             })
         }
@@ -154,6 +154,7 @@
                 url: './adtable.php',
                 method: 'post',
                 dataType: 'json',
+                cache: false,
                 async: true,
                 data: query,
                 success: function (result) {
@@ -229,6 +230,9 @@
     <div id='nav' class="nav" style="background-color: #000 ;height: 80px;">
     </div>
     <script>
+        $.ajaxSetup({
+            cache: false //close AJAX cache
+        });
         $(function () {
             $('#nav').load('./nav.html');
         })

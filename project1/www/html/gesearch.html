@@ -1,8 +1,8 @@
 <!--
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
- * @LastEditors  : Tang
- * @LastEditTime : 2020-02-13 19:08:59
+ * @LastEditors: Tang
+ * @LastEditTime: 2020-02-19 23:26:58
  * @Description: 待解决：搜索框上方的描述套话。
  * autocom函数虽然已经完成，但是ＴＦ的ｅｎｓｅｍｂｌｅ数据未拿到，所以要注意修改ＴＦ的后端。2020.1.2
  * Postdetail函数为跳转detail页面的函数，具体的还未编写。2020.1.13
@@ -55,7 +55,7 @@
         }
         function Postdetail(tf, cancer, gene) {
             $.ajax({
-                url: "./detailtest.php",
+                url: "./detail.php",
                 cache: false,
                 async: true,
                 type: 'get',
@@ -65,7 +65,7 @@
                     'gene': gene,
                 },
                 success: function () {
-                    location.href = './detailtest.php?' + 'tf=' + tf + '&cancer=' + cancer + '&gene=' + gene + '';
+                    location.href = './detail.php?' + 'tf=' + tf + '&cancer=' + cancer + '&gene=' + gene + '';
                 }
             })
         }
@@ -178,7 +178,10 @@
     <div id='nav' class="nav" style="background-color: #000 ;height: 80px;">
     </div>
     <script>
-        $(function(){
+        $.ajaxSetup({
+            cache: false //close AJAX cache
+        });
+        $(function () {
             $('#nav').load('./nav.html');
         })
     </script>

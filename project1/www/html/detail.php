@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2020-02-07 11:49:12
  * @LastEditors: Tang
- * @LastEditTime: 2020-02-18 20:07:34
+ * @LastEditTime: 2020-02-19 17:04:05
  * @Description: 
  */
 require_once('dbconfig.php');
@@ -58,7 +58,7 @@ echo "<head><meta charset='utf-8'>
             </li>
             </li>
             <li style='margin-left: 30px;'><a href='' style='color:slategray'>BROWSE</a></li>
-            <li style='margin-left: 30px;'><a href='' style='color:slategray'>DOWNLOAD</a></li>
+            <li style='margin-left: 30px;'><a href='./download.html' style='color:slategray'>DOWNLOAD</a></li>
             <li style='margin-left: 30px;'><a href='' style='color:slategray'>SUBMIT</a></li>
             <li style='margin-left: 30px;'><a href='' style='color:slategray'>ABOUT</a></li>
             <li style='margin-left: 30px;'><a href='' style='color:slategray'>HELP</a></li>
