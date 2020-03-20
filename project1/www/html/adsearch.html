@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-27 15:24:45
  * @LastEditors: Tang
- * @LastEditTime: 2020-02-20 12:24:13
+ * @LastEditTime: 2020-03-12 17:49:47
  * @Description: 
    待解决：3.autocom.php 该php未解决完成，gene以及tf未有数据。
  * 注：将charctertics以及regulation选择框设置为不为空，用户必须至少选择一个进行修改。已经将所有默认值进行了设置。
@@ -181,6 +181,11 @@
                             checkbox: true
                         },
                         {
+                            field: 'pmid',
+                            title: 'Pmid'
+                        }
+                            ,
+                        {
                             field: 'cancer',
                             title: 'Cancer Category'
                         }, {
@@ -200,6 +205,10 @@
                         {
                             field: 'hallmark',
                             title: 'Cancer_hallmark'
+                        },
+                        {
+                            field: 'title',
+                            title: 'Title'
                         },
                         {
                             field: 'tf',
@@ -242,88 +251,81 @@
         <div style="width: 50%; height:200px; margin-left:25%; margin-top: 4%; text-align: center">
             <h1><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span> The
                 Interface of Advanced Search</h1>
-            <hr class="simple" color="black">
-            <p>Lnc2Cancer 2.0 provides users with a simple and fast method to search and explore all of our data in
-                several ways. Lnc2Cancer 2.0 enables users to search by lncRNA name, cancer name or both. Lnc2Cancer
-                also offers fuzzy keyword searching capabilities, which enables easy searching by returning the closest
-                possible matching records. ADVANCED SEARCH provides more detailed and systemic search. View our Help
-                page for further help.
-
+            <hr class="simple" color="black" style="height: 2px;">
+            <p style="font-size: 20px;">In advanced search,TFcancer provides more complex functions compared to simple
+                search.
+                In here,users can select <b>Mode of Regulation Type</b> and <b>TF Characteristics</b>.</p>
+            <p style="font-size: 20px;">Other than that,advanced search
+                can enable users to search by <b>Gene </b>name and <b>Cancer hallmark</b>.</p>
+            <p style="font-size: 20px;">
+                All of that offer fuzzy keyword searching capabilities.
             </p>
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-            <div style="width: 75%; height:200px; margin-left:10%; padding-top: 2%; text-align: center">
-                <label>General search offers fuzzy keyword searching capabilities:
-                    For 'LncRNA', you can use Gene Symbol (e.g. 'MALAT1'), Entrez Gene ID (e.g. '378938'), Ensembl ID
-                    (e.g. 'ENSG00000251562') and other names.
-                </label>
+            <hr>
+            <form class='form-horizontal' action="" method="post" onsubmit="return Post();">
+                <div style="width: 100%;height: 55%;">
+                    <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
+                        <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="BRCA1">
+                    </div>
+                    <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
+                        <label>Select Mode of Regulation Type</label>
+                        <select multiple class="selectpicker form-control" id="regulation_type"
+                            title="Select Regulation Type" data-container="body" data-live-search="true"
+                            data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
+                            value='negative'>
+                        </select>
+                    </div>
+                    <div class="col-lg-5" style="margin-left: 8%;margin-top: 2%;">
+                        <label>Select TF Characteristics</label>
+                        <select multiple class="selectpicker form-control" id="characteristics"
+                            title="Select Characteristics" ddata-container="body" data-live-search="true"
+                            data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
+                            value='regulate'>
+                        </select>
+                        <script>
+                            autoselect();
+                        </script>
+                    </div>
+                </div>
+                <br>
                 <hr>
-                <form class='form-horizontal' action="" method="post" onsubmit="return Post();">
-                    <div style="width: 100%;height: 55%;">
-                        <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
-                            <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="BRCA1">
-                        </div>
-                        <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
-                            <label>Select Mode of Regulation Type</label>
-                            <select multiple class="selectpicker form-control" id="regulation_type"
-                                title="Select Regulation Type" data-container="body" data-live-search="true"
-                                data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
-                                value='negative'>
-                            </select>
-                        </div>
-                        <div class="col-lg-5" style="margin-left: 8%;margin-top: 2%;">
-                            <label>Select TF Characteristics</label>
-                            <select multiple class="selectpicker form-control" id="characteristics"
-                                title="Select Characteristics" ddata-container="body" data-live-search="true"
-                                data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
-                                value='regulate'>
-                            </select>
-                            <script>
-                                autoselect();
-                            </script>
-                        </div>
-                    </div>
-                    <br>
-                    <hr>
-                    <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Cancer</span>
-                        <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
-                            value='Breast invasive carcinoma'>
-                    </div>
-                    <hr>
-                    <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Gene</span>
-                        <input type="text" class="form-control" placeholder="Search for Gene" id="gene" value="GADD45A">
-                    </div>
-                    <hr>
-                    <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Hallmark</span>
-                        <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer"
-                            id="hallmark" value="tumorigenesis"></div>
-                    <!-- //未解决页面缩小后按钮被页脚遮挡的BUG -->
-                    <button class="btn btn-default" type="reset" id="reset"
-                        style="margin-top: 5%;"><b>Reset</b></button>
-                    <script>
-                        $(function () {
-                            $('#reset').click(function () {
-                                $('#gene').val('');
-                                $('#characteristics').val('');
-                            })
+                <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Cancer</span>
+                    <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
+                        value='Breast invasive carcinoma'>
+                </div>
+                <hr>
+                <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Gene</span>
+                    <input type="text" class="form-control" placeholder="Search for Gene" id="gene" value="GADD45A">
+                </div>
+                <hr>
+                <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Hallmark</span>
+                    <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer" id="hallmark"
+                        value="tumorigenesis"></div>
+                <!-- //未解决页面缩小后按钮被页脚遮挡的BUG -->
+                <button class="btn btn-default" type="reset" id="reset" style="margin-top: 5%;"><b>Reset</b></button>
+                <script>
+                    $(function () {
+                        $('#reset').click(function () {
+                            $('#gene').val('');
+                            $('#characteristics').val('');
                         })
-                    </script>
-                    <button class="btn btn-default" type="submit" id="sub"
-                        style="margin-top: 5%;"><b>Search</b></button>
-                    <script>
-                        $(function () {
-                            autocom('tf');
-                            autocom('cancer_type');
-                            autocom('gene');
-                            autocom('hallmark');
-                            autovalue('tf');
-                            autovalue('cancer_type');
-                            autovalue('gene');
-                            autovalue('hallmark');
-                        })
-                    </script>
-                </form>
-            </div>
+                    })
+                </script>
+                <button class="btn btn-default" type="submit" id="sub" style="margin-top: 5%;"><b>Search</b></button>
+                <script>
+                    $(function () {
+                        autocom('tf');
+                        autocom('cancer_type');
+                        autocom('gene');
+                        autocom('hallmark');
+                        autovalue('tf');
+                        autovalue('cancer_type');
+                        autovalue('gene');
+                        autovalue('hallmark');
+                    })
+                </script>
+            </form>
         </div>
+    </div>
     </div>
     <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
         <p style="height: 10px;margin-left: 48%;">©CopyRight 2020 Guo Laboratory</p>

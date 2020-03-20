@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2020-02-20 12:26:35
+ * @LastEditTime: 2020-03-12 17:23:52
  * @Description: 待解决：搜索框上方的描述套话。
  * autocom函数虽然已经完成，但是ＴＦ的ｅｎｓｅｍｂｌｅ数据未拿到，所以要注意修改ＴＦ的后端。2020.1.2
  * Postdetail函数为跳转detail页面的函数，具体的还未编写。2020.1.13
@@ -100,7 +100,7 @@
             // var va = [$('#tf').val(), $('#cancer_type').val(), $('#gene').val(), $('#hallmark').val()]
             // var patt = /[^0-9A-Za-z]/;
             $.ajax({
-                url: './testtable.php',
+                url: './getable.php',
                 cache: false,
                 method: 'post',
                 dataType: 'json',
@@ -130,6 +130,11 @@
                             checkbox: true
                         },
                         {
+                            field: 'pmid',
+                            title: 'Pmid'
+                        }
+                        ,
+                        {
                             field: 'cancer',
                             title: 'Cancer Category'
                         }, {
@@ -149,6 +154,10 @@
                         {
                             field: 'hallmark',
                             title: 'Cancer_hallmark'
+                        },
+                        {
+                            field: 'title',
+                            title: 'Title'
                         },
                         {
                             field: 'tf',
@@ -186,31 +195,25 @@
         })
     </script>
     <table id='table'></table>
-    <div id='serv' style="width: 50%; height:200px; margin-left:25%; margin-top: 8%; text-align: center">
-        <h1><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span> The
+    <div id='serv' style="width: 70%; height:200px; margin-left:16%; margin-top: 8%; text-align: center">
+        <h1 style="font-size: 50px;"><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 40px;"></span> The
             Interface of General Search</h1>
-        <hr class="simple" color="black">
-        <p>Lnc2Cancer 2.0 provides users with a simple and fast method to search and explore all of our data in
-            several ways. Lnc2Cancer 2.0 enables users to search by lncRNA name, cancer name or both. Lnc2Cancer
-            also offers fuzzy keyword searching capabilities, which enables easy searching by returning the closest
+        <hr class="simple" color="black" style="height: 2px;"/>
+        <p style="font-size: 20px;">TFcancer provides users with a simple and fast method to search and explore all of our data in
+            several ways. TFcancer enables users to search by cancer name or transcription factors. </p>        
+        <p style="font-size: 20px;">
+            TFcancer also offers fuzzy keyword searching capabilities, which enables easy searching by returning the closest
             possible matching records. ADVANCED SEARCH provides more detailed and systemic search. View our Help
             page for further help.
-
         </p>
-        <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
         <div style="width: 75%; height:200px; margin-left:10%; padding-top: 3%; text-align: center">
-            <label>General search offers fuzzy keyword searching capabilities:
-
-                For 'LncRNA', you can use Gene Symbol (e.g. 'MALAT1'), Entrez Gene ID (e.g. '378938'), Ensembl ID
-                (e.g. 'ENSG00000251562') and other names.
-
+            <label style="font-size: 18px;">For 'transcription factors', you can use simple TF name (e.g. 'p53').
             </label>
             <div id="sertf">
                 <form action="" method="post" onsubmit="return Post();">
                     <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="p53">
                     <hr>
-                    <label>For 'Cancer', you can use Cancer name (e.g. 'breast cancer'), or ICD-0-3 code (e.g.
-                        'C50').</label>
+                    <label style="font-size: 18px;">For 'Cancer', you can use Cancer name (e.g. 'breast cancer').</label>
                     <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
                         value="Breast invasive carcinoma">
                     <script>

@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2019-11-25 18:39:06
  * @LastEditors: Tang
- * @LastEditTime: 2020-02-18 20:05:09
+ * @LastEditTime: 2020-03-06 19:04:09
  * @Description: 1.未解决用户希望看见所有癌症的结果。
  */
 require_once("dbconfig.php");
@@ -30,7 +30,7 @@ if ($res_cancer == null) {
 else {
     foreach ($res_cancer as $val_cancer) {
         $cancer = strtolower($val_cancer[0]);
-        $sql = "select tf,gene,characteristics,regulation_type,hallmark from $cancer where tf like '%$tf%'";
+        $sql = "select tf,gene,characteristics,regulation_type,hallmark,pmid,title from $cancer where tf like '%$tf%'";
         $re = mysqli_query($con, $sql);
         $res_tf = mysqli_fetch_all($re);
         foreach($res_tf as $val_tf){
@@ -41,6 +41,8 @@ else {
                 'characteristics' => $val_tf[2],
                 'regulation_type' => $val_tf[3],
                 'hallmark' => $val_tf[4],
+                'pmid' => $val_tf[5],
+                'title' => $val_tf[6]
             );
             $res[] = $r;
         }
