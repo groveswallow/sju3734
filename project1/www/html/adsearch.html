@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-27 15:24:45
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-12 17:49:47
+ * @LastEditTime: 2020-03-22 10:32:01
  * @Description: 
    待解决：3.autocom.php 该php未解决完成，gene以及tf未有数据。
  * 注：将charctertics以及regulation选择框设置为不为空，用户必须至少选择一个进行修改。已经将所有默认值进行了设置。
@@ -24,7 +24,7 @@
     <title>XXXdatabase</title>
 </head>
 
-<body background="./greek-vase.png" class="float">
+<body background="" class="float">
     <script>
         function autovalue(flag) {
             var vdefault = $('#' + flag).val();
@@ -236,29 +236,28 @@
         }
 
     </script>
-    <div id='nav' class="nav" style="background-color: #000 ;height: 80px;">
-    </div>
-    <script>
-        $.ajaxSetup({
-            cache: false //close AJAX cache
-        });
-        $(function () {
-            $('#nav').load('./nav.html');
-        })
-    </script>
+    <header style="background-color:whitesmoke;" id='header'>
+        <script>
+            $.ajaxSetup({
+                cache: false //close AJAX cache
+            });
+            $(function () {
+                $('#header').load('./header.html');
+            })
+        </script>
+    </header>
     <table id='table'></table>
-    <div id="serv" style="width: 100%;height: 100%;">
-        <div style="width: 50%; height:200px; margin-left:25%; margin-top: 4%; text-align: center">
-            <h1><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span> The
-                Interface of Advanced Search</h1>
+    <div id="serv" style="width: 100%;height: 70%;">
+        <div style="width: 45%; height:180px; margin-top: 2%; text-align: center" class='center-block'>
+            <h1 style="font-size: 30px;"><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span><b>The
+                Interface of Advanced Search</b></h1>
             <hr class="simple" color="black" style="height: 2px;">
             <p style="font-size: 20px;">In advanced search,TFcancer provides more complex functions compared to simple
-                search.
-                In here,users can select <b>Mode of Regulation Type</b> and <b>TF Characteristics</b>.</p>
-            <p style="font-size: 20px;">Other than that,advanced search
-                can enable users to search by <b>Gene </b>name and <b>Cancer hallmark</b>.</p>
+                search.</p>
+            <p style="font-size: 20px;">Here, users can select mode of <b>regulation type</b>,<b>tf
+                    characteristics</b>,<b>Gene name</b> and <b>cancer hallmark</b> as the need arises.</p>
             <p style="font-size: 20px;">
-                All of that offer fuzzy keyword searching capabilities.
+                All above support fuzzy search.
             </p>
             <hr>
             <form class='form-horizontal' action="" method="post" onsubmit="return Post();">

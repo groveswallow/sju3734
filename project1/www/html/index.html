@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-10-16 10:13:01
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-12 17:51:36
+ * @LastEditTime: 2020-03-21 13:03:57
  * @Description: new test page 
  -->
 <!DOCTYPE html>
@@ -23,21 +23,20 @@
     <title>XXXdatabase</title>
 </head>
 
-<body background="./greek-vase.png" class="float">
-    <div id='nav' class="nav" style="background-color: #000 ;height: 80px;">
-    </div>
-    <script>
-        $.ajaxSetup({
-            cache: false //close AJAX cache
-        });
-        $(function () {
-            $('#nav').load('./nav.html');
-        })
-    </script>
-    <div style="width: 100%; height:370px;">
+<body background="" class="float" style="height: auto;">
+    <header style="background-color:whitesmoke;" id='header'>
+        <script>
+            $.ajaxSetup({
+                cache: false //close AJAX cache
+            });
+            $(function () {
+                $('#header').load('./header.html');
+            })
+        </script>
+    </header>
+    <!-- <div style="width: 100%; height:370px;">
         <div id='s' class="slider-wrapper"
             style="width: 60%; height:100px; margin-left:20%; padding-top: 50px; text-align: center">
-            <!-- <h1>TFcancer</h1> -->
             <br>
             <br>
             <br>
@@ -49,26 +48,32 @@
                 </font>
             </p>
         </div>
+    </div> -->
+    <div id="Exa" class="">
+        <div class="">
+            <img class="container center-block" style="height: 400px;" src="./workflow.png" alt="First slide">
+            <!-- <div class="text-center">
+                <h5>Main workflow of EnhancerDB</h5>
+            </div> -->
+        </div>
+        <div class="">
+            <img class="container center-block" style="height: 400px;" src="./tu.png" alt="Third slide">
+            <!-- <div class="text-center">
+                <h5>Enhancers</h5>
+                <p>In genetics, an enhancer is a short (50-1500 bp) region of DNA that can be
+                    bound by proteins (activators) to increase the likelihood that transcription
+                    of a particular gene will occur. <br>
+                    These proteins are usually referred to as transcription factors. Enhancers are cis-acting.
+                    <br>
+                    They can be located up to 1 Mbp (1,000,000 bp) away from the gene,
+                    upstream or downstream from the start site. <br>
+                    There are hundreds of thousands of enhancers in the human genome. <br>
+                    They were found in both prokaryotes and eukaryotes.<br>
+                </p>
+            </div> -->
+        </div>
     </div>
-    <div style="height: 250px; padding-top: 30px; background: rgba(2, 3, 1, 0.6); color: beige">
-        <div style="height:100%; width:20%; margin-left: 10%; float: left; text-align: center">
-            <h1>33</h1>
-            <h3>Cancer Category</h3>
-        </div>
-        <div style="height:100%; width: 20%; float: left; text-align: center">
-            <h1>461</h1>
-            <h3>Transcription Factor</h3>
-        </div>
-        <div style="height:100%; width: 20%; float: left; text-align: center">
-            <h1>1,421</h1>
-            <h3>Articles</h3>
-        </div>
-        <div style="height:100%; width: 20%; float: left; text-align: center">
-            <h1>3,136</h1>
-            <h3>Relationships</h3>
-        </div>
-    </div>
-    <script> //轮播
+    <!-- <script> //轮播
         $(function () {
             var index = 0;
             $("#Exa").children().eq(index).show().siblings().hide();
@@ -85,40 +90,33 @@
             }
             changediv();
         }); 
-    </script>
-    <div id="Exa" class="">
-        <div class="">
-            <img class="container center-block" style="height: 400px;" src="./workflow.png" alt="First slide">
-            <div class="text-center">
-                <h5>Main workflow of EnhancerDB</h5>
-            </div>
+    </script> -->
+    <div style="width: 70%;height: 200px; color:black;"class='center-block'>
+        <p class="text-center" style="font-size: 30px;color: black;"><b>Contain:</b></p>
+        <div style="height:100%; width:20%; margin-left: 10%; float: left; text-align: center">
+            <h3>33</h3>
+            <h4>Cancer Category</h4>
         </div>
-        <div class="">
-            <img class="container center-block" style="height: 400px;" src="./tu.png" alt="Third slide">
-            <div class="text-center">
-                <h5>Enhancers</h5>
-                <p>In genetics, an enhancer is a short (50-1500 bp) region of DNA that can be
-                    bound by proteins (activators) to increase the likelihood that transcription
-                    of a particular gene will occur. <br>
-                    These proteins are usually referred to as transcription factors. Enhancers are cis-acting.
-                    <br>
-                    They can be located up to 1 Mbp (1,000,000 bp) away from the gene,
-                    upstream or downstream from the start site. <br>
-                    There are hundreds of thousands of enhancers in the human genome. <br>
-                    They were found in both prokaryotes and eukaryotes.<br>
-                </p>
-            </div>
+        <div style="height:100%; width: 20%; float: left; text-align: center">
+            <h3>461</h3>    
+            <h4>Transcription Factor</h4>
+        </div>
+        <div style="height:100%; width: 20%; float: left; text-align: center">
+            <h3>1,421</h3>
+            <h4>Articles</h4>
+        </div>
+        <div style="height:100%; width: 20%; float: left; text-align: center">
+            <h3>3,136</h3>
+            <h4>Relationships</h4>
         </div>
     </div>
-    <footer style="background-color:whitesmoke;">
-        <div class="container">
-            <h3>CONTACT US</h3>
-            <br>
+    <footer style="background-color:whitesmoke;" class="footer navbar-fixed-bottom">
+        <div class="container text-center" >
+            <h4>CONTACT US</h4>
             <b>Mailing Address:</b><br>
             Southwest Jiaotong University
             School of Life Sciences and Bioengineering
             Chengdu, Sichuan, China<br>
-            <br>
             <b>Email:</b><br>
             zhiyunguo@swjtu.edu.cn
         </div>

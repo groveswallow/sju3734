@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-12 17:23:52
+ * @LastEditTime: 2020-03-22 10:31:21
  * @Description: 待解决：搜索框上方的描述套话。
  * autocom函数虽然已经完成，但是ＴＦ的ｅｎｓｅｍｂｌｅ数据未拿到，所以要注意修改ＴＦ的后端。2020.1.2
  * Postdetail函数为跳转detail页面的函数，具体的还未编写。2020.1.13
@@ -27,7 +27,7 @@
     <title>XXXdatabase</title>
 </head>
 
-<body background="./greek-vase.png" class="float">
+<body background="" class="float">
     <script>
         $('＃serv').hide();
         function autocom(flag) {
@@ -133,7 +133,7 @@
                             field: 'pmid',
                             title: 'Pmid'
                         }
-                        ,
+                            ,
                         {
                             field: 'cancer',
                             title: 'Cancer Category'
@@ -184,36 +184,37 @@
             return false;
         }
     </script>
-    <div id='nav' class="nav" style="background-color: #000 ;height: 80px;">
-    </div>
-    <script>
-        $.ajaxSetup({
-            cache: false //close AJAX cache
-        });
-        $(function () {
-            $('#nav').load('./nav.html');
-        })
-    </script>
+    <header style="background-color:whitesmoke;" id='header'>
+        <script>
+            $.ajaxSetup({
+                cache: false //close AJAX cache
+            });
+            $(function () {
+                $('#header').load('./header.html');
+            })
+        </script>
+    </header>
     <table id='table'></table>
-    <div id='serv' style="width: 70%; height:200px; margin-left:16%; margin-top: 8%; text-align: center">
-        <h1 style="font-size: 50px;"><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 40px;"></span> The
-            Interface of General Search</h1>
-        <hr class="simple" color="black" style="height: 2px;"/>
-        <p style="font-size: 20px;">TFcancer provides users with a simple and fast method to search and explore all of our data in
-            several ways. TFcancer enables users to search by cancer name or transcription factors. </p>        
+    <div id='serv' style="width: 50%; height:200px; margin-top: 2%; text-align: center" class='center-block'>
+        <h1 style="font-size: 30px;"><span class="glyphicon glyphicon-search" aria-hidden="true"
+                style="font-size: 30px;"></span> <b>The
+            Interface of General Search</b></h1>
+        <hr class="simple" color="black" style="height: 2px;" />
+        <p style="font-size: 20px;">TFcancer provides users with a simple and fast way to search and explore all data in
+            several ways, namely searching by cancer name or transcription factors. </p>
         <p style="font-size: 20px;">
-            TFcancer also offers fuzzy keyword searching capabilities, which enables easy searching by returning the closest
-            possible matching records. ADVANCED SEARCH provides more detailed and systemic search. View our Help
-            page for further help.
+            Fuzzy keyword searching is also available. The closest matching records will be returned. Advanced search
+            provides more detailed and systemic search results. 
         </p>
         <div style="width: 75%; height:200px; margin-left:10%; padding-top: 3%; text-align: center">
-            <label style="font-size: 18px;">For 'transcription factors', you can use simple TF name (e.g. 'p53').
+            <label style="font-size: 15px;font-family: monospace;">For 'transcription factors', you can use simple TF name (e.g. 'p53').
             </label>
             <div id="sertf">
                 <form action="" method="post" onsubmit="return Post();">
                     <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="p53">
                     <hr>
-                    <label style="font-size: 18px;">For 'Cancer', you can use Cancer name (e.g. 'breast cancer').</label>
+                    <label style="font-size: 15px;font-family: monospace;">For 'Cancer', you can use Cancer name (e.g. 'breast
+                        cancer').</label>
                     <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
                         value="Breast invasive carcinoma">
                     <script>
@@ -233,7 +234,8 @@
         </div>
     </div>
     <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
-        <p style="height: 10px;margin-left: 48%;">©CopyRight 2020 Guo Laboratory</p></footer>
+        <p style="height: 10px;margin-left: 48%;">©CopyRight 2020 Guo Laboratory</p>
+    </footer>
 </body>
 
 </html>

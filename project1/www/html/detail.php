@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2020-02-07 11:49:12
  * @LastEditors: Tang
- * @LastEditTime: 2020-02-19 17:04:05
+ * @LastEditTime: 2020-03-22 10:53:09
  * @Description: 
  */
 require_once('dbconfig.php');
@@ -41,31 +41,18 @@ echo "<head><meta charset='utf-8'>
     <script src='./bs/js/tableExport.min.js'></script>
     <script src='./bs/js/bootstrap-table-export.min.js'></script>
     <title>XXXdatabase</title></head>
-    <body background='./greek-vase.png' class='float'>
-    <div class='nav' style='background-color: #000 ;height: 80px;'>
-        <div style='padding-right:5%;float: right;'>
-            <img src='./zi.png' style='height:80px;'>
-        </div>
-        <ul class='nav navbar-nav navbar-left' style='margin-top:15px;'>
-            <li style='margin-left: 30px;'><a href='./index.html' style='color:slategray'>HOME</a></li>
-            <li style='margin-left: 30px;' class='dropdown' style='color:slategray'>
-                <a class='dropdown-toggle' data-toggle='dropdown' role='button' style='color:slategray'>SEARCH<span
-                        class='caret'></span></a>
-                <ul class='dropdown-menu navbar-nav nav' style='background-color: #000;'>
-                    <li><a href='./gesearch.html' style='color:slategray'>General Search</a></li>
-                    <li><a href='./adsearch.html' style='color:slategray'>Advanced Search</a></li>
-                </ul>
-            </li>
-            </li>
-            <li style='margin-left: 30px;'><a href='' style='color:slategray'>BROWSE</a></li>
-            <li style='margin-left: 30px;'><a href='./download.html' style='color:slategray'>DOWNLOAD</a></li>
-            <li style='margin-left: 30px;'><a href='' style='color:slategray'>SUBMIT</a></li>
-            <li style='margin-left: 30px;'><a href='' style='color:slategray'>ABOUT</a></li>
-            <li style='margin-left: 30px;'><a href='' style='color:slategray'>HELP</a></li>
-        </ul>
-    </div>
-    </div>";
-    echo "<div style='width: 50%; height:200px; margin-left:25%; margin-top: 3%; text-align: center'>
+    <body background='' class='float'>
+    <header style='background-color:whitesmoke;' id='header'>
+    <script>
+        $.ajaxSetup({
+            cache: false //close AJAX cache
+        });
+        $(function () {
+            $('#header').load('./header.html');
+        })
+    </script>
+</header>";
+    echo "<div style='width: 50%; height:200px;margin-top: 1%; text-align: center' class='center-block'>
     <h1>
         <b>Details</b>
     </h1>
@@ -88,12 +75,12 @@ echo "<head><meta charset='utf-8'>
             </tr>
 
             <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Regulation_type</strong></span></td>
+                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Regulation type</strong></span></td>
                 <td height='40' width='80%'>".$regulation_type."
                 </td>
             </tr>
             <tr>
-                <td height='40' width='20%'><strong>&nbsp;&nbsp;&nbsp;Cancer _hallmark</strong></td>
+                <td height='40' width='20%'><strong>&nbsp;&nbsp;&nbsp;Cancer hallmark</strong></td>
                 <td height='40' width='80%'>".$cancer_hallmark."</td>
             </tr>
 
@@ -108,7 +95,7 @@ echo "<head><meta charset='utf-8'>
             </tr>
 
             <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Original _text</strong></span></td>
+                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Original text</strong></span></td>
                 <td height='40' width='80%'>".$original_text."</td>
             </tr>
 
@@ -131,7 +118,7 @@ echo "<head><meta charset='utf-8'>
             <tr>
                 <td height='40' width='30%'><span><strong>&nbsp;&nbsp;&nbsp;Links for&nbsp; <font color='#333333'>
                                 ".$cancer."</font></strong></span></td>
-                <td> <b><a
+                <td><b><a
                             href='http://www.omim.org/search/?index=entry&amp;sort=score+desc%2C+prefix_sort+desc&amp;start=1&amp;limit=10&amp;search= nasopharyngeal cancer'
                             target='_blank'>Omim</a>
                         <a href='https://cancer.sanger.ac.uk/cosmic/search?q=nasopharyngeal cancer'
