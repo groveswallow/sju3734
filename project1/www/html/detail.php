@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2020-02-07 11:49:12
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-22 10:53:09
+ * @LastEditTime: 2020-03-25 15:35:54
  * @Description: 
  */
 require_once('dbconfig.php');
@@ -29,6 +29,7 @@ $title = $res[0][7];
 echo "<html lang='zh-CN'>";
 echo "<head><meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='icon' href='./icon.ico'>
     <link href='./bs/css/bootstrap.min.css' rel='stylesheet'>
     <link href='./bs/css/bootstrap-select.css' rel='stylesheet'>
     <link href='./bs/css/bootstrap-table.min.css' rel='stylesheet'>
@@ -40,7 +41,7 @@ echo "<head><meta charset='utf-8'>
     <script src='./bs/js/bootstrap-table-zh-CN.min.js'></script>
     <script src='./bs/js/tableExport.min.js'></script>
     <script src='./bs/js/bootstrap-table-export.min.js'></script>
-    <title>XXXdatabase</title></head>
+    <title>TFcancer</title></head>
     <body background='' class='float'>
     <header style='background-color:whitesmoke;' id='header'>
     <script>
