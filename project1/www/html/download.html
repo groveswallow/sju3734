@@ -2,11 +2,10 @@
  * @Author: Tang
  * @Date: 2020-02-18 20:11:59
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-25 19:20:37
+ * @LastEditTime: 2020-03-27 11:08:00
  * @Description: 
  -->
 <html lang="zh-CN">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,8 +21,7 @@
     <script src="./bs/js/bootstrap-table-zh-CN.min.js"></script>
     <title>TFcancer</title>
 </head>
-
-<body background="" class="float">
+<body class="float">
     <script>
         // function autocolor(flag) {
         //     $('#' + flag).focus(function () {
@@ -35,19 +33,48 @@
         //         $(this).css("font-size", "230px");
         //     });
         // }
+        function autotable() {
+            $.ajax({
+                url: './downtable.php',
+                cache: false,
+                type: 'get',
+                dataType: 'json',
+                async: true,
+                success: function (res) {
+                    var data = res;
+                    var options = [], _options;
+                    var option = '<thead><tr><th class="col-md-2" style="text-align: center;"><h4>File Name</h4></th><th class="col-md-2" style="text-align: center;"><h4>File Description</h4></th><th class="col-md-2"style="text-align: center;"><h4>Click to Download</h4></th></tr></thead><tbdoy>'
+                    options.push(option);
+                    for (var i = 0; i < data.length; i++) {
+                        var option = '<tr>' +
+                            '<td style="text-align: center;">' + data[i] + '.xlsx</td>' +
+                            '<td style="text-align: center;">information of ' + data[i] + ' in xlsx format</td>' +
+                            '<td style="text-align: center;">' + '<a href="./33cancer/' + data[i] + '.xlsx" download="' + data[i] + '.xlsx" class="btn btn-lg" type="button" style="background-color:whitesmoke;color: black;margin-left: 15px;">' +
+                            '<span class="glyphicon glyphicon-download" aria-hidden="true" style="font-size: 20px;"id="down"></span>' +
+                            '</a>' + '</td>' +
+                            '</tr>';
+                        options.push(option);
+                    }
+                    option = '</tbody>'
+                    options.push(option);
+                    _options = options.join('');
+                    // console.log(_options);
+                    $('#tb')[0].innerHTML = _options;
+                }
+            })
+        }
     </script>
     <header style="background-color:whitesmoke;" id='header'>
         <script>
             $.ajaxSetup({
-                cache: false //close AJAX cache
+                cache: false 
             });
             $(function () {
                 $('#header').load('./header.html');
             })
         </script>
     </header>
-    <div style="width: 100%;height: 50%;">
-        <div style="width: 50%; height:200px; margin-top: 3%; text-align: center;" class='center-block'>
+        <div style="width: 50%; height:auto; margin-top: 3%; text-align: center;" class='center-block'>
             <h1><span class="glyphicon glyphicon-tasks" aria-hidden="true" style="font-size: 30px;"></span>
                 DownLoad</h1>
             <hr class="simple" color="black" style="height: 2px;" />
@@ -60,7 +87,21 @@
             </p>
             <br>
             <br>
-            <!-- <p
+            <table id='tb' class="table table-hover" data-toggle="table" data-height="700" data-pagination='true'>
+            </table>
+            <script>
+                $(function () {
+                    autotable();
+                    $('.fixed-table-border').css('height', '10px');
+                })
+            </script>
+        </div>
+    <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
+        <p style="height: 10px;margin-left: 48%;">©CopyRight 2020 Guo Laboratory</p>
+    </footer>
+</body>
+</html>
+<!-- <p
                 style="margin-left:80px;width: 100%;height: 30px;display: block;line-height: 25px;text-align: left;font-size: 20px;">
                 <span class="glyphicon glyphicon-folder-close" aria-hidden="true" style="font-size: 20px;"></span>
                 All 33 cancer information download :<a href="./33cancer/blca.xlsx" download="brca.xlsx"
@@ -75,64 +116,4 @@
                     class="btn btn-lg" type="button"
                     style="background-color:whitesmoke;color: black;margin-left: 15px;">33cancer.zip</a>
             </p> -->
-            <script>
-                function autotable() {
-                    $.ajax({
-                        url: './downtable.php',
-                        cache: false,
-                        type: 'get',
-                        dataType: 'json',
-                        async: true,
-                        success: function (res) {
-                            var data = res;
-                            var options = [], _options;
-                            for (var i = 0; i < data.length; i++) {
-                                var option = '<tr>' +
-                                    '<td>' + data[i] + '.xlsx</td>' +
-                                    '<td>information of ' + data[i] + ' in xlsx format</td>' +
-                                    '<td style="text-align: center;">' + '<a href="./33cancer/' + data[i] + '.xlsx" download="' + data[i] + '.xlsx" class="btn btn-lg" type="button" style="background-color:whitesmoke;color: black;margin-left: 15px;">' +
-                                    '<span class="glyphicon glyphicon-download" aria-hidden="true" style="font-size: 20px;"id="down"></span>'+
-                                    '</a>' + '</td>' +
-                                    '</tr>';
-                                options.push(option);
-                            }
-                            _options = options.join('');
-                            // console.log(_options);
-                            $('#tb')[0].innerHTML = _options;
-                        }
-                    })
-                }
-            </script>
-            <script>
-                $.ajaxSetup({
-                    cache: false //close AJAX cache
-                });
-                autotable();
-            </script>
-            <table class="table table-hover table-bordered table-striped" data-toggle="table" data-pagination="true" data-height="800">
-                <thead>
-                    <tr>
-                        <th class="col-md-2">
-                            <h4>File Name</h4>
-                        </th>
-                        <th class='col-md-3'>
-                            <h4>File Description</h4>
-                        </th>
-                        <th class="col-md-1">
-                            <h4>Click to Download</h4>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id='tb'>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <br>
-    <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
-        <p style="height: 10px;margin-left: 48%;">©CopyRight 2020 Guo Laboratory</p>
-    </footer> 
-</body>
 <!-- <span class="glyphicon glyphicon-download" aria-hidden="true" style="font-size: 20px;"id='down'></span> -->
-
-</html>
