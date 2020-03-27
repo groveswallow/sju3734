@@ -2,10 +2,11 @@
  * @Author: Tang
  * @Date: 2020-02-18 20:11:59
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-27 11:08:00
+ * @LastEditTime: 2020-03-27 20:40:08
  * @Description: 
  -->
 <html lang="zh-CN">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +22,7 @@
     <script src="./bs/js/bootstrap-table-zh-CN.min.js"></script>
     <title>TFcancer</title>
 </head>
+
 <body class="float">
     <script>
         // function autocolor(flag) {
@@ -58,7 +60,7 @@
                     option = '</tbody>'
                     options.push(option);
                     _options = options.join('');
-                    // console.log(_options);
+                    console.log(_options);
                     $('#tb')[0].innerHTML = _options;
                 }
             })
@@ -67,39 +69,43 @@
     <header style="background-color:whitesmoke;" id='header'>
         <script>
             $.ajaxSetup({
-                cache: false 
+                cache: false
             });
             $(function () {
                 $('#header').load('./header.html');
             })
         </script>
     </header>
-        <div style="width: 50%; height:auto; margin-top: 3%; text-align: center;" class='center-block'>
-            <h1><span class="glyphicon glyphicon-tasks" aria-hidden="true" style="font-size: 30px;"></span>
-                DownLoad</h1>
-            <hr class="simple" color="black" style="height: 2px;" />
-            <br>
-            <p
-                style="width: 100%;height: 80px;display: block;line-height: 25px;text-align: left;font-size: 20px;font-family: 'Courier New', Courier, monospace;">
-                TFcancer provides a download page that enables
-                users to download all experimentally supported all manually curated TF-cancer association data.
-                Users can also download related files of different cancers separately.
-            </p>
-            <br>
-            <br>
-            <table id='tb' class="table table-hover" data-toggle="table" data-height="700" data-pagination='true'>
+    <div style="width: 50%; height:auto; margin-top: 2%; text-align: center;" class='center-block'>
+        <h1><span class="glyphicon glyphicon-tasks" aria-hidden="true" style="font-size: 30px;"></span>
+            DownLoad</h1>
+        <hr class="simple" color="black" style="height: 2px;" />
+        <br>
+        <p
+            style="width: 100%;height: 80px;display: block;line-height: 25px;text-align: left;font-size: 20px;font-family: 'Courier New', Courier, monospace;">
+            TFcancer provides a download page that enables
+            users to download all experimentally supported all manually curated TF-cancer association data.
+            Users can also download related files of different cancers separately.
+        </p>
+        <br>
+        <br>
+        <div style="margin-top: 0px;">
+            <table id='tb' class="table table-hover" data-toggle="table" data-height="700" data-pagination='true'
+                style="margin-top: 0px;">
             </table>
-            <script>
-                $(function () {
-                    autotable();
-                    $('.fixed-table-border').css('height', '10px');
-                })
-            </script>
         </div>
-    <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
+        <script>
+            $(function () {
+                autotable();
+                $('.fixed-table-border').css('height', '10px');
+            })
+        </script>
+    </div>
+    <footer class="footer navbar-bottom" style="background-color:whitesmoke;">
         <p style="height: 10px;margin-left: 48%;">©CopyRight 2020 Guo Laboratory</p>
     </footer>
 </body>
+
 </html>
 <!-- <p
                 style="margin-left:80px;width: 100%;height: 30px;display: block;line-height: 25px;text-align: left;font-size: 20px;">

@@ -1,12 +1,13 @@
 <!--
  * @Author: Tang
- * @Date: 2019-11-27 15:24:45
+ * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-25 15:35:06
- * @Description: 
-   待解决：3.autocom.php 该php未解决完成，gene以及tf未有数据。
- * 注：将charctertics以及regulation选择框设置为不为空，用户必须至少选择一个进行修改。已经将所有默认值进行了设置。
+ * @LastEditTime: 2020-03-27 15:03:36
+ * @Description: 待解决：搜索框上方的描述套话。
+ * autocom函数虽然已经完成，但是ＴＦ的ｅｎｓｅｍｂｌｅ数据未拿到，所以要注意修改ＴＦ的后端。2020.1.2
+ * Postdetail函数为跳转detail页面的函数，具体的还未编写。2020.1.13
  -->
+<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -21,28 +22,14 @@
     <script src="./bs/js/bootstrap-select.js"></script>
     <script src="./bs/js/bootstrap-table.min.js"></script>
     <script src="./bs/js/bootstrap3-typeahead.min.js"></script>
-    <script src="./bs/js/bootstrap-table-zh-CN.min.js"></script>
+    <!-- <script src="./bs/js/bootstrap-table-zh-CN.min.js"></script> -->
+    <script src="./bs/js/tableExport.min.js"></script>
+    <script src="./bs/js/bootstrap-table-export.min.js"></script>
     <title>TFcancer</title>
 </head>
 
 <body background="" class="float">
     <script>
-        function autovalue(flag) {
-            var vdefault = $('#' + flag).val();
-
-            $('#' + flag).focus(function () {
-                //获得焦点时，如果值为默认值，则设置为空  
-                if ($(this).val() == vdefault) {
-                    $(this).val("");
-                }
-            });
-            $('#' + flag).blur(function () {
-                //失去焦点时，如果值为空，则设置为默认值  
-                if ($(this).val() == "") {
-                    $(this).val(vdefault);;
-                }
-            });
-        }
         function autoselect() {
             $.ajax({
                 url: './autoselect.php',
@@ -88,6 +75,29 @@
                 }
             })
         }
+        function autocom(flag) {
+            $('#' + flag).typeahead({
+                minLength: 1,
+                items: 10,
+                hint: true,
+                highlight: true,
+                source: function (query, process) {
+                    $.ajax({
+                        url: "./autocom.php",
+                        cache: false,
+                        type: 'post',
+                        dataType: 'json',
+                        async: true,
+                        data: {
+                            flag: query,
+                        },
+                        success: function (data) {
+                            return process(data);
+                        }
+                    })
+                }
+            })
+        }
         function Postdetail(tf, cancer, gene) {
             $.ajax({
                 url: "./detail.php",
@@ -104,30 +114,23 @@
                 }
             })
         }
-        function autocom(flag) {
-            $('#' + flag).typeahead({
-                minLength: 1,
-                items: 10,
-                hint: true,
-                highlight: true,
-                source: function (query, process) {
-                    $.ajax({
-                        url: "./autocom.php",//该php未解决完成，数据库数据未导入数据，只写了测试代码。
-                        cache: false,
-                        type: 'post',
-                        dataType: 'json',
-                        async: true,
-                        data: {
-                            flag: query,
-                        },
-                        success: function (data) {
-                            return process(data);
-                        }
-                    })
+        function autovalue(flag) {
+            var vdefault = $('#' + flag).val();
+
+            $('#' + flag).focus(function () {
+                //获得焦点时，如果值为默认值，则设置为空  
+                if ($(this).val() == vdefault) {
+                    $(this).val("");
                 }
-            })
+            });
+            $('#' + flag).blur(function () {
+                //失去焦点时，如果值为空，则设置为默认值  
+                if ($(this).val() == "") {
+                    $(this).val(vdefault);;
+                }
+            });
         }
-        function Post() {  //未解决：默认值，以及用户输入后充值默认值的状态。
+        function Post() {
             var query = {
                 tf: $('#tf').val(),
                 cancer_type: $('#cancer_type').val(),
@@ -136,26 +139,11 @@
                 regulation_type: $('#regulation_type').val(),
                 characteristics: $('#characteristics').val(),
             };
-            //传递值的时候，ｉｎｐｕｔ未输入字符时的值为‘’，选择框则为ｎｕｌｌ。
-            // var tf = $('#tf').val();
-            // var regulation_type = $('#regulation_type').val();
-            // var characteristics = $('#characteristics').val();
-            // var cancer_type = $('#cancer_type').val();
-            // var gene = $('#gene').val();
-            // var hallmark = $('#hallmark').val();
-            // var flag = 0;
-            // var va = [$('#tf').val(), $('#cancer_type').val(), $('#gene').val(), $('#hallmark').val()]
-            // var patt = /[^0-9A-Za-z]/;
-            // for (let i in query) {
-            //     if (query[i] == null) {
-            //         query[i] = 'null';
-            //     }
-            // }
             $.ajax({
                 url: './adtable.php',
+                cache: false,
                 method: 'post',
                 dataType: 'json',
-                cache: false,
                 async: true,
                 data: query,
                 success: function (result) {
@@ -163,6 +151,10 @@
                         $('#serv').remove();
                     })
                     $('#table').bootstrapTable({
+                        searchAlign: 'left',
+                        theadClasses: 'thead-dark',
+                        showButtonIcons: true,
+                        showSearchButton: true,
                         showLoading: true,
                         striped: true,
                         clickToSelect: true,
@@ -174,42 +166,51 @@
                         cache: false,
                         sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
                         pagination: true,                   //是否显示分页（*）
+                        showExtendedPagination: true,
                         showExport: true,
                         pageNumber: 1,                       //初始化加载第一页，默认第一页
-                        pageSize: 10,                       //每页的记录行数（*）
+                        pageSize: 5,                       //每页的记录行数（*）
                         pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
                         columns: [{
-                            checkbox: true
+                            checkbox: true,
                         },
                         {
                             field: 'pmid',
-                            title: 'Pmid'
+                            title: 'Pmid',
+                            align: 'center',
                         }
                             ,
                         {
                             field: 'cancer',
-                            title: 'Cancer Category'
+                            title: 'Cancer Category',
+                            align: 'center',
                         }, {
                             field: 'tf',
-                            title: 'TF'
+                            title: 'TF',
+                            align: 'center',
                         }, {
                             field: 'gene',
-                            title: 'Gene'
+                            title: 'Gene',
+                            align: 'center',
                         }, {
                             field: 'characteristics',
-                            title: 'Characteristics'
+                            title: 'Characteristics',
+                            align: 'center',
                         },
                         {
                             field: 'regulation_type',
-                            title: 'Regulation_type'
+                            title: 'Regulation_type',
+                            align: 'center',
                         },
                         {
                             field: 'hallmark',
-                            title: 'Cancer_hallmark'
+                            title: 'Cancer_hallmark',
+                            align: 'center',
                         },
                         {
                             field: 'title',
-                            title: 'Title'
+                            title: 'Title',
+                            align: 'center'
                         },
                         {
                             field: 'tf',
@@ -235,7 +236,6 @@
             });
             return false;
         }
-
     </script>
     <header style="background-color:whitesmoke;" id='header'>
         <script>
@@ -247,11 +247,14 @@
             })
         </script>
     </header>
-    <table id='table'></table>
+    <div class="center-block" style="width: 60%;">
+        <table id='table' class='center-block'></table>
+    </div>
     <div id="serv" style="width: 100%;height: 70%;">
         <div style="width: 45%; height:180px; margin-top: 2%; text-align: center" class='center-block'>
-            <h1 style="font-size: 30px;"><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px;"></span><b>The
-                Interface of Advanced Search</b></h1>
+            <h1 style="font-size: 30px;"><span class="glyphicon glyphicon-search" aria-hidden="true"
+                    style="font-size: 30px;"></span><b>The
+                    Interface of Advanced Search</b></h1>
             <hr class="simple" color="black" style="height: 2px;">
             <p style="font-size: 20px;">In advanced search,TFcancer provides more complex functions compared to simple
                 search.</p>
@@ -261,71 +264,78 @@
                 All above support fuzzy search.
             </p>
             <hr>
-            <form class='form-horizontal' action="" method="post" onsubmit="return Post();">
-                <div style="width: 100%;height: 55%;">
-                    <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
-                        <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="BRCA1">
+            <div class="center-block" style="width: 80%;">
+                <form class='form-horizontal' action="" method="post" onsubmit="return Post();">
+                    <div style="width: 100%;height: 55%;">
+                        <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
+                            <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="BRCA1">
+                        </div>
+                        <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
+                            <label>Select Mode of Regulation Type</label>
+                            <select multiple class="selectpicker form-control" id="regulation_type"
+                                title="Select Regulation Type" data-container="body" data-live-search="true"
+                                data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
+                                value='negative'>
+                            </select>
+                        </div>
+                        <div class="col-lg-5" style="margin-left: 8%;margin-top: 2%;">
+                            <label>Select TF Characteristics</label>
+                            <select multiple class="selectpicker form-control" id="characteristics"
+                                title="Select Characteristics" ddata-container="body" data-live-search="true"
+                                data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
+                                value='regulate'>
+                            </select>
+                            <script>
+                                autoselect();
+                            </script>
+                        </div>
                     </div>
-                    <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
-                        <label>Select Mode of Regulation Type</label>
-                        <select multiple class="selectpicker form-control" id="regulation_type"
-                            title="Select Regulation Type" data-container="body" data-live-search="true"
-                            data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
-                            value='negative'>
-                        </select>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Cancer</span>
+                        <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
+                            value='Breast invasive carcinoma'>
                     </div>
-                    <div class="col-lg-5" style="margin-left: 8%;margin-top: 2%;">
-                        <label>Select TF Characteristics</label>
-                        <select multiple class="selectpicker form-control" id="characteristics"
-                            title="Select Characteristics" ddata-container="body" data-live-search="true"
-                            data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
-                            value='regulate'>
-                        </select>
-                        <script>
-                            autoselect();
-                        </script>
+                    <hr>
+                    <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Gene</span>
+                        <input type="text" class="form-control" placeholder="Search for Gene" id="gene" value="GADD45A">
                     </div>
-                </div>
-                <br>
-                <hr>
-                <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Cancer</span>
-                    <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
-                        value='Breast invasive carcinoma'>
-                </div>
-                <hr>
-                <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Gene</span>
-                    <input type="text" class="form-control" placeholder="Search for Gene" id="gene" value="GADD45A">
-                </div>
-                <hr>
-                <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Hallmark</span>
-                    <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer" id="hallmark"
-                        value="tumorigenesis"></div>
-                <!-- //未解决页面缩小后按钮被页脚遮挡的BUG -->
-                <button class="btn btn-default" type="reset" id="reset" style="margin-top: 5%;"><b>Reset</b></button>
-                <script>
-                    $(function () {
-                        $('#reset').click(function () {
-                            $('#gene').val('');
-                            $('#characteristics').val('');
+                    <hr>
+                    <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Hallmark</span>
+                        <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer"
+                            id="hallmark" value="tumorigenesis"></div>
+                    <!-- //未解决页面缩小后按钮被页脚遮挡的BUG -->
+                    <button class="btn btn-default" type="reset" id="reset"
+                        style="margin-top: 5%;"><b>Reset</b></button>
+                    <script>
+                        $(function () {
+                            $('#reset').click(function () {
+                                $('#gene').val('');
+                                $('#characteristics').val('');
+                            })
                         })
-                    })
-                </script>
-                <button class="btn btn-default" type="submit" id="sub" style="margin-top: 5%;"><b>Search</b></button>
-                <script>
-                    $(function () {
-                        autocom('tf');
-                        autocom('cancer_type');
-                        autocom('gene');
-                        autocom('hallmark');
-                        autovalue('tf');
-                        autovalue('cancer_type');
-                        autovalue('gene');
-                        autovalue('hallmark');
-                    })
-                </script>
-            </form>
+                    </script>
+                    <button class="btn btn-default" type="submit" id="sub"
+                        style="margin-top: 5%;"><b>Search</b></button>
+                    <script>
+                        $(function () {
+                            autocom('tf');
+                            autocom('cancer_type');
+                            autocom('gene');
+                            autocom('hallmark');
+                            autovalue('tf');
+                            autovalue('cancer_type');
+                            autovalue('gene');
+                            autovalue('hallmark');
+                        })
+                    </script>
+                </form>
+            </div>
+
         </div>
-    </div>
     </div>
     <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
         <p style="height: 10px;margin-left: 48%;">©CopyRight 2020 Guo Laboratory</p>
