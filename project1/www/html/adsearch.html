@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-27 21:52:25
+ * @LastEditTime: 2020-04-03 14:58:09
  * @Description: 待解决：搜索框上方的描述套话。
  * autocom函数虽然已经完成，但是ＴＦ的ｅｎｓｅｍｂｌｅ数据未拿到，所以要注意修改ＴＦ的后端。2020.1.2
  * Postdetail函数为跳转detail页面的函数，具体的还未编写。2020.1.13
@@ -80,17 +80,19 @@
                 minLength: 1,
                 items: 10,
                 hint: true,
+                cache: false,
                 highlight: true,
                 source: function (query, process) {
+                    let pl ={}
+                    pl[flag] = query;
+                    console.log(pl);
                     $.ajax({
                         url: "./autocom.php",
                         cache: false,
                         type: 'post',
                         dataType: 'json',
                         async: true,
-                        data: {
-                            flag: query,
-                        },
+                        data: pl,
                         success: function (data) {
                             return process(data);
                         }
@@ -189,22 +191,22 @@
                             title: 'TF',
                             align: 'center',
                         }, {
-                            field: 'gene',
-                            title: 'Gene',
-                            align: 'center',
-                        }, {
                             field: 'characteristics',
                             title: 'Characteristics',
+                            align: 'center',
+                        }, {
+                            field: 'gene',
+                            title: 'Gene',
                             align: 'center',
                         },
                         {
                             field: 'regulation_type',
-                            title: 'Regulation_type',
+                            title: 'Regulation type',
                             align: 'center',
                         },
                         {
                             field: 'hallmark',
-                            title: 'Cancer_hallmark',
+                            title: 'Cancer hallmark',
                             align: 'center',
                         },
                         {
@@ -256,9 +258,10 @@
                     style="font-size: 30px;"></span><b>The
                     Interface of Advanced Search</b></h1>
             <hr class="simple" color="black" style="height: 2px;">
-            <p style="font-size: 20px;">In advanced search,TFcancer provides more complex functions compared to simple
+            <p style="font-size: 20px;">In advanced search,TFcancer provides more complex functions compared witg
+                general
                 search.</p>
-            <p style="font-size: 20px;">Here, users can select mode of <b>regulation type</b>,<b>tf
+            <p style="font-size: 20px;">Here, users can select <b>mode of regulation type</b>,<b>tf
                     characteristics</b>,<b>Gene name</b> and <b>cancer hallmark</b> as the need arises.</p>
             <p style="font-size: 20px;">
                 All above support fuzzy search.
@@ -268,7 +271,7 @@
                 <form class='form-horizontal' action="" method="post" onsubmit="return Post();">
                     <div style="width: 100%;height: 55%;">
                         <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
-                            <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="BRCA1">
+                            <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="BRCA1" autocomplete="off">
                         </div>
                         <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
                             <label>Select Mode of Regulation Type</label>
@@ -297,16 +300,16 @@
                     <hr>
                     <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Cancer</span>
                         <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
-                            value='Breast invasive carcinoma'>
+                            value='Breast invasive carcinoma' autocomplete="off">
                     </div>
                     <hr>
                     <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Gene</span>
-                        <input type="text" class="form-control" placeholder="Search for Gene" id="gene" value="GADD45A">
+                        <input type="text" class="form-control" placeholder="Search for Gene" id="gene" value="GADD45A" autocomplete="off">
                     </div>
                     <hr>
                     <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Hallmark</span>
                         <input type="text" class="form-control" placeholder="Search for Hallmark of Cancer"
-                            id="hallmark" value="tumorigenesis"></div>
+                            id="hallmark" value="tumorigenesis" autocomplete="off"></div>
                     <!-- //未解决页面缩小后按钮被页脚遮挡的BUG -->
                     <button class="btn btn-default" type="reset" id="reset"
                         style="margin-top: 3%;"><b>Reset</b></button>
@@ -322,11 +325,14 @@
                         style="margin-top: 3%;"><b>Search</b></button>
                     <script>
                         $(function () {
-                            autocom('tf');
+                            $.ajaxSetup({
+                                cache: false //close AJAX cache
+                            });
+                            autocom("tf");
                             autocom('cancer_type');
                             autocom('gene');
                             autocom('hallmark');
-                            autovalue('tf');
+                            autovalue("tf");
                             autovalue('cancer_type');
                             autovalue('gene');
                             autovalue('hallmark');
@@ -336,9 +342,9 @@
             </div>
         </div>
     </div>
-    <div class="footer navbar-fixed-bottom" style="background-color:whitesmoke;bottom: 0px;">
+    <!-- <div class="footer navbar-fixed-bottom" style="background-color:whitesmoke;bottom: 0px;">
         <p style="height: 15px;text-align: center;">©CopyRight 2020 Guo Laboratory</p>
-    </div>
+    </div> -->
 </body>
 
 </html>

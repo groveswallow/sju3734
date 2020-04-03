@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-27 21:53:05
+ * @LastEditTime: 2020-04-03 14:57:48
  * @Description: 待解决：搜索框上方的描述套话。
  * autocom函数虽然已经完成，但是ＴＦ的ｅｎｓｅｍｂｌｅ数据未拿到，所以要注意修改ＴＦ的后端。2020.1.2
  * Postdetail函数为跳转detail页面的函数，具体的还未编写。2020.1.13
@@ -38,15 +38,15 @@
                 hint: true,
                 highlight: true,
                 source: function (query, process) {
+                    let pl ={}
+                    pl[flag] = query;
                     $.ajax({
                         url: "./autocom.php",
                         cache: false,
                         type: 'post',
                         dataType: 'json',
                         async: true,
-                        data: {
-                            flag: query,
-                        },
+                        data: pl,
                         success: function (data) {
                             return process(data);
                         }
@@ -150,22 +150,22 @@
                             title: 'TF',
                             align: 'center',
                         }, {
-                            field: 'gene',
-                            title: 'Gene',
-                            align: 'center',
-                        }, {
                             field: 'characteristics',
                             title: 'Characteristics',
                             align: 'center',
-                        },
+                        },{
+                            field: 'gene',
+                            title: 'Gene',
+                            align: 'center',
+                        }, 
                         {
                             field: 'regulation_type',
-                            title: 'Regulation_type',
+                            title: 'Regulation type',
                             align: 'center',
                         },
                         {
                             field: 'hallmark',
-                            title: 'Cancer_hallmark',
+                            title: 'Cancer hallmark',
                             align: 'center',
                         },
                         {
@@ -219,20 +219,20 @@
         <p style="font-size: 20px;">TFcancer provides users with a simple and fast way to search and explore all data in
             several ways, namely searching by cancer name or transcription factors. </p>
         <p style="font-size: 20px;">
-            Fuzzy keyword searching is also available. The closest matching records will be returned. Advanced search
+            Fuzzy keyword search is also available. The closest matching records will be returned. Advanced search
             provides more detailed and systemic search results. 
         </p>
         <div style="width: 75%; height:200px; margin-left:10%; padding-top: 3%; text-align: center">
-            <label style="font-size: 15px;font-family: monospace;">For 'transcription factors', you can use simple TF name (e.g. 'p53').
+            <label style="font-size: 15px;font-family: monospace;">For "transcription factors", you can use simple TF name (e.g. 'p53').
             </label>
             <div id="sertf">
                 <form action="" method="post" onsubmit="return Post();">
-                    <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="p53">
+                    <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="p53" autocomplete="off">
                     <hr>
                     <label style="font-size: 15px;font-family: monospace;">For 'Cancer', you can use Cancer name (e.g. 'breast
                         cancer').</label>
                     <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
-                        value="Breast invasive carcinoma">
+                        value="Breast invasive carcinoma" autocomplete="off">
                     <script>
                         $(function () {
                             autovalue('tf');
@@ -249,9 +249,9 @@
             </div>
         </div>
     </div>
-    <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
+    <!-- <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
         <p style="height: 15px;text-align: center;">©CopyRight 2020 Guo Laboratory</p>
-    </footer>
+    </footer> -->
 </body>
 
 </html>

@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2020-02-07 11:49:12
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-25 15:35:54
+ * @LastEditTime: 2020-03-31 12:08:46
  * @Description: 
  */
 require_once('dbconfig.php');
@@ -11,9 +11,6 @@ $con = mysqli_connect($host, $usr, $password, $db);
 $tf = $_GET['tf'];
 $cancer = strtolower($_GET['cancer']);
 $gene = strtolower($_GET['gene']);
-// $tf = 'p53';
-// $cancer = 'brca';
-// $gene = 'fas';
 $sql = "select * from $cancer where tf like '%$tf%' and gene like '%$gene%'";
 $re = mysqli_query($con, $sql);
 $res = mysqli_fetch_all($re);
@@ -24,8 +21,19 @@ $regulation_type = $res[0][4];
 $cancer_hallmark = $res[0][5];
 $original_text = $res[0][6];
 $title = $res[0][7];
-// echo $res[0][0];
-// echo json_encode($res);
+$searchid = "";
+$flag = 0;
+$f = fopen('/home/tang/sju3734/project1/www/html/lib/newpy/TissgDB_basic_uniq.txt','r');
+while($s = fgets($f)){
+    $str = nl2br($s);
+    $ay = explode("\t",$str);
+    if($ay[0] == $gene){
+        $searchid = $ay[1];
+        $flag = 1;
+    break;
+    }
+}
+echo "<!DOCTYPE html>";
 echo "<html lang='zh-CN'>";
 echo "<head><meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -74,7 +82,16 @@ echo "<head><meta charset='utf-8'>
                 <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Gene</strong></span></td>
                 <td height='40' width='80%'>".$gene." &nbsp;&nbsp;&nbsp;</td>
             </tr>
-
+            <tr>
+                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Expression Level</strong></span></td>";
+            if ($flag == 1){
+                echo "<td><b><a href='https://bioinfo.uth.edu/TissGDB/gene_search_result.cgi?page=page&type=quick_search&quick_search=".$searchid."'
+                target='_blank'>".$gene." in TissGDB</a></td>";
+            }
+            else{
+                echo "<td><b>No Result in TissGDB</b></td>";
+            }
+            echo "</tr>
             <tr>
                 <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Regulation type</strong></span></td>
                 <td height='40' width='80%'>".$regulation_type."
@@ -132,4 +149,3 @@ echo "<head><meta charset='utf-8'>
 </div>";
     echo "</body>";
     echo "</html>";
-?>
