@@ -9,7 +9,6 @@ $fin_res = array();
 $i = 0;
 while($row){
 $res[$i] = $row['characteristics'];
-// echo "<option value='$res'>$res</option>";
 $row = mysqli_fetch_assoc($result);
 $i = $i + 1;
 }
@@ -21,7 +20,6 @@ $res = array();
 $i = 0;
 while($row){
 $res[$i] = $row['regulation_type'];
-// echo "<option value='$res'>$res</option>";
 $row = mysqli_fetch_assoc($result);
 $i = $i + 1;
 }

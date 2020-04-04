@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2019-11-25 18:39:06
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-03 14:55:55
+ * @LastEditTime: 2020-04-03 20:07:43
  * @Description: 
  */
 //ｔｆ，ｇｅｎｅ　未改写。
@@ -14,7 +14,7 @@
     if ($val == "tf")
     {$sql = "select tf from tfcountclass where tf like '%$_POST[$val]%'";}
     elseif($val == 'gene')
-    {$sql = "select LongCancer from cancer_type where BriCancer like '%$_POST[$val]%'";}
+    {$sql = "select gene from gene where gene like '%$_POST[$val]%'";}
     elseif($val == 'hallmark')
     {$sql = "select hallmark from hallmark where hallmark like '%s%'";}
     else
