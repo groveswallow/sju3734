@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2020-02-18 20:11:59
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-30 09:58:59
+ * @LastEditTime: 2020-04-04 21:37:10
  * @Description: 
  -->
 <html lang="zh-CN">
@@ -46,6 +46,14 @@
                     var data = res;
                     var options = [], _options;
                     var option = '<thead><tr><th class="col-md-2" style="text-align: center;"><h4>File Name</h4></th><th class="col-md-2" style="text-align: center;"><h4>File Description</h4></th><th class="col-md-2"style="text-align: center;"><h4>Click to Download</h4></th></tr></thead><tbdoy>'
+                    options.push(option);
+                    var option = '<tr>' +
+                            '<td style="text-align: center;">' + '33CANCER' + '.xlsx</td>' +
+                            '<td style="text-align: center;">information of ' + '33 kinds of cancer ' + ' in xlsx format</td>' +
+                            '<td style="text-align: center;">' + '<a href="./33cancer/' + '33cancer' + '.zip" download="' + '33cancer' + '.zip" class="btn btn-lg" type="button" style="background-color:whitesmoke;color: black;margin-left: 15px;">' +
+                            '<span class="glyphicon glyphicon-download" aria-hidden="true" style="font-size: 20px;"id="down"></span>' +
+                            '</a>' + '</td>' +
+                            '</tr>';
                     options.push(option);
                     for (var i = 0; i < data.length; i++) {
                         var option = '<tr>' +

@@ -3,20 +3,20 @@
  * @Author: Tang
  * @Date: 2020-03-31 11:12:29
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-31 12:07:03
+ * @LastEditTime: 2020-04-04 21:29:37
  * @Description: 
  */
-$f = fopen('/home/tang/sju3734/project1/www/html/lib/newpy/TissgDB_basic_uniq.txt','r');
-$searchid = "";
-$gene = "GADD45A";
-while($s = fgets($f)){
-    $str = nl2br($s);
-    $ay = explode("\t",$str);
-    if($ay[0] == $gene){
-        $searchid = $ay[1];
-        $flag = 1;
-    break;
-    }
+require_once("dbconfig.php");
+$con = mysqli_connect($host, $usr, $password, $db);
+$sql = "select BriCancer from cancer_type";
+$re = mysqli_query($con, $sql);
+$res_cancer = mysqli_fetch_all($re);
+$res = array();
+$i = 0;
+foreach ($res_cancer as $val_cancer) {
+    $cancer = strtolower($val_cancer[0]);
+    $sql = "update $cancer set hallmark = 'unknown' where hallmark  = 'unkonwn'";
+    $re = mysqli_query($con, $sql);
 }
-echo $searchid; 
-fclose($f);
+mysqli_close($con);
+?>

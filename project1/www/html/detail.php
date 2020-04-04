@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2020-02-07 11:49:12
  * @LastEditors: Tang
- * @LastEditTime: 2020-03-31 12:08:46
+ * @LastEditTime: 2020-04-04 21:15:12
  * @Description: 
  */
 require_once('dbconfig.php');
@@ -119,7 +119,7 @@ echo "<head><meta charset='utf-8'>
 
             <tr>
                 <td height='40'><span><strong>&nbsp;&nbsp;&nbsp;Cancer</strong></span></td>
-                <td>".$cancer."</td>
+             <td>".strtoupper($cancer)."</td>
             </tr>
             <tr>
                 <td height='40'><span><strong>&nbsp;&nbsp;&nbsp;Links for&nbsp; <font color='#333333'>
@@ -128,14 +128,10 @@ echo "<head><meta charset='utf-8'>
                             target='_blank'>GenBank</a>
                         <a href='https://www.genenames.org/cgi-bin/search?search_type=all&amp;search=AL359062'
                             target='_blank'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HGNC</a>
-                        <a href='http://www.lncrnadb.org/search/?q=AL359062%20Homo%20sapiens&amp;Species=Homo%20sapiens&amp;outputNo=10 '
-                            target='_blank'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lncrnadb</a>
-                        <a href='http://www.noncode.org/gene_trans_search.php?keyword=AL359062'
-                            target='_blank'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Noncode</a></b></td>
             </tr>
             <tr>
                 <td height='40' width='30%'><span><strong>&nbsp;&nbsp;&nbsp;Links for&nbsp; <font color='#333333'>
-                                ".$cancer."</font></strong></span></td>
+                                ".strtoupper($cancer)."</font></strong></span></td>
                 <td><b><a
                             href='http://www.omim.org/search/?index=entry&amp;sort=score+desc%2C+prefix_sort+desc&amp;start=1&amp;limit=10&amp;search= nasopharyngeal cancer'
                             target='_blank'>Omim</a>
