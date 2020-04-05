@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2020-02-07 11:49:12
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-04 21:15:12
+ * @LastEditTime: 2020-04-05 16:44:15
  * @Description: 
  */
 require_once('dbconfig.php');
@@ -83,13 +83,13 @@ echo "<head><meta charset='utf-8'>
                 <td height='40' width='80%'>".$gene." &nbsp;&nbsp;&nbsp;</td>
             </tr>
             <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Expression Level</strong></span></td>";
+                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Tissue-specific Expression</strong></span></td>";
             if ($flag == 1){
                 echo "<td><b><a href='https://bioinfo.uth.edu/TissGDB/gene_search_result.cgi?page=page&type=quick_search&quick_search=".$searchid."'
                 target='_blank'>".$gene." in TissGDB</a></td>";
             }
             else{
-                echo "<td><b>No Result in TissGDB</b></td>";
+                echo "<td><b>N/A</b></td>";
             }
             echo "</tr>
             <tr>
