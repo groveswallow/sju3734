@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2020-02-07 11:49:12
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-05 18:57:50
+ * @LastEditTime: 2020-04-06 21:19:29
  * @Description: 
  */
 require_once('dbconfig.php');
@@ -33,6 +33,10 @@ while($s = fgets($f)){
     break;
     }
 }
+$sql = "select LongCancer from cancer_type where BriCancer like '%$cancer%'";
+$re = mysqli_query($con, $sql);
+$res = mysqli_fetch_all($re);
+$LongCancer = $res[0][0];
 echo "<!DOCTYPE html>";
 echo "<html lang='zh-CN'>";
 echo "<head><meta charset='utf-8'>
@@ -124,18 +128,18 @@ echo "<head><meta charset='utf-8'>
             <tr>
                 <td height='40'><span><strong>&nbsp;&nbsp;&nbsp;Links for&nbsp; <font color='#333333'>
                                 ".$tf."</font></strong></span></td>
-                <td> <b><a href='https://www.ncbi.nlm.nih.gov/nuccore/?term=AL359062'
+                <td> <b><a href='https://www.ncbi.nlm.nih.gov/nuccore/?term=".$tf."'
                             target='_blank'>GenBank</a>
-                        <a href='https://www.genenames.org/cgi-bin/search?search_type=all&amp;search=AL359062'
+                        <a href='https://www.genenames.org/cgi-bin/search?search_type=all&amp;search=".$tf."'
                             target='_blank'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HGNC</a>
             </tr>
             <tr>
                 <td height='40' width='30%'><span><strong>&nbsp;&nbsp;&nbsp;Links for&nbsp; <font color='#333333'>
                                 ".strtoupper($cancer)."</font></strong></span></td>
                 <td><b><a
-                            href='http://www.omim.org/search/?index=entry&amp;sort=score+desc%2C+prefix_sort+desc&amp;start=1&amp;limit=10&amp;search=nasopharyngeal cancer'
+                            href='http://www.omim.org/search/?index=entry&amp;sort=score+desc%2C+prefix_sort+desc&amp;start=1&amp;limit=10&amp;search=".$LongCancer."'
                             target='_blank'>Omim</a>
-                        <a href='https://cancer.sanger.ac.uk/cosmic/search?q=nasopharyngeal cancer'
+                        <a href='https://cancer.sanger.ac.uk/cosmic/search?q=".$LongCancer."'
                             target='_blank'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cosmic</a></b>
                 </td>
             </tr>

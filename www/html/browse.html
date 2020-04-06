@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-05 19:09:18
+ * @LastEditTime: 2020-04-06 21:09:13
  * @Description: 待解决：搜索框上方的描述套话。
  * autocom函数虽然已经完成，但是ＴＦ的ｅｎｓｅｍｂｌｅ数据未拿到，所以要注意修改ＴＦ的后端。2020.1.2
  * Postdetail函数为跳转detail页面的函数，具体的还未编写。2020.1.13
@@ -30,27 +30,48 @@
 
 <body background="" class="float">
     <script>
-        $('＃serv').hide();
-        function autocom(flag) {
-            $('#' + flag).typeahead({
-                minLength: 1,
-                items: 10,
-                hint: true,
-                highlight: true,
-                source: function (query, process) {
-                    let pl = {}
-                    pl[flag] = query;
-                    $.ajax({
-                        url: "./autocom.php",
-                        cache: false,
-                        type: 'post',
-                        dataType: 'json',
-                        async: true,
-                        data: pl,
-                        success: function (data) {
-                            return process(data);
+        function autotable() {
+            $.ajax({
+                url: './downtable.php',
+                cache: false,
+                type: 'get',
+                dataType: 'json',
+                async: true,
+                success: function (res) {
+                    var data = res;
+                    var options = [], _options;
+                    var flag = 1;
+                    var option = '<thead><tr><th class="col-md-1" style="text-align: center;"><h4><b>1</b></h4></th>' +
+                        '<th class="col-md-1" style="text-align: center;"><h4><b>2</b></h4></th>' +
+                        '<th class="col-md-1" style="text-align: center;"><h4><b>3</b></h4></th>' +
+                        '<th class="col-md-1" style="text-align: center;"><h4><b>4</b></h4></th>' +
+                        '<th class="col-md-1" style="text-align: center;"><h4><b>5</b></h4></th>' +
+                        '<th class="col-md-1" style="text-align: center;"><h4><b>6</b></h4></th>' +
+                        '<th class="col-md-1" style="text-align: center;"><h4><b>7</b></h4></th>' +
+                        '<th class="col-md-1" style="text-align: center;"><h4><b>8</b></h4></th></tr><tbdoy>';
+                    options.push(option);
+                    for (var i = 0; i < data.length; i++) {
+                        var x = i + 1;
+                        if (x % 8 != 0 && flag == 1) {
+                            flag = 0;
+                            var option = '<tr>';
+                            options.push(option);
                         }
-                    })
+                        var option = '<td style="text-align: center;">' + '<a href="#" onclick="Post(\'' + data[i] + '\')" class="btn btn-lg" type="button" style="background-color:whitesmoke;color: black;margin-left: 15px;">' + data[i] + '</a>' + '</td>';
+                        options.push(option);
+                        if (x % 8 == 0 || i == data.length) {
+                            flag = 1;
+                            var option = '</tr>';
+                            options.push(option);
+                        }
+                    }
+                    option = '</tbody>'
+                    options.push(option);
+                    _options = options.join('');
+                    console.log(_options);
+                    $('#tb')[0].innerHTML = _options;
+                    $('#tb').selectpicker('refresh');
+                    $('#tb').selectpicker('render');
                 }
             })
         }
@@ -70,38 +91,12 @@
                 }
             })
         }
-        function autovalue(flag) {
-            var vdefault = $('#' + flag).val();
-
-            $('#' + flag).focus(function () {
-                //获得焦点时，如果值为默认值，则设置为空  
-                if ($(this).val() == vdefault) {
-                    $(this).val("");
-                }
-            });
-            $('#' + flag).blur(function () {
-                //失去焦点时，如果值为空，则设置为默认值  
-                if ($(this).val() == "") {
-                    $(this).val(vdefault);;
-                }
-            });
-        }
-        function Post() {
+        function Post(cancer_type) {
             var query = {
-                tf: $('#tf').val(),
-                cancer_type: $('#cancer_type').val(),
+                'cancer_type': cancer_type,
             };
-            // var tf = $('#tf').val();
-            // var regulation_type = $('#regulation_type').val(); 
-            // var characteristics = $('#characteristics').val();
-            // var cancer_type = $('#cancer_type').val();
-            // var gene = $('#gene').val();
-            // var hallmark = $('#hallmark').val();
-            // var flag = 0;
-            // var va = [$('#tf').val(), $('#cancer_type').val(), $('#gene').val(), $('#hallmark').val()]
-            // var patt = /[^0-9A-Za-z]/;
             $.ajax({
-                url: './getable.php',
+                url: './brotable.php',
                 cache: false,
                 method: 'post',
                 dataType: 'json',
@@ -109,7 +104,7 @@
                 data: query,
                 success: function (result) {
                     $(function () {
-                        $('#serv').remove();
+                    $('#serv').remove();
                     })
                     $('#table').bootstrapTable({
                         searchAlign: 'left',
@@ -190,6 +185,8 @@
                             return "Loading.........";
                         }
                     });
+                    $('#tatble').selectpicker('refresh');
+                    $('#table').selectpicker('render');
                 },
                 error: function () {
                     alert('We did not find the results!');
@@ -208,52 +205,25 @@
             })
         </script>
     </header>
-    <div class="center-block" style="width: 60%;">
-        <table id='table' class='center-block'></table>
+    <div class="center-block" style="width: 70%;">
+        <table id='table' class='center-block table'></table>
     </div>
-    <div id='serv' style="width: 50%; height:200px; margin-top: 2%; text-align: center" class='center-block'>
+    <div id='serv' style="width: 60%; height:200px; margin-top: 2%; text-align: center" class='center-block'>
         <h1 style="font-size: 30px;"><span class="glyphicon glyphicon-search" aria-hidden="true"
                 style="font-size: 30px;"></span> <b>The
-                Interface of General Search</b></h1>
+                Interface of Browse</b></h1>
         <hr class="simple" color="black" style="height: 2px;" />
-        <p style="font-size: 20px;">TFcancer provides users with a simple and fast way to search and explore all data in
-            several ways, namely searching by cancer name or transcription factors. </p>
-        <p style="font-size: 20px;">
-            Fuzzy keyword search is also available. The closest matching records will be returned. Advanced search
-            provides more detailed and systemic search results.
-        </p>
-        <div style="width: 75%; height:200px; margin-left:10%; padding-top: 3%; text-align: center">
-            <label style="font-size: 18px;">For "transcription factors", you can use simple TF
-                name (e.g. 'p53').
-            </label>
-            <div id="sertf">
-                <form action="" method="post" onsubmit="return Post();">
-                    <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="p53"
-                        autocomplete="off">
-                    <hr>
-                    <label style="font-size: 18px;">For 'Cancer', you can use Cancer name (e.g.
-                        'Breast invasive carcinoma').</label>
-                    <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
-                        value="Breast invasive carcinoma" autocomplete="off">
-                    <script>
-                        $(function () {
-                            autovalue('tf');
-                            autovalue('cancer_type');
-                            autocom('tf');
-                            autocom('cancer_type');
-                        })
-                    </script>
-                    <button class="btn btn-default" type="reset" id="reset"
-                        style="margin-top: 5%;"><b>Reset</b></button>
-                    <button class="btn btn-default" type="submit" id="sub"
-                        style="margin-top: 5%;"><b>Search</b></button>
-                </form>
-            </div>
-        </div>
+        <p style="font-size: 20px;margin-bottom: 40px;"><b>Click the symbol to view related
+                transcription factor associtions with this cancer type. </b></p>
+        <table class="table table-hover text-nowrap" data-toggle="table" data-height='700' id='tb'>
+        </table>
+        <script>
+            $(function () {
+                autotable();
+                $('.fixed-table-border').css('height', '0px');
+            })
+        </script>
     </div>
-    <!-- <footer class="footer navbar-fixed-bottom" style="background-color:whitesmoke;">
-        <p style="height: 15px;text-align: center;">©CopyRight 2020 Guo Laboratory</p>
-    </footer> -->
 </body>
 
 </html>
