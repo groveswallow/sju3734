@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2019-11-25 18:39:06
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-05 16:41:23
+ * @LastEditTime: 2020-04-05 22:50:00
  * @Description: 1.未解决用户希望看见所有癌症的结果。
  */
 require_once("dbconfig.php");
@@ -15,7 +15,7 @@ $re = mysqli_query($con, $sql);
 $res_cancer = mysqli_fetch_all($re);
 foreach($res_cancer as $val_cancer){
     $r = array(
-        'cancer' => $cancer_type,
+        'cancer' => strtoupper($cancer_type),
         'tf' => $val_cancer[0],
         'gene' => $val_cancer[1],
         'characteristics' => $val_cancer[2],

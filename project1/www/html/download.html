@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2020-02-18 20:11:59
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-05 17:51:09
+ * @LastEditTime: 2020-04-05 19:02:28
  * @Description: 
  -->
 <html lang="zh-CN">
@@ -49,7 +49,7 @@
                     options.push(option);
                     var option = '<tr>' +
                             '<td style="text-align: center;">' + '33CANCER' + '.xlsx</td>' +
-                            '<td style="text-align: center;">information of ' + '33 kinds of cancer ' + ' in xlsx format</td>' +
+                            '<td style="text-align: center;">all TF related associations with 33 cancers '+ ' in xlsx format</td>' +
                             '<td style="text-align: center;">' + '<a href="./33cancer/' + '33cancer' + '.zip" download="' + '33cancer' + '.zip" class="btn btn-lg" type="button" style="background-color:whitesmoke;color: black;margin-left: 15px;">' +
                             '<span class="glyphicon glyphicon-download" aria-hidden="true" style="font-size: 20px;"id="down"></span>' +
                             '</a>' + '</td>' +
@@ -58,7 +58,7 @@
                     for (var i = 0; i < data.length; i++) {
                         var option = '<tr>' +
                             '<td style="text-align: center;">' + data[i] + '.xlsx</td>' +
-                            '<td style="text-align: center;">information of ' + data[i] + ' in xlsx format</td>' +
+                            '<td style="text-align: center;">all TF related associations with ' + data[i] + ' in xlsx format</td>' +
                             '<td style="text-align: center;">' + '<a href="./33cancer/' + data[i] + '.xlsx" download="' + data[i] + '.xlsx" class="btn btn-lg" type="button" style="background-color:whitesmoke;color: black;margin-left: 15px;">' +
                             '<span class="glyphicon glyphicon-download" aria-hidden="true" style="font-size: 20px;"id="down"></span>' +
                             '</a>' + '</td>' +

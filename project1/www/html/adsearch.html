@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-05 10:41:11
+ * @LastEditTime: 2020-04-05 19:12:38
  * @Description: 待解决：搜索框上方的描述套话。
  * autocom函数虽然已经完成，但是ＴＦ的ｅｎｓｅｍｂｌｅ数据未拿到，所以要注意修改ＴＦ的后端。2020.1.2
  * Postdetail函数为跳转detail页面的函数，具体的还未编写。2020.1.13
@@ -210,7 +210,7 @@
                         },
                         {
                             field: 'hallmark',
-                            title: 'Cancer hallmark',
+                            title: 'Processes & Pathways',
                             align: 'center',
                         },
                         {
@@ -277,14 +277,6 @@
                         <div class="input-group"> <span class="input-group-addon" id="basic-addon1">TF</span>
                             <input type="text" class="form-control" placeholder="Search for TF" id="tf" value="BRCA1" autocomplete="off">
                         </div>
-                        <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
-                            <label>Select Mode of Regulation Type</label>
-                            <select multiple class="selectpicker form-control" id="regulation_type"
-                                title="Select Regulation Type" data-container="body" data-live-search="true"
-                                data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
-                                >
-                            </select>
-                        </div>
                         <div class="col-lg-5" style="margin-left: 8%;margin-top: 2%;">
                             <label>Select TF Characteristics</label>
                             <select multiple class="selectpicker form-control" id="characteristics"
@@ -292,10 +284,18 @@
                                 data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
                                 >
                             </select>
-                            <script>
-                                autoselect();
-                            </script>
                         </div>
+                        <div class="col-lg-5" style="margin-left: 5%;margin-top: 2%;">
+                            <label>Select Regulation Mode</label>
+                            <select multiple class="selectpicker form-control" id="regulation_type"
+                                title="Select Regulation Type" data-container="body" data-live-search="true"
+                                data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
+                                >
+                            </select>
+                        </div>
+                        <script>
+                            autoselect();
+                        </script>
                     </div>
                     <br>
                     <br>

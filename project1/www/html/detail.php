@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2020-02-07 11:49:12
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-05 16:44:15
+ * @LastEditTime: 2020-04-05 18:57:50
  * @Description: 
  */
 require_once('dbconfig.php');
@@ -83,7 +83,7 @@ echo "<head><meta charset='utf-8'>
                 <td height='40' width='80%'>".$gene." &nbsp;&nbsp;&nbsp;</td>
             </tr>
             <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Tissue-specific Expression</strong></span></td>";
+                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Tissue specific annotation</strong></span></td>";
             if ($flag == 1){
                 echo "<td><b><a href='https://bioinfo.uth.edu/TissGDB/gene_search_result.cgi?page=page&type=quick_search&quick_search=".$searchid."'
                 target='_blank'>".$gene." in TissGDB</a></td>";
@@ -133,7 +133,7 @@ echo "<head><meta charset='utf-8'>
                 <td height='40' width='30%'><span><strong>&nbsp;&nbsp;&nbsp;Links for&nbsp; <font color='#333333'>
                                 ".strtoupper($cancer)."</font></strong></span></td>
                 <td><b><a
-                            href='http://www.omim.org/search/?index=entry&amp;sort=score+desc%2C+prefix_sort+desc&amp;start=1&amp;limit=10&amp;search= nasopharyngeal cancer'
+                            href='http://www.omim.org/search/?index=entry&amp;sort=score+desc%2C+prefix_sort+desc&amp;start=1&amp;limit=10&amp;search=nasopharyngeal cancer'
                             target='_blank'>Omim</a>
                         <a href='https://cancer.sanger.ac.uk/cosmic/search?q=nasopharyngeal cancer'
                             target='_blank'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cosmic</a></b>
