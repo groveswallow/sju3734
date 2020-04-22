@@ -1,8 +1,8 @@
 <!--
  * @Author: Tang
- * @Date: 2020-04-20 21:17:37
+ * @Date: 2020-04-22 13:33:21
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-22 13:36:18
+ * @LastEditTime: 2020-04-22 13:46:14
  * @Description: 
  -->
 <!DOCTYPE html>
@@ -19,46 +19,23 @@
     <script src="./bs/js/bootstrap-table.min.js"></script>
     <script src="./bs/js/tableExport.min.js"></script>
     <script src="./bs/js/bootstrap-table-export.min.js"></script>
-    <title>TFcancer</title>
 </head>
-<script>
+<script type="text/javascript">
     function Table() {
         var cancer_type = window.location.href.split("=")[1].split("&")[0];
         cancer_type = cancer_type.replace(/\+/g, " ");
-        cancer_type = cancer_type.replace(/\%/g, "'");
-        var tf = window.location.href.split("=")[2].split("&")[0];
-        tf = tf.replace(/\+/g, " ");
-        tf = tf.replace(/\%/g, "'");
-        var gene = window.location.href.split("=")[3].split("&")[0];
-        gene = gene.replace(/\+/g, " ");
-        gene = gene.replace(/\%/g, "'");
-        var hallmark = window.location.href.split("=")[4].split("&")[0];
-        hallmark = hallmark.replace(/\+/g, " ");
-        hallmark = hallmark.replace(/\%/g, "'");
-        var regulation_type = window.location.href.split("=")[5].split("&")[0];
-        regulation_type = regulation_type.replace(/\+/g, " ");
-        regulation_type = regulation_type.replace(/\%/g, "'");
-        var characteristics = window.location.href.split("=")[6];
-        characteristics = characteristics.replace(/\+/g, " ");
-        characteristics = characteristics.replace(/\%/g, "'");
+        cancer_type = cancer_type.replace(/-/g, "'");
         var query = {
-            'tf': tf,
             'cancer_type': cancer_type,
-            'gene' : gene,
-            'hallmark' : hallmark,
-            'regulation_type' : regulation_type,
-            'characteristics' : characteristics,
         };
         $.ajax({
-            url: './adtable.php',
+            url: './brotable.php',
             cache: false,
             method: 'post',
             dataType: 'json',
             async: true,
             data: query,
             success: function (result) {
-                console.log(query);
-                console.log(result);
                 $('#table').bootstrapTable({
                     searchAlign: 'left',
                     theadClasses: 'thead-dark',
@@ -79,8 +56,8 @@
                     exportDataType: 'selected',        //下载选中的
                     pageNumber: 1,                       //初始化加载第一页，默认第一页
                     pageSize: 15,                       //每页的记录行数（*）
-                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
                     data: result,        // 表格数据来源
+                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
                     columns: [{
                         checkbox: true,
                     },
@@ -151,12 +128,10 @@
                 alert('We did not find the results!');
             }
         });
-        return false;
     }
 </script>
-
 <body background="" class="float">
-    <script>
+    <script type="text/javascript">
         $.ajaxSetup({
             cache: false //close AJAX cache
         });
@@ -171,5 +146,4 @@
         <table calss='tableExport' id='table'></table>
     </div>
 </body>
-
 </html>

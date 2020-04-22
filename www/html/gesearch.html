@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2019-11-22 22:30:55
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-22 11:06:07
+ * @LastEditTime: 2020-04-22 13:42:07
  * @Description: 待解决：搜索框上方的描述套话。
  * autocom函数虽然已经完成，但是ＴＦ的ｅｎｓｅｍｂｌｅ数据未拿到，所以要注意修改ＴＦ的后端。2020.1.2
  * Postdetail函数为跳转detail页面的函数，具体的还未编写。2020.1.13
@@ -20,49 +20,51 @@
     <script src="./bs/js/bootstrap3-typeahead.min.js"></script>
     <title>TFcancer</title>
 </head>
+<script>
+    function autocom(flag) {
+        $('#' + flag).typeahead({
+            minLength: 1,
+            items: 10,
+            hint: true,
+            highlight: true,
+            source: function (query, process) {
+                let pl = {}
+                pl[flag] = query;
+                $.ajax({
+                    url: "./autocom.php",
+                    cache: false,
+                    type: 'post',
+                    dataType: 'json',
+                    async: true,
+                    data: pl,
+                    success: function (data) {
+                        return process(data);
+                    }
+                })
+            }
+        })
+    }
+    function Turnto(cancer_type, tf) {
+        cancer_type = cancer_type.replace(/ /g, "+");
+        cancer_type = cancer_type.replace(/'/g, "-");
+        tf = tf.replace(/ /g, "+");
+        tf = tf.replace(/'/g, "-");
+        window.location.href = './getable.html?cancer_type=' + cancer_type + '&tf=' + tf;
+    }
+</script>
 
 <body background="" class="float">
     <script>
-        function autocom(flag) {
-            $('#' + flag).typeahead({
-                minLength: 1,
-                items: 10,
-                hint: true,
-                highlight: true,
-                source: function (query, process) {
-                    let pl = {}
-                    pl[flag] = query;
-                    $.ajax({
-                        url: "./autocom.php",
-                        cache: false,
-                        type: 'post',
-                        dataType: 'json',
-                        async: true,
-                        data: pl,
-                        success: function (data) {
-                            return process(data);
-                        }
-                    })
-                }
-            })
-        }
-        function Turnto(cancer_type,tf){
-            cancer_type = cancer_type.replace(/ /g,"+");
-            cancer_type = cancer_type.replace(/'/g,"-");
-            tf = tf.replace(/ /g,"+");
-            tf = tf.replace(/'/g,"-");
-            window.location.href = './getable.html?cancer_type='+cancer_type+'&tf='+tf;
-        }
+        $.ajaxSetup({
+            cache: false //close AJAX cache
+        });
+        $(function () {
+            $('#header').load('./header.html');
+            autocom('tf');
+            autocom('cancer_type');
+        })
     </script>
     <header style="background-color:whitesmoke;" id='header'>
-        <script>
-            $.ajaxSetup({
-                cache: false //close AJAX cache
-            });
-            $(function () {
-                $('#header').load('./header.html');
-            })
-        </script>
     </header>
     <div style="width: 800px; height:200px; margin-top: 2%; text-align: center" class='center-block'>
         <h1 style="font-size: 30px;"><span class="glyphicon glyphicon-search" aria-hidden="true"
@@ -95,14 +97,9 @@
                 <input type="text" class="form-control" placeholder="Search for Cancer" id="cancer_type"
                     value="Breast invasive carcinoma" autocomplete="off" style="width:600px;">
             </div>
-            <script>
-                $(function () {
-                    autocom('tf');
-                    autocom('cancer_type');
-                })
-            </script>
             <button class="btn btn-default" type="reset" style="margin-top: 3%;"><b>Reset</b></button>
-            <a class="btn btn-default" style="margin-top: 3%;" onclick="Turnto($('#cancer_type').val(),$('#tf').val())"><b>Search</b></a>
+            <a class="btn btn-default" style="margin-top: 3%;"
+                onclick="Turnto($('#cancer_type').val(),$('#tf').val())"><b>Search</b></a>
         </form>
     </div>
 </body>

@@ -14,132 +14,131 @@
     <script src="./bs/js/bootstrap-table-export.min.js"></script>
     <title>TFcancer</title>
 </head>
-
+<script type="text/javascript">
+    function Table() {
+        var cancer_type = window.location.href.split("=")[1].split("&")[0];
+        cancer_type = cancer_type.replace(/\+/g, " ");
+        cancer_type = cancer_type.replace(/-/g, "'");
+        var tf = window.location.href.split("=")[2];
+        tf = tf.replace(/\+/g, " ");
+        tf = tf.replace(/-/g, "'");
+        var query = {
+            'tf': tf,
+            'cancer_type': cancer_type,
+        };
+        $.ajax({
+            url: './getable.php',
+            cache: false,
+            method: 'post',
+            dataType: 'json',
+            async: true,
+            data: query,
+            success: function (result) {
+                $('#table').bootstrapTable({
+                    searchAlign: 'left',
+                    theadClasses: 'thead-dark',
+                    showButtonIcons: true,
+                    showLoading: true,
+                    striped: true,
+                    clickToSelect: true,
+                    showFullscreen: true,
+                    showToggle: false,
+                    search: true,
+                    showColumns: true,                  //是否显示所有的列
+                    showRefresh: true,
+                    cache: false,
+                    sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+                    pagination: true,                   //是否显示分页（*）
+                    showExtendedPagination: true,
+                    showExport: true,
+                    exportDataType: 'selected',        //下载选中的
+                    pageNumber: 1,                       //初始化加载第一页，默认第一页
+                    pageSize: 15,                       //每页的记录行数（*）
+                    data: result,        // 表格数据来源
+                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                    columns: [{
+                        checkbox: true,
+                    },
+                    {
+                        field: 'cancer',
+                        title: 'Cancer',
+                        align: 'center',
+                    }, {
+                        field: 'tf',
+                        title: 'TF',
+                        align: 'center',
+                    }, {
+                        field: 'characteristics',
+                        title: 'Characteristics',
+                        align: 'center',
+                    }, {
+                        field: 'gene',
+                        title: 'Gene',
+                        align: 'center',
+                    },
+                    {
+                        field: 'regulation_type',
+                        title: 'Regulation type',
+                        align: 'center',
+                    },
+                    {
+                        field: 'hallmark',
+                        title: 'Processes & Pathways',
+                        align: 'center',
+                    },
+                    {
+                        field: 'pmid',
+                        title: 'Pmid',
+                        align: 'center',
+                        formatter: function(value,row,index){
+                            var url = 'https://pubmed.ncbi.nlm.nih.gov/'+row.pmid+"";
+                            return '<a href='+url+'>'+row.pmid+'</a>';
+                        }
+                    },
+                    {
+                        field: 'tf',
+                        title: 'Details',
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            var tf = row.tf + "";
+                            var cancer = row.cancer + "";
+                            var gene = row.gene + "";
+                            cancer_type = cancer_type.replace(/ /g, "+");
+                            cancer_type = cancer_type.replace(/'/g, "-");
+                            tf = tf.replace(/ /g, "+");
+                            tf = tf.replace(/'/g, "-");
+                            gene = gene.replace(/'/g, "-");
+                            gene = gene.replace(/ /g, "+");
+                            var url = './detail.html?' + 'tf=' + tf + '&cancer=' + cancer + '&gene=' + gene + "";
+                            return '<a href='+url+'>details....</a>';
+                        }
+                    }
+                    ],
+                    formatNoMatches: function () {
+                        return "We did not find the result."
+                    },
+                    formatLoadingMessage: function () {
+                        return "Loading.........";
+                    }
+                });
+            },
+            error: function () {
+                alert('We did not find the results!');
+            }
+        });
+    }
+</script>
 <body background="" class="float">
     <script type="text/javascript">
-        function Table() {
-            var cancer_type = window.location.href.split("=")[1].split("&")[0];
-            cancer_type = cancer_type.replace(/\+/g, " ");
-            cancer_type = cancer_type.replace(/-/g, "'");
-            var tf = window.location.href.split("=")[2];
-            tf = tf.replace(/\+/g, " ");
-            tf = tf.replace(/-/g, "'");
-            var query = {
-                'tf': tf,
-                'cancer_type': cancer_type,
-            };
-            $.ajax({
-                url: './getable.php',
-                cache: false,
-                method: 'post',
-                dataType: 'json',
-                async: true,
-                data: query,
-                success: function (result) {
-                    $('#table').bootstrapTable({
-                        searchAlign: 'left',
-                        theadClasses: 'thead-dark',
-                        showButtonIcons: true,
-                        showLoading: true,
-                        striped: true,
-                        clickToSelect: true,
-                        showFullscreen: true,
-                        showToggle: false,
-                        search: true,
-                        showColumns: true,                  //是否显示所有的列
-                        showRefresh: true,
-                        cache: false,
-                        sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
-                        pagination: true,                   //是否显示分页（*）
-                        showExtendedPagination: true,
-                        showExport: true,
-                        exportDataType: 'selected',        //下载选中的
-                        pageNumber: 1,                       //初始化加载第一页，默认第一页
-                        pageSize: 15,                       //每页的记录行数（*）
-                        data: result,        // 表格数据来源
-                        pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-                        columns: [{
-                            checkbox: true,
-                        },
-                        {
-                            field: 'cancer',
-                            title: 'Cancer',
-                            align: 'center',
-                        }, {
-                            field: 'tf',
-                            title: 'TF',
-                            align: 'center',
-                        }, {
-                            field: 'characteristics',
-                            title: 'Characteristics',
-                            align: 'center',
-                        }, {
-                            field: 'gene',
-                            title: 'Gene',
-                            align: 'center',
-                        },
-                        {
-                            field: 'regulation_type',
-                            title: 'Regulation type',
-                            align: 'center',
-                        },
-                        {
-                            field: 'hallmark',
-                            title: 'Processes & Pathways',
-                            align: 'center',
-                        },
-                        {
-                            field: 'pmid',
-                            title: 'Pmid',
-                            align: 'center',
-                            formatter: function(value,row,index){
-                                var url = 'https://pubmed.ncbi.nlm.nih.gov/'+row.pmid+"";
-                                return '<a href='+url+'>'+row.pmid+'</a>';
-                            }
-                        },
-                        {
-                            field: 'tf',
-                            title: 'Details',
-                            align: 'center',
-                            formatter: function (value, row, index) {
-                                var tf = row.tf + "";
-                                var cancer = row.cancer + "";
-                                var gene = row.gene + "";
-                                cancer_type = cancer_type.replace(/ /g, "+");
-                                cancer_type = cancer_type.replace(/'/g, "-");
-                                tf = tf.replace(/ /g, "+");
-                                tf = tf.replace(/'/g, "-");
-                                gene = gene.replace(/'/g, "-");
-                                gene = gene.replace(/ /g, "+");
-                                var url = './detail.html?' + 'tf=' + tf + '&cancer=' + cancer + '&gene=' + gene + "";
-                                return '<a href='+url+'>details....</a>';
-                            }
-                        }
-                        ],
-                        formatNoMatches: function () {
-                            return "We did not find the result."
-                        },
-                        formatLoadingMessage: function () {
-                            return "Loading.........";
-                        }
-                    });
-                },
-                error: function () {
-                    alert('We did not find the results!');
-                }
-            });
-        }
+        $.ajaxSetup({
+            cache: false //close AJAX cache
+        });
+        $(function () {
+            $('#header').load('./header.html');
+            Table();
+        })
     </script>
     <header style="background-color:whitesmoke;" id='header'>
-        <script type="text/javascript">
-            $.ajaxSetup({
-                cache: false //close AJAX cache
-            });
-            $(function () {
-                $('#header').load('./header.html');
-                Table();
-            })
-        </script>
     </header>
     <div class="bootstrap-table center-block" style="width: 810px;">
         <table calss='tableExport' id='table'></table>
