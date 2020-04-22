@@ -1,0 +1,175 @@
+<!--
+ * @Author: Tang
+ * @Date: 2020-04-20 21:17:37
+ * @LastEditors: Tang
+ * @LastEditTime: 2020-04-22 13:24:46
+ * @Description: 
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./icon.ico">
+    <link href="./bs/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bs/css/bootstrap-table.min.css" rel="stylesheet">
+    <script src="./bs/js/jquery.min.js"></script>
+    <script src="./bs/js/bootstrap.min.js"></script>
+    <script src="./bs/js/bootstrap-table.min.js"></script>
+    <script src="./bs/js/tableExport.min.js"></script>
+    <script src="./bs/js/bootstrap-table-export.min.js"></script>
+    <title>TFcancer</title>
+</head>
+<script>
+    function Post() {
+        var cancer_type = window.location.href.split("=")[1].split("&")[0];
+        cancer_type = cancer_type.replace(/\+/g, " ");
+        cancer_type = cancer_type.replace(/\%/g, "'");
+        var tf = window.location.href.split("=")[2].split("&")[0];
+        tf = tf.replace(/\+/g, " ");
+        tf = tf.replace(/\%/g, "'");
+        var gene = window.location.href.split("=")[3].split("&")[0];
+        gene = gene.replace(/\+/g, " ");
+        gene = gene.replace(/\%/g, "'");
+        var hallmark = window.location.href.split("=")[4].split("&")[0];
+        hallmark = hallmark.replace(/\+/g, " ");
+        hallmark = hallmark.replace(/\%/g, "'");
+        var regulation_type = window.location.href.split("=")[5].split("&")[0];
+        regulation_type = regulation_type.replace(/\+/g, " ");
+        regulation_type = regulation_type.replace(/\%/g, "'");
+        var characteristics = window.location.href.split("=")[6];
+        characteristics = characteristics.replace(/\+/g, " ");
+        characteristics = characteristics.replace(/\%/g, "'");
+        var query = {
+            'tf': tf,
+            'cancer_type': cancer_type,
+            'gene' : gene,
+            'hallmark' : hallmark,
+            'regulation_type' : regulation_type,
+            'characteristics' : characteristics,
+        };
+        $.ajax({
+            url: './adtable.php',
+            cache: false,
+            method: 'post',
+            dataType: 'json',
+            async: true,
+            data: query,
+            success: function (result) {
+                console.log(query);
+                console.log(result);
+                $('#table').bootstrapTable({
+                    searchAlign: 'left',
+                    theadClasses: 'thead-dark',
+                    showButtonIcons: true,
+                    showLoading: true,
+                    striped: true,
+                    clickToSelect: true,
+                    showFullscreen: true,
+                    showToggle: false,
+                    search: true,
+                    showColumns: true,                  //是否显示所有的列
+                    showRefresh: true,
+                    cache: false,
+                    sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+                    pagination: true,                   //是否显示分页（*）
+                    showExtendedPagination: true,
+                    showExport: true,
+                    exportDataType: 'selected',        //下载选中的
+                    pageNumber: 1,                       //初始化加载第一页，默认第一页
+                    pageSize: 15,                       //每页的记录行数（*）
+                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                    data: result,        // 表格数据来源
+                    columns: [{
+                        checkbox: true,
+                    },
+                    {
+                        field: 'cancer',
+                        title: 'Cancer',
+                        align: 'center',
+                    }, {
+                        field: 'tf',
+                        title: 'TF',
+                        align: 'center',
+                    }, {
+                        field: 'characteristics',
+                        title: 'Characteristics',
+                        align: 'center',
+                    }, {
+                        field: 'gene',
+                        title: 'Gene',
+                        align: 'center',
+                    },
+                    {
+                        field: 'regulation_type',
+                        title: 'Regulation type',
+                        align: 'center',
+                    },
+                    {
+                        field: 'hallmark',
+                        title: 'Processes & Pathways',
+                        align: 'center',
+                    },
+                    {
+                        field: 'pmid',
+                        title: 'Pmid',
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            var url = 'https://pubmed.ncbi.nlm.nih.gov/' + row.pmid + "";
+                            return '<a href=' + url + '>' + row.pmid + '</a>';
+                        }
+                    },
+                    {
+                        field: 'tf',
+                        title: 'Details',
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            var tf = row.tf + "";
+                            var cancer = row.cancer + "";
+                            var gene = row.gene + "";
+                            cancer_type = cancer_type.replace(/ /g, "+");
+                            cancer_type = cancer_type.replace(/'/g, "-");
+                            tf = tf.replace(/ /g, "+");
+                            tf = tf.replace(/'/g, "-");
+                            gene = gene.replace(/'/g, "-");
+                            gene = gene.replace(/ /g, "+");
+                            var url = './detail.html?' + 'tf=' + tf + '&cancer=' + cancer + '&gene=' + gene + "";
+                            return '<a href=' + url + '>details....</a>';
+                        }
+                    }
+                    ],
+                    formatNoMatches: function () {
+                        return "We did not find the result."
+                    },
+                    formatLoadingMessage: function () {
+                        return "Loading.........";
+                    }
+                });
+            },
+            error: function () {
+                alert('We did not find the results!');
+            }
+        });
+        return false;
+    }
+</script>
+
+<body background="" class="float">
+    <script>
+        $.ajaxSetup({
+            cache: false //close AJAX cache
+        });
+        $(function () {
+            $('#header').load('./header.html');
+            Post();
+        })
+    </script>
+    <header style="background-color:whitesmoke;" id='header'>
+    </header>
+    <div class="bootstrap-table center-block" style="width: 810px;">
+        <table calss='tableExport' id='table'></table>
+    </div>
+</body>
+
+</html>

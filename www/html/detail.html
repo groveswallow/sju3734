@@ -1,0 +1,155 @@
+<!--
+ * @Author: Tang
+ * @Date: 2020-02-07 09:59:32
+ * @LastEditors: Tang
+ * @LastEditTime: 2020-04-22 13:27:17
+ * @Description: 
+ -->
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" href="./icon.ico">
+    <link href='./bs/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='./bs/css/bootstrap-table.min.css' rel='stylesheet'>
+    <script src='./bs/js/jquery.min.js'></script>
+    <script src='./bs/js/bootstrap.min.js'></script>
+    <script src='./bs/js/bootstrap-table.min.js'></script>
+    <title>TFcancer</title>
+</head>
+<script>
+    function Table() {
+        var tf = window.location.href.split("=")[1].split("&")[0];
+        var cancer_type = window.location.href.split("=")[2].split("&")[0];
+        var gene = window.location.href.split("=")[3];
+        cancer_type = cancer_type.replace(/\+/g, " ");
+        cancer_type = cancer_type.replace(/-/g, "'");
+        tf = tf.replace(/\+/g, " ");
+        tf = tf.replace(/-/g, "'");
+        gene = gene.replace(/-/g, "'");
+        gene = gene.replace(/\+/g, " ");
+        var query = {
+            'tf': tf,
+            'cancer_type': cancer_type,
+            'gene': gene
+        };
+        console.log(query);
+        $.ajax({
+            url: './detail.php',
+            cache: false,
+            method: 'post',
+            dataType: 'json',
+            async: true,
+            data: query,
+            success: function (result) {
+                console.log(result);
+                $('#tf')[0].innerHTML = tf;
+                $('#gene')[0].innerHTML = gene;
+                $('#char')[0].innerHTML = result['characteristics'];
+                $('#regulation_type')[0].innerHTML = result['regulation_type'];
+                $('#hallmark')[0].innerHTML = result['hallmark'];
+                $('#pmid')[0].innerHTML = result['pmid'];
+                $('#title')[0].innerHTML = result['title'];
+                $('#longcancer')[0].innerHTML = result['longcancer'];
+                $('#original_text')[0].innerHTML = result['original_text'];
+                $('#tflink')[0].innerHTML = '<span><strong>&nbsp;&nbsp;&nbsp;Links for ' + tf + '&nbsp;</strong></span>';
+                $('#tflinks')[0].innerHTML = '<b><a href="https://www.ncbi.nlm.nih.gov/nuccore/?term=' + tf + '">GenBank</a>' +
+                    '<a href="https://www.genenames.org/cgi-bin/search?search_type=all&amp;search=' + tf + '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HGNC</a></b>';
+                $('#canlink')[0].innerHTML = '<span><strong>&nbsp;&nbsp;&nbsp;Links for ' + cancer_type + '&nbsp;</strong></span>'
+                $('#canlinks')[0].innerHTML = '<b><a href="http://www.omim.org/search/?index=entry&amp;sort=score+desc%2C+prefix_sort+desc&amp;start=1&amp;limit=10&amp;search=' + result['longcancer'] + '">Omim</a>' + '<a href="https://cancer.sanger.ac.uk/cosmic/search?q=' + result['longcancer'] + '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cosmic</a></b>';
+                if (result['searchid'] == "") {
+                    $('#TissGDB')[0].innerHTML = '<p>N/A<p>';
+                }
+                else {
+                    $('#TissGDB')[0].innerHTML = '<b><a href="https://bioinfo.uth.edu/TissGDB/gene_search_result.cgi?page=page&type=quick_search&quick_search=' + result['searchid'] + '">' + gene + ' in TissGDB</a></b>';
+                }
+            }
+        })
+    }
+</script>
+
+<body background='' class='float'>
+    <header style='background-color:whitesmoke;' id='header'>
+        <script>
+            $.ajaxSetup({
+                cache: false //close AJAX cache
+            });
+            $(function () {
+                $('#header').load('./header.html');
+                Table();
+            })
+        </script>
+    </header>
+    <div style='width: 800px; height:200px;margin-top: 1%; text-align: center' class='center-block'>
+        <h1>
+            <b>Details</b>
+        </h1>
+        <hr style='width: 100%;border:none;border-top:10px;color: black;'>
+        <table width='1000' class='table'>
+            <tbody>
+                <tr>
+                    <td height='40'><span><strong>&nbsp;&nbsp;&nbsp;Cancer</strong></span></td>
+                    <td id='longcancer'></td>
+                </tr>
+                <tr style='width:1000px;'>
+                    <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;TF</strong></span></td>
+                    <td id='tf' height='40' width='80%'></td>
+                </tr>
+                <tr>
+                    <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Characteristics</strong></span></td>
+                    <td id='char' height='40' width='80%'></td>
+                </tr>
+
+                <tr>
+                    <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Gene</strong></span></td>
+                    <td id='gene' height='40' width='80%'></td>
+                </tr>
+                <tr>
+                    <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Tissue specific
+                                annotation</strong></span></td>
+                    <td id='TissGDB'></td>
+                </tr>
+                <tr>
+                    <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Regulation Type</strong></span></td>
+                    <td id='regulation_type' height='40' width='80%'></td>
+                </tr>
+                <tr>
+                    <td height='40' width='20%'><strong>&nbsp;&nbsp;&nbsp;hallmark</strong></td>
+                    <td id='hallmark' height='40' width='80%'></td>
+                </tr>
+
+                <tr>
+                    <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Pmid</strong></span></td>
+                    <td id='pmid' height='40' width='80%'></td>
+                </tr>
+
+                <tr>
+                    <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Title</strong></span></td>
+                    <td id='title' height='40' width='80%'></td>
+                </tr>
+
+                <tr>
+                    <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Original Text</strong></span></td>
+                    <td id='original_text' height='40' width='80%'></td>
+                </tr>
+                <tr>
+                    <td id='tflink' height='40'></td>
+                    <td id='tflinks'></td>
+                </tr>
+                <tr>
+                    <td id='canlink' height='40' width='30%'></td>
+                    <td id='canlinks'>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

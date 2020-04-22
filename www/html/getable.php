@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2019-11-25 18:39:06
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-06 21:22:29
+ * @LastEditTime: 2020-04-21 18:45:45
  * @Description: 1.未解决用户希望看见所有癌症的结果。
  */
 require_once("dbconfig.php");
@@ -40,7 +40,6 @@ else {
                 'regulation_type' => $val_tf[3],
                 'hallmark' => $val_tf[4],
                 'pmid' => $val_tf[5],
-                'title' => $val_tf[6]
             );
             $res[] = $r;
         }

@@ -3,14 +3,17 @@
  * @Author: Tang
  * @Date: 2020-02-07 11:49:12
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-06 21:19:29
+ * @LastEditTime: 2020-04-21 20:18:36
  * @Description: 
  */
 require_once('dbconfig.php');
 $con = mysqli_connect($host, $usr, $password, $db);
-$tf = $_GET['tf'];
-$cancer = strtolower($_GET['cancer']);
-$gene = strtolower($_GET['gene']);
+$tf = $_POST['tf'];
+$cancer = strtolower($_POST['cancer_type']);
+$gene = strtolower($_POST['gene']);
+// $tf = 'p53';
+// $cancer = 'brca';
+// $gene = 'gadd45a';
 $sql = "select * from $cancer where tf like '%$tf%' and gene like '%$gene%'";
 $re = mysqli_query($con, $sql);
 $res = mysqli_fetch_all($re);
@@ -37,115 +40,16 @@ $sql = "select LongCancer from cancer_type where BriCancer like '%$cancer%'";
 $re = mysqli_query($con, $sql);
 $res = mysqli_fetch_all($re);
 $LongCancer = $res[0][0];
-echo "<!DOCTYPE html>";
-echo "<html lang='zh-CN'>";
-echo "<head><meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='icon' href='./icon.ico'>
-    <link href='./bs/css/bootstrap.min.css' rel='stylesheet'>
-    <link href='./bs/css/bootstrap-select.css' rel='stylesheet'>
-    <link href='./bs/css/bootstrap-table.min.css' rel='stylesheet'>
-    <script src='./bs/js/jquery.min.js'></script>
-    <script src='./bs/js/bootstrap.min.js'></script>
-    <script src='./bs/js/bootstrap-select.js'></script>
-    <script src='./bs/js/bootstrap-table.min.js'></script>
-    <script src='./bs/js/bootstrap3-typeahead.min.js'></script>
-    <script src='./bs/js/bootstrap-table-zh-CN.min.js'></script>
-    <script src='./bs/js/tableExport.min.js'></script>
-    <script src='./bs/js/bootstrap-table-export.min.js'></script>
-    <title>TFcancer</title></head>
-    <body background='' class='float'>
-    <header style='background-color:whitesmoke;' id='header'>
-    <script>
-        $.ajaxSetup({
-            cache: false //close AJAX cache
-        });
-        $(function () {
-            $('#header').load('./header.html');
-        })
-    </script>
-</header>";
-    echo "<div style='width: 50%; height:200px;margin-top: 1%; text-align: center' class='center-block'>
-    <h1>
-        <b>Details</b>
-    </h1>
-    <hr style='width: 100%;border:none;border-top:10px;color: black;'>
-    <table width='1000' class='table'>
-        <tbody>
-            <tr style='width:1000px;'>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;TF</strong></span></td>
-                <td height='40' width='80%'>".$tf."</td>
-            </tr>
-
-            <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Characteristics</strong></span></td>
-                <td height='40' width='80%'>".$characteristics."</td>
-            </tr>
-
-            <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Gene</strong></span></td>
-                <td height='40' width='80%'>".$gene." &nbsp;&nbsp;&nbsp;</td>
-            </tr>
-            <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Tissue specific annotation</strong></span></td>";
-            if ($flag == 1){
-                echo "<td><b><a href='https://bioinfo.uth.edu/TissGDB/gene_search_result.cgi?page=page&type=quick_search&quick_search=".$searchid."'
-                target='_blank'>".$gene." in TissGDB</a></td>";
-            }
-            else{
-                echo "<td><b>N/A</b></td>";
-            }
-            echo "</tr>
-            <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Regulation type</strong></span></td>
-                <td height='40' width='80%'>".$regulation_type."
-                </td>
-            </tr>
-            <tr>
-                <td height='40' width='20%'><strong>&nbsp;&nbsp;&nbsp;Cancer hallmark</strong></td>
-                <td height='40' width='80%'>".$cancer_hallmark."</td>
-            </tr>
-
-            <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Pmid</strong></span></td>
-                <td height='40' width='80%'>".$pmid." </td>
-            </tr>
-
-            <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Title</strong></span></td>
-                <td height='40' width='80%'>".$title."</td>
-            </tr>
-
-            <tr>
-                <td height='40' width='20%'><span><strong>&nbsp;&nbsp;&nbsp;Original text</strong></span></td>
-                <td height='40' width='80%'>".$original_text."</td>
-            </tr>
-
-            <tr>
-                <td height='40'><span><strong>&nbsp;&nbsp;&nbsp;Cancer</strong></span></td>
-             <td>".strtoupper($cancer)."</td>
-            </tr>
-            <tr>
-                <td height='40'><span><strong>&nbsp;&nbsp;&nbsp;Links for&nbsp; <font color='#333333'>
-                                ".$tf."</font></strong></span></td>
-                <td> <b><a href='https://www.ncbi.nlm.nih.gov/nuccore/?term=".$tf."'
-                            target='_blank'>GenBank</a>
-                        <a href='https://www.genenames.org/cgi-bin/search?search_type=all&amp;search=".$tf."'
-                            target='_blank'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HGNC</a>
-            </tr>
-            <tr>
-                <td height='40' width='30%'><span><strong>&nbsp;&nbsp;&nbsp;Links for&nbsp; <font color='#333333'>
-                                ".strtoupper($cancer)."</font></strong></span></td>
-                <td><b><a
-                            href='http://www.omim.org/search/?index=entry&amp;sort=score+desc%2C+prefix_sort+desc&amp;start=1&amp;limit=10&amp;search=".$LongCancer."'
-                            target='_blank'>Omim</a>
-                        <a href='https://cancer.sanger.ac.uk/cosmic/search?q=".$LongCancer."'
-                            target='_blank'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cosmic</a></b>
-                </td>
-            </tr>
-            <tr><td></td><td></td></tr>
-        </tbody>
-    </table>
-</div>";
-    echo "</body>";
-    echo "</html>";
+$r = array(
+    'pmid' => $pmid,
+    'characteristics' => $characteristics,
+    'gene' => $gene,
+    'regulation_type' => $regulation_type,
+    'hallmark' => $cancer_hallmark,
+    'title' => $title,
+    'original_text' => $original_text,
+    'searchid' => $searchid,
+    'longcancer' => $LongCancer
+);
+echo json_encode($r);
+?>
