@@ -1,0 +1,75 @@
+<!--
+ * @Author: Tang
+ * @Date: 2020-05-06 10:15:46
+ * @LastEditors: Tang
+ * @LastEditTime: 2020-05-13 10:40:15
+ * @Description: 
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./img/icon.ico">
+    <link href="./bs/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bs/css/zoom.css" rel="stylesheet">
+    <script src="./bs/js/jquery.min.js"></script>
+    <script src="./bs/js/transition.js"></script>
+    <script src="./bs/js/zoom.js"></script>
+    <title>TFcancer</title>
+</head>
+
+<body background="" class="float">
+    <script type="text/javascript">
+        $.ajaxSetup({
+            cache: false //close AJAX cache
+        });
+        $(function () {
+            $('#header').load('./header.html');
+        })
+        $('#img2').viewer({
+        });
+    </script>
+    <header style="background-color:whitesmoke;" id='header'>
+    </header>
+    <!-- <div>
+        <h2 style="text-align: center;">1.Overview</h2>
+        <h3 style="text-align: center;">Number of entries: 3136</h3>
+        <h3 style="text-align: center;">Number of cancers: 33</h3>
+        <h3 style="text-align: center;">Number of transcription factors: 461</h3>
+    </div>
+    <hr> -->
+    <h2 style="text-align: center;">1.Top transcription factors in TFcancer</h2>
+    <div class="center-block" style="width: 700px;">
+        <img id="img2" class="container center-block" style="display: block;width: 400px;" src="./img/sta2.png"
+            alt="sta2" data-action="zoom">
+    </div>
+    </div>
+    <hr>
+    <h2 style="text-align: center;">2.Statistics of the number of transcription factors studied in the number of
+        different cancer types. </h2>
+    <h2 style="text-align: center;">Most transcription factors were studied in one or two types of cancers.</h2>
+    <div class="center-block" style="width: 700px;">
+        <img class="container center-block" style="display: block;width: 500px;" src="./img/sta3.png" alt="sta3" data-action="zoom">
+    </div>
+    </div>
+    <hr>
+    <h2 style="text-align: center;">3.Distribution of chromatin interaction mode of 461 transcription factors.</h2>
+    <h2 style="text-align: center;">Most studies focused on the TFs of migrant chromatin regulation mode.</h2>
+    <div class="center-block" style="width: 700px;">
+        <img class="container center-block" style="display: block;width: 300px;" src="./img/sta4.png" alt="sta4" data-action="zoom">
+    </div>
+    </div>
+    <hr>
+    <h2 style="text-align: center;">4.Family distribution of 461 transcription factors.</h2>
+    <h2 style="text-align: center;">Most TFs in these researches are members of C2H2 zinc finger factors family, </h2>
+    <h2 style="text-align: center;">which is the most abundant class of DNA binding domains found in
+        human transcription factors.</h2>
+    <div class="center-block">
+        <img class="container center-block" style="display: block;width: 500px;" src="./img/sta5.png" alt="sta5" data-action="zoom">
+    </div>
+    </div>
+    <hr>
+</body>
+</html>

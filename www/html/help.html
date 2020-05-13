@@ -1,0 +1,78 @@
+<!--
+ * @Author: Tang
+ * @Date: 2020-05-06 10:17:13
+ * @LastEditors: Tang
+ * @LastEditTime: 2020-05-13 10:40:35
+ * @Description: 
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./img/icon.ico">
+    <link href="./bs/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bs/css/zoom.css" rel="stylesheet">
+    <script src="./bs/js/jquery.min.js"></script>
+    <script src="./bs/js/transition.js"></script>
+    <script src="./bs/js/zoom.js"></script>
+    <title>TFcancer</title>
+</head>
+
+<body background="" class="float">
+    <script type="text/javascript">
+        $.ajaxSetup({
+            cache: false //close AJAX cache
+        });
+        $(function () {
+            $('#header').load('./header.html');
+        })
+    </script>
+    <header style="background-color:whitesmoke;" id='header'>
+    </header>
+    <div class="center-block" style="width: 800px;">
+        <h1 style="text-align: center;">Usage of TFcancer</h1>
+        <h3 style="text-align: center;">Figure 1 The introduction of database web interface</h3>
+        <p style="font-size: large;">a: Seven sub-interfaces of TFcancer, among which SEARCH page contains a drop-down
+            menu with general search
+            and advanced search.</p>
+        <p style="font-size: large;">b: The general search allows users to search with specific TF names and 33 cancer
+            full names. </p>
+        <p style="font-size: large;">c: The advanced search allows users to choose specific TF characteristics, related
+            regulation mode, cancer
+            associated processes and pathways and gene names, apart from TF names and cancer types.</p>
+        <p style="font-size: large;">d: Users can browse TF associtions of each cancer type by clicking the symbol of
+            cancer abbreviation.</p>
+        <p style="font-size: large;">e: Users can also download associations of corresponding cancer type in xlsx format
+            in DOWNLOAD page.</p>
+        <p style="font-size: large;">f: Users can submit new entries by adding new information in SUBMIT page.</p>
+        <img class="" style="display: block;width: 500px;" src="./img/help1.png" alt="help1" data-action="zoom">
+        <hr>
+        <h3 style="text-align: center;">Figure 2 The use of advanced search and details of search results</h3>
+        <p style="font-size: large;">a: The advanced search interface</p>
+        <p style="font-size: large;">b: Users can select multiple TF characteristics according to their needs. The TF
+            characteristics in TFcancer include the dysexpression, molecular alterations of TFs and TF interaction type
+            with other genes..</p>
+        <p style="font-size: large;">c: For TFs having interactions with other genes, users can also select their
+            regulation mode, such as positive, negative, some epigenetic modification or impacts of genes’ promoters.
+        </p>
+        <p style="font-size: large;">d: After users submit their search requests, the elementary search result page is
+            shown. For each entry, there are 8 columns containing cancer abbreviations, TF names, TF characteristics,
+            genes that have interactions with TFs, regulation mode of the interactions between TFs and genes, cancer
+            processes and pathways affected by TFs, PMID of related literatures and the link of detail page. Some
+            entries do not contain certain information of some columns. They were filled with N/A. Users can also search
+            in the page by inputing keywords at the top left corner of the page.</p>
+        <p style="font-size: large;">e: Users can also set different numbers entries per page.</p>
+        <p style="font-size: large;">f: The checkbox allows users to selectively display different columns on the page
+            as the need rises.</p>
+        <p style="font-size: large;">g: Users can download entries in the result page in different formats.</p>
+        <p style="font-size: large;">h: In the detail page of corresponding entry, users can see the title of the
+            literature and the original text of the association entry. TFcancer also provides external links of
+            corresponding TFs and cancers.</p>
+        <img class="" style="display: block;width: 500px;" src="./img/help2.png" alt="help2" data-action="zoom">
+        <hr>
+    </div>
+</body>
+
+</html>

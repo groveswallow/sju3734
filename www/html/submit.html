@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2020-02-19 17:39:34
  * @LastEditors: Tang
- * @LastEditTime: 2020-04-20 21:33:11
+ * @LastEditTime: 2020-05-13 10:38:54
  * @Description: 
  -->
 <html lang="zh-CN">
@@ -10,16 +10,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="./icon.ico">
+    <link rel="icon" href="./img/icon.ico">
     <link href="./bs/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./bs/css/bootstrap-select.css" rel="stylesheet">
-    <link href="./bs/css/bootstrap-table.min.css" rel="stylesheet">
     <script src="./bs/js/jquery.min.js"></script>
     <script src="./bs/js/bootstrap.min.js"></script>
-    <script src="./bs/js/bootstrap-select.js"></script>
-    <script src="./bs/js/bootstrap-table.min.js"></script>
-    <script src="./bs/js/bootstrap3-typeahead.min.js"></script>
-    <script src="./bs/js/bootstrap-table-zh-CN.min.js"></script>
     <title>TFcancer</title>
 </head>
 
@@ -96,51 +90,51 @@
             <form action="" method="post" onsubmit="return Post();" style="margin-left: auto;">
                 <div style="margin-top:13px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
-                        <span class="input-group-addon" style="width:200px;">PubMed ID</span>
+                        <span class="input-group-addon" style="width:200px;"><b>PubMed ID</b></span>
                         <input id="pmid" name="pmid" class="form-control"
-                            style="width:450px;font-family:gill sans;font-size:12px;" type="text" placeholder="">
+                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. '546782'">
                     </div>
                 </div>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
-                        <span class="input-group-addon" style="width:250px;">Cancer</span>
+                        <span class="input-group-addon" style="width:250px;"><b>Cancer</b></span>
                         <input id="cancer" name="cancer" class="form-control"
-                            style="width:450px;font-family:gill sans;font-size:12px;" type="text" placeholder="">
+                            style="width:450px;font-size:12px;" type="text" placeholder="e.g.' Breast invasive carcinoma'">
                     </div>
                 </div>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
-                        <span class="input-group-addon" style="width:250px;">TF</span>
+                        <span class="input-group-addon" style="width:250px;"><b>TF</b></span>
                         <input id="tf" name="tf" class="form-control"
-                            style="width:450px;font-family:gill sans;font-size:12px;" type="text" placeholder="">
+                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. 'p53'">
                     </div>
                 </div>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
-                        <span class="input-group-addon" style="width:250px;">Gene</span>
+                        <span class="input-group-addon" style="width:250px;"><b>Gene</b></span>
                         <input id="gene" name="gene" class="form-control"
-                            style="width:450px;font-family:gill sans;font-size:12px;" type="text" placeholder="">
+                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. 'GADD45A'">
                     </div>
                 </div>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
-                        <span class="input-group-addon" style="width:250px;">Hallmark</span>
+                        <span class="input-group-addon" style="width:250px;"><b>Hallmark</b></span>
                         <input id="hallmark" name="hallmark" class="form-control"
-                            style="width:450px;font-family:gill sans;font-size:12px;" type="text" placeholder="">
+                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. 'tumorigenesis'">
                     </div>
                 </div>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
-                        <span class="input-group-addon" style="width:250px;">Regulation Type</span>
+                        <span class="input-group-addon" style="width:250px;"><b>Regulation Type</b></span>
                         <input id="regulation_type" name="regulation_type" class="form-control"
-                            style="width:450px;font-family:gill sans;font-size:12px;" type="text" placeholder="">
+                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. 'negative'">
                     </div>
                 </div>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
-                        <span class="input-group-addon" style="width:250px;">Your email</span>
+                        <span class="input-group-addon" style="width:250px;"><b>Your email</b></span>
                         <input id="email" name="email" class="form-control"
-                            style="width:450px;font-family:gill sans;font-size:12px;" type="text" placeholder="">
+                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. 'zhiyunguo@swjtu.edu.cn'">
                     </div>
                 </div>
                 <div
