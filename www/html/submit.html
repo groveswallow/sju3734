@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2020-02-19 17:39:34
  * @LastEditors: Tang
- * @LastEditTime: 2020-05-13 10:38:54
+ * @LastEditTime: 2020-05-20 11:12:24
  * @Description: 
  -->
 <html lang="zh-CN">
@@ -88,59 +88,96 @@
             </p>
             <br>
             <form action="" method="post" onsubmit="return Post();" style="margin-left: auto;">
+                <p style="font-size: 16px;text-align: center;">For PMID,The following
+                    information should be consisted with the PMID related article.
+                </p>
                 <div style="margin-top:13px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
                         <span class="input-group-addon" style="width:200px;"><b>PubMed ID</b></span>
-                        <input id="pmid" name="pmid" class="form-control"
-                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. '546782'">
+                        <input id="pmid" name="pmid" class="form-control" style="width:450px;font-size:12px;"
+                            type="text" placeholder="e.g. '546782'">
                     </div>
                 </div>
+                <p style="font-size: 16px;text-align: center;">Related cancer type in submitted entry.
+                </p>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
                         <span class="input-group-addon" style="width:250px;"><b>Cancer</b></span>
-                        <input id="cancer" name="cancer" class="form-control"
-                            style="width:450px;font-size:12px;" type="text" placeholder="e.g.' Breast invasive carcinoma'">
+                        <input id="cancer" name="cancer" class="form-control" style="width:450px;font-size:12px;"
+                            type="text" placeholder="e.g.' Breast invasive carcinoma'">
                     </div>
                 </div>
+                <p style="font-size: 16px;text-align: center;">Related TF name in submitted entry.
+                </p>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
                         <span class="input-group-addon" style="width:250px;"><b>TF</b></span>
-                        <input id="tf" name="tf" class="form-control"
-                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. 'p53'">
+                        <input id="tf" name="tf" class="form-control" style="width:450px;font-size:12px;" type="text"
+                            placeholder="e.g. 'p53'">
                     </div>
                 </div>
+                <p style="font-size: 16px;text-align: center;">The type of TF molecular alteration in the cancer.
+                </p>
+                <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
+                    <div class="input-group margin-bottom-sm">
+                        <span class="input-group-addon" style="width:250px;"><b>Characteristics</b></span>
+                        <input id="gene" name="gene" class="form-control" style="width:450px;font-size:12px;"
+                            type="text" placeholder="e.g. 'GADD45A'">
+                    </div>
+                </div>
+                <p style="font-size: 16px;text-align: center;">If TF involves in regulations with other genes, users can
+                    input gene names here.
+                </p>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
                         <span class="input-group-addon" style="width:250px;"><b>Gene</b></span>
-                        <input id="gene" name="gene" class="form-control"
-                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. 'GADD45A'">
+                        <input id="gene" name="gene" class="form-control" style="width:450px;font-size:12px;"
+                            type="text" placeholder="e.g. 'GADD45A'">
                     </div>
                 </div>
+                <p style="font-size: 16px;text-align: center;">If TF involves in regulations with other genes, users can
+                    input the type of regulation here.
+                </p>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
-                        <span class="input-group-addon" style="width:250px;"><b>Hallmark</b></span>
-                        <input id="hallmark" name="hallmark" class="form-control"
-                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. 'tumorigenesis'">
+                        <span class="input-group-addon" style="width:250px;"><b>Regulation type</b></span>
+                        <input id="gene" name="gene" class="form-control" style="width:450px;font-size:12px;"
+                            type="text" placeholder="e.g. 'GADD45A'">
                     </div>
                 </div>
+                <p style="font-size: 16px;text-align: center;">Cancer processes or pathways associated with the TF in
+                    the cancer.
+                </p>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
-                        <span class="input-group-addon" style="width:250px;"><b>Regulation Type</b></span>
-                        <input id="regulation_type" name="regulation_type" class="form-control"
-                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. 'negative'">
+                        <span class="input-group-addon" style="width:250px;"><b>Processes and Pathways</b></span>
+                        <input id="hallmark" name="hallmark" class="form-control" style="width:450px;font-size:12px;"
+                            type="text" placeholder="e.g. 'tumorigenesis'">
                     </div>
                 </div>
+                <p style="font-size: 16px;text-align: center;">Original descriptions of the association users input
+                    above in the article.
+                </p>
+                <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
+                    <div class="input-group margin-bottom-sm">
+                        <span class="input-group-addon" style="width:250px;"><b>Original text</b></span>
+                        <input id="hallmark" name="hallmark" class="form-control" style="width:450px;font-size:12px;"
+                            type="text" placeholder="e.g. 'tumorigenesis'">
+                    </div>
+                </div>
+                <p style="font-size: 16px;text-align: center;">Input your email address information.
+                </p>
                 <div style="margin-top:10px;height:40px;width: 650px;margin-left: auto;margin-right: auto;">
                     <div class="input-group margin-bottom-sm">
                         <span class="input-group-addon" style="width:250px;"><b>Your email</b></span>
-                        <input id="email" name="email" class="form-control"
-                            style="width:450px;font-size:12px;" type="text" placeholder="e.g. 'zhiyunguo@swjtu.edu.cn'">
+                        <input id="email" name="email" class="form-control" style="width:450px;font-size:12px;"
+                            type="text" placeholder="e.g. 'zhiyunguo@swjtu.edu.cn'">
                     </div>
                 </div>
                 <div
                     style="margin-top:40px;height:50px;width: 650px;margin-left: auto;position:solution;margin-right: auto;">
                     <button class="btn btn-default" type="submit" id="sub"
-                        style="margin-top: 0%;"><b>Submit</b></button>
+                        style="margin-top: 0px;"><b>Submit</b></button>
                 </div>
             </form>
         </div>
