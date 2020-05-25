@@ -3,7 +3,7 @@
  * @Author: Tang
  * @Date: 2020-04-29 00:52:32
  * @LastEditors: Tang
- * @LastEditTime: 2020-05-25 13:13:23
+ * @LastEditTime: 2020-05-25 18:54:36
  * @Description: 
  */
 //以后可以尝试解决分号问题。
@@ -62,18 +62,28 @@ function getdata($sql, $con, $key)
 require_once("dbconfig.php");
 $tf = $_POST['tf'];
 $cancer = $_POST['cancer']; //所有的数据来自33个以cancer名字命名的数据表
-$tf = "";
-$cancer = "";
+$characteristics = $_POST['characteristics'];
 $con = mysqli_connect($host, $usr, $password, $db);
 $fin_res = array(); //最终返回给前端的结果，包含两个列表，一个是characteristics,一个是regulation_type。
+$fin_res[0] = [];
 $sql = "select BriCancer from cancer_type where LongCancer like '%$cancer%'";
 $re = mysqli_query($con, $sql);
 $res_cancer = mysqli_fetch_assoc($re);
 $cancer = strtolower($res_cancer['BriCancer']); //取得相应cancer的表名
-$sql = "select characteristics from $cancer where tf like '$tf'"; //从表中取得数据
-$fin_res[0] = getdata($sql, $con, 'characteristics');
-$sql = "select regulation_type from $cancer where tf like '$tf'"; //从表中取得数据
-$fin_res[1] = getdata($sql, $con, 'regulation_type');
-$fin_res[0] = unique($fin_res[0]);
-$fin_res[1] = unique($fin_res[1]);
-echo json_encode($fin_res);//返回两个列表的数据。
+$sql = "select tf_name from tfname where tf_class like '%$tf%'";
+$tf_array = getdata($sql, $con, 'tf_name');
+foreach ($tf_array as $tf) {
+    $sql = "select regulation_type from $cancer where tf like '$tf' and characteristics like '%$characteristics%'"; //从表中取得数据
+    $a1 = getdata($sql, $con, 'regulation_type');
+    if(count($a1) == 0){
+        continue;
+    }
+    $a1 = unique($a1);
+    $fin_res[0] = array_merge($fin_res[0],$a1);
+}
+if (count($fin_res[0]) == 0) {
+    echo null;
+} else {
+    $fin_res[0] = unique($fin_res[0]);
+    echo json_encode($fin_res); //返回两个列表的数据。
+}

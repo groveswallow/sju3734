@@ -2,7 +2,7 @@
  * @Author: Tang
  * @Date: 2020-04-20 21:17:37
  * @LastEditors: Tang
- * @LastEditTime: 2020-05-13 10:37:03
+ * @LastEditTime: 2020-05-25 20:24:45
  * @Description: 
  -->
 <!DOCTYPE html>
@@ -38,11 +38,9 @@
         var regulation_type = window.location.href.split("=")[5].split("&")[0];
         regulation_type = regulation_type.replace(/\+/g, " ");
         regulation_type = regulation_type.replace(/\%/g, "'");
-        regulation_type = regulation_type.split(",");
         var characteristics = window.location.href.split("=")[6];
         characteristics = characteristics.replace(/\+/g, " ");
         characteristics = characteristics.replace(/\%/g, "'");
-        characteristics = characteristics.split(",");
         var query = {
             'tf': tf,
             'cancer_type': cancer_type,
@@ -51,6 +49,7 @@
             'regulation_type' : regulation_type,
             'characteristics' : characteristics,
         };
+        console.log(query);
         $.ajax({
             url: './adtable.php',
             cache: false,
@@ -59,7 +58,6 @@
             async: true,
             data: query,
             success: function (result) {
-                console.log(query);
                 console.log(result);
                 if(result == null){
                     alert('We did not find the results!');
@@ -145,11 +143,18 @@
                         }
                     }
                     ],
+                    formatErrorMessage: function(){
+                        return "Sorry,We did not find such Related results of your input TF and Cancer.Maybe you can submit someting."
+                    },
                     formatLoadingMessage: function () {
                         return "Loading.........";
                     }
                 });
             },
+            error:function(){
+                alert("Sorry,We did not find such Related results of your input TF and Cancer.Maybe you can submit someting.");
+                window.location.replace("./adsearch.html");
+            }
         });
         return false;
     }
